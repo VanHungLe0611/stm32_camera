@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
   29:Src/main.c    **** /* USER CODE END Includes */
   30:Src/main.c    **** 
   31:Src/main.c    **** /* Private typedef -----------------------------------------------------------*/
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 2
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 2
 
 
   32:Src/main.c    **** /* USER CODE BEGIN PTD */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
   86:Src/main.c    **** 
   87:Src/main.c    ****   /* USER CODE END Init */
   88:Src/main.c    **** 
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 3
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 3
 
 
   89:Src/main.c    ****   /* Configure the system clock */
@@ -133,9 +133,9 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
   98:Src/main.c    ****   MX_DCMI_Init();
   99:Src/main.c    ****   MX_I2C1_Init();
  100:Src/main.c    ****   /* USER CODE BEGIN 2 */
- 101:Src/main.c    ****   ov2640_Init(OV2640_ID,CAMERA_R160x120);
- 102:Src/main.c    ****   ov2640_Config(OV2640_ID,CAMERA_BLACK_WHITE,CAMERA_BLACK_WHITE,CAMERA_BRIGHTNESS_LEVEL2);
- 103:Src/main.c    ****   uint16_t a = ov2640_ReadID(OV2640_ID);
+ 101:Src/main.c    ****   ov2640_Init(CAMERA_I2C_ADDRESS,CAMERA_R160x120);
+ 102:Src/main.c    ****   ov2640_Config(CAMERA_I2C_ADDRESS,CAMERA_BLACK_WHITE,CAMERA_BLACK_WHITE,CAMERA_BRIGHTNESS_LEVEL2);
+ 103:Src/main.c    ****   uint16_t a = ov2640_ReadID(CAMERA_I2C_ADDRESS);
  104:Src/main.c    ****   printf("%d",a);
  105:Src/main.c    **** 
  106:Src/main.c    ****   /* USER CODE END 2 */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  143:Src/main.c    ****   */
  144:Src/main.c    ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
  145:Src/main.c    ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 4
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 4
 
 
  146:Src/main.c    ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  200:Src/main.c    ****   /* USER CODE END I2C1_Init 0 */
  201:Src/main.c    **** 
  202:Src/main.c    ****   /* USER CODE BEGIN I2C1_Init 1 */
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 5
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 5
 
 
  203:Src/main.c    **** 
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
   51 0018 0099     		ldr	r1, [sp]
   52              	.LBE2:
  234:Src/main.c    ****   __HAL_RCC_GPIOA_CLK_ENABLE();
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 6
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 6
 
 
   53              		.loc 1 234 3 view .LVU6
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  103 0058 7047     		bx	lr
  104              	.L4:
  105 005a 00BF     		.align	2
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 7
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 7
 
 
  106              	.L3:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  149 0012 4361     		str	r3, [r0, #20]
  178:Src/main.c    ****   hdcmi.Init.JPEGMode = DCMI_JPEG_DISABLE;
  150              		.loc 1 178 3 is_stmt 1 view .LVU35
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 8
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 8
 
 
  178:Src/main.c    ****   hdcmi.Init.JPEGMode = DCMI_JPEG_DISABLE;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  196 000a 4360     		str	r3, [r0, #4]
  207:Src/main.c    ****   hi2c1.Init.OwnAddress1 = 0;
  197              		.loc 1 207 3 is_stmt 1 view .LVU47
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 9
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 9
 
 
  207:Src/main.c    ****   hi2c1.Init.OwnAddress1 = 0;
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  237              		.global	SystemClock_Config
  238              		.syntax unified
  239              		.thumb
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 10
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 10
 
 
  240              		.thumb_func
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  285              		.loc 1 130 3 view .LVU73
  286 002e 019B     		ldr	r3, [sp, #4]
  287              	.LBE6:
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 11
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 11
 
 
  131:Src/main.c    ****   /** Initializes the CPU, AHB and APB busses clocks 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  325              		.loc 1 144 31 is_stmt 0 view .LVU90
  326 005a 0F23     		movs	r3, #15
  327 005c 0393     		str	r3, [sp, #12]
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 12
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 12
 
 
  146:Src/main.c    ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  372              		@ args = 0, pretend = 0, frame = 0
  373              		@ frame_needed = 0, uses_anonymous_args = 0
  374 0000 08B5     		push	{r3, lr}
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 13
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 13
 
 
  375              	.LCFI7:
@@ -745,25 +745,25 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  391              		.loc 1 99 3 view .LVU107
  392 0012 FFF7FEFF 		bl	MX_I2C1_Init
  393              	.LVL9:
- 101:Src/main.c    ****   ov2640_Config(OV2640_ID,CAMERA_BLACK_WHITE,CAMERA_BLACK_WHITE,CAMERA_BRIGHTNESS_LEVEL2);
+ 101:Src/main.c    ****   ov2640_Config(CAMERA_I2C_ADDRESS,CAMERA_BLACK_WHITE,CAMERA_BLACK_WHITE,CAMERA_BRIGHTNESS_LEVEL2);
  394              		.loc 1 101 3 view .LVU108
  395 0016 0021     		movs	r1, #0
- 396 0018 2620     		movs	r0, #38
+ 396 0018 6020     		movs	r0, #96
  397 001a FFF7FEFF 		bl	ov2640_Init
  398              	.LVL10:
- 102:Src/main.c    ****   uint16_t a = ov2640_ReadID(OV2640_ID);
+ 102:Src/main.c    ****   uint16_t a = ov2640_ReadID(CAMERA_I2C_ADDRESS);
  399              		.loc 1 102 3 view .LVU109
  400 001e 0223     		movs	r3, #2
  401 0020 0122     		movs	r2, #1
  402 0022 1146     		mov	r1, r2
- 403 0024 2620     		movs	r0, #38
+ 403 0024 6020     		movs	r0, #96
  404 0026 FFF7FEFF 		bl	ov2640_Config
  405              	.LVL11:
  103:Src/main.c    ****   printf("%d",a);
  406              		.loc 1 103 3 view .LVU110
  103:Src/main.c    ****   printf("%d",a);
  407              		.loc 1 103 16 is_stmt 0 view .LVU111
- 408 002a 2620     		movs	r0, #38
+ 408 002a 6020     		movs	r0, #96
  409 002c FFF7FEFF 		bl	ov2640_ReadID
  410              	.LVL12:
  104:Src/main.c    **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  418              	.L18:
  110:Src/main.c    ****   {
  419              		.loc 1 110 3 is_stmt 1 discriminator 1 view .LVU114
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 14
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 14
 
 
  115:Src/main.c    ****   /* USER CODE END 3 */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  460              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
  461              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
  462              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 15
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 15
 
 
  463              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h"
@@ -856,31 +856,31 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 1
  475              		.file 20 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
  476              		.file 21 "c:\\users\\hungv\\appdata\\roaming\\xpacks\\@gnu-mcu-eclipse\\arm-none-eabi-gcc\\8.2.1-1
  477              		.file 22 "<built-in>"
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccTifezl.s 			page 16
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:18     .text.MX_GPIO_Init:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:107    .text.MX_GPIO_Init:000000000000005c $d
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:112    .text.MX_DCMI_Init:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:118    .text.MX_DCMI_Init:0000000000000000 MX_DCMI_Init
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:165    .text.MX_DCMI_Init:0000000000000020 $d
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:18     .text.MX_GPIO_Init:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:25     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:107    .text.MX_GPIO_Init:000000000000005c $d
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:112    .text.MX_DCMI_Init:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:118    .text.MX_DCMI_Init:0000000000000000 MX_DCMI_Init
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:165    .text.MX_DCMI_Init:0000000000000020 $d
                             *COM*:0000000000000040 hdcmi
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:171    .text.MX_I2C1_Init:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:177    .text.MX_I2C1_Init:0000000000000000 MX_I2C1_Init
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:229    .text.MX_I2C1_Init:0000000000000028 $d
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:171    .text.MX_I2C1_Init:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:177    .text.MX_I2C1_Init:0000000000000000 MX_I2C1_Init
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:229    .text.MX_I2C1_Init:0000000000000028 $d
                             *COM*:0000000000000054 hi2c1
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:236    .text.SystemClock_Config:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:243    .text.SystemClock_Config:0000000000000000 SystemClock_Config
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:355    .text.SystemClock_Config:0000000000000074 $d
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:361    .text.main:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:368    .text.main:0000000000000000 main
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:425    .text.main:000000000000003c $d
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:430    .text.Error_Handler:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:437    .text.Error_Handler:0000000000000000 Error_Handler
-C:\Users\hungv\AppData\Local\Temp\ccTifezl.s:452    .rodata.main.str1.4:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:236    .text.SystemClock_Config:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:243    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:355    .text.SystemClock_Config:0000000000000074 $d
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:361    .text.main:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:368    .text.main:0000000000000000 main
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:425    .text.main:000000000000003c $d
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:430    .text.Error_Handler:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:437    .text.Error_Handler:0000000000000000 Error_Handler
+C:\Users\hungv\AppData\Local\Temp\ccgra2H6.s:452    .rodata.main.str1.4:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_DCMI_Init
