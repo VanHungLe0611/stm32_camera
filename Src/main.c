@@ -98,10 +98,7 @@ int main(void)
   MX_DCMI_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  ov2640_Init(CAMERA_I2C_ADDRESS,CAMERA_R160x120);
-  ov2640_Config(CAMERA_I2C_ADDRESS,CAMERA_BLACK_WHITE,CAMERA_BLACK_WHITE,CAMERA_BRIGHTNESS_LEVEL2);
-  uint16_t a = ov2640_ReadID(CAMERA_I2C_ADDRESS);
-  printf("%d",a);
+
 
   /* USER CODE END 2 */
 
@@ -110,6 +107,15 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	//  ov2640_Init(CAMERA_I2C_ADDRESS,CAMERA_R160x120);
+	  HAL_Delay(1000);
+	//   ov2640_Config(CAMERA_I2C_ADDRESS,CAMERA_BLACK_WHITE,CAMERA_BLACK_WHITE,CAMERA_BRIGHTNESS_LEVEL2);
+	   uint16_t a = ov2640_ReadID(CAMERA_I2C_ADDRESS);
+	   HAL_Delay(1000);
+//	   printf("%d",a);
+	   uint32_t b = ov2640_ReadID(CAMERA_I2C_ADDRESS);
+	   HAL_Delay(1000);
+	   printf("%d , %ld",a,b);
 
     /* USER CODE BEGIN 3 */
   }
