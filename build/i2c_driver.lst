@@ -1,0 +1,1211 @@
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"i2c_driver.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.I2Cx_MspInit,"ax",%progbits
+  18              		.align	1
+  19              		.global	I2Cx_MspInit
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	I2Cx_MspInit:
+  27              	.LFB130:
+  28              		.file 1 "Src/i2c_driver.c"
+   1:Src/i2c_driver.c **** #include "i2c_driver.h"
+   2:Src/i2c_driver.c **** 
+   3:Src/i2c_driver.c **** static I2C_HandleTypeDef heval_I2c;
+   4:Src/i2c_driver.c **** 
+   5:Src/i2c_driver.c **** void     I2Cx_MspInit(void);
+   6:Src/i2c_driver.c **** void     I2Cx_Init();
+   7:Src/i2c_driver.c **** void     I2Cx_ITConfig(void);
+   8:Src/i2c_driver.c **** void     I2Cx_Write(uint8_t Addr, uint8_t Reg, uint8_t Value);
+   9:Src/i2c_driver.c **** uint8_t  I2Cx_Read(uint8_t Addr, uint8_t Reg);
+  10:Src/i2c_driver.c **** HAL_StatusTypeDef I2Cx_ReadMultiple(uint8_t Addr, uint16_t Reg, uint16_t MemAddSize, uint8_t *Buffe
+  11:Src/i2c_driver.c **** HAL_StatusTypeDef I2Cx_WriteMultiple(uint8_t Addr, uint16_t Reg, uint16_t MemAddSize, uint8_t *Buff
+  12:Src/i2c_driver.c **** HAL_StatusTypeDef I2Cx_IsDeviceReady(uint16_t DevAddress, uint32_t Trials);
+  13:Src/i2c_driver.c **** void     I2Cx_Error(uint8_t Addr);
+  14:Src/i2c_driver.c **** 
+  15:Src/i2c_driver.c **** 
+  16:Src/i2c_driver.c **** /******************************* I2C Routines *********************************/
+  17:Src/i2c_driver.c **** /**
+  18:Src/i2c_driver.c ****   * @brief  Initializes I2C MSP.
+  19:Src/i2c_driver.c ****   */
+  20:Src/i2c_driver.c **** void I2Cx_MspInit(void)
+  21:Src/i2c_driver.c **** {
+  29              		.loc 1 21 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 32
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 70B5     		push	{r4, r5, r6, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 16
+  36              		.cfi_offset 4, -16
+  37              		.cfi_offset 5, -12
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 2
+
+
+  38              		.cfi_offset 6, -8
+  39              		.cfi_offset 14, -4
+  40 0002 88B0     		sub	sp, sp, #32
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 48
+  22:Src/i2c_driver.c ****   GPIO_InitTypeDef  GPIO_InitStruct;
+  43              		.loc 1 22 3 view .LVU1
+  23:Src/i2c_driver.c **** 
+  24:Src/i2c_driver.c ****   /*** Configure the GPIOs ***/
+  25:Src/i2c_driver.c ****   /* Enable GPIO clock */
+  26:Src/i2c_driver.c ****   EVAL_I2Cx_SCL_SDA_GPIO_CLK_ENABLE();
+  44              		.loc 1 26 3 view .LVU2
+  45              	.LBB2:
+  46              		.loc 1 26 3 view .LVU3
+  47 0004 0025     		movs	r5, #0
+  48 0006 0195     		str	r5, [sp, #4]
+  49              		.loc 1 26 3 view .LVU4
+  50 0008 214C     		ldr	r4, .L3
+  51 000a 236B     		ldr	r3, [r4, #48]
+  52 000c 43F00203 		orr	r3, r3, #2
+  53 0010 2363     		str	r3, [r4, #48]
+  54              		.loc 1 26 3 view .LVU5
+  55 0012 236B     		ldr	r3, [r4, #48]
+  56 0014 03F00203 		and	r3, r3, #2
+  57 0018 0193     		str	r3, [sp, #4]
+  58              		.loc 1 26 3 view .LVU6
+  59 001a 019B     		ldr	r3, [sp, #4]
+  60              	.LBE2:
+  27:Src/i2c_driver.c **** 
+  28:Src/i2c_driver.c ****   /* Configure I2C Tx as alternate function */
+  29:Src/i2c_driver.c ****   GPIO_InitStruct.Pin = EVAL_I2Cx_SCL_PIN;
+  61              		.loc 1 29 3 view .LVU7
+  62              		.loc 1 29 23 is_stmt 0 view .LVU8
+  63 001c 4023     		movs	r3, #64
+  64 001e 0393     		str	r3, [sp, #12]
+  30:Src/i2c_driver.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+  65              		.loc 1 30 3 is_stmt 1 view .LVU9
+  66              		.loc 1 30 24 is_stmt 0 view .LVU10
+  67 0020 1223     		movs	r3, #18
+  68 0022 0493     		str	r3, [sp, #16]
+  31:Src/i2c_driver.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+  69              		.loc 1 31 3 is_stmt 1 view .LVU11
+  70              		.loc 1 31 24 is_stmt 0 view .LVU12
+  71 0024 0595     		str	r5, [sp, #20]
+  32:Src/i2c_driver.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+  72              		.loc 1 32 3 is_stmt 1 view .LVU13
+  73              		.loc 1 32 25 is_stmt 0 view .LVU14
+  74 0026 0223     		movs	r3, #2
+  75 0028 0693     		str	r3, [sp, #24]
+  33:Src/i2c_driver.c ****   GPIO_InitStruct.Alternate = EVAL_I2Cx_SCL_SDA_AF;
+  76              		.loc 1 33 3 is_stmt 1 view .LVU15
+  77              		.loc 1 33 29 is_stmt 0 view .LVU16
+  78 002a 0423     		movs	r3, #4
+  79 002c 0793     		str	r3, [sp, #28]
+  34:Src/i2c_driver.c ****   HAL_GPIO_Init(EVAL_I2Cx_SCL_SDA_GPIO_PORT, &GPIO_InitStruct);
+  80              		.loc 1 34 3 is_stmt 1 view .LVU17
+  81 002e 194E     		ldr	r6, .L3+4
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 3
+
+
+  82 0030 03A9     		add	r1, sp, #12
+  83 0032 3046     		mov	r0, r6
+  84 0034 FFF7FEFF 		bl	HAL_GPIO_Init
+  85              	.LVL0:
+  35:Src/i2c_driver.c **** 
+  36:Src/i2c_driver.c ****   /* Configure I2C Rx as alternate function */
+  37:Src/i2c_driver.c ****   GPIO_InitStruct.Pin = EVAL_I2Cx_SDA_PIN;
+  86              		.loc 1 37 3 view .LVU18
+  87              		.loc 1 37 23 is_stmt 0 view .LVU19
+  88 0038 4FF40073 		mov	r3, #512
+  89 003c 0393     		str	r3, [sp, #12]
+  38:Src/i2c_driver.c ****   HAL_GPIO_Init(EVAL_I2Cx_SCL_SDA_GPIO_PORT, &GPIO_InitStruct);
+  90              		.loc 1 38 3 is_stmt 1 view .LVU20
+  91 003e 03A9     		add	r1, sp, #12
+  92 0040 3046     		mov	r0, r6
+  93 0042 FFF7FEFF 		bl	HAL_GPIO_Init
+  94              	.LVL1:
+  39:Src/i2c_driver.c **** 
+  40:Src/i2c_driver.c ****   /*** Configure the I2C peripheral ***/
+  41:Src/i2c_driver.c ****   /* Enable I2C clock */
+  42:Src/i2c_driver.c ****   EVAL_I2Cx_CLK_ENABLE();
+  95              		.loc 1 42 3 view .LVU21
+  96              	.LBB3:
+  97              		.loc 1 42 3 view .LVU22
+  98 0046 0295     		str	r5, [sp, #8]
+  99              		.loc 1 42 3 view .LVU23
+ 100 0048 236C     		ldr	r3, [r4, #64]
+ 101 004a 43F40013 		orr	r3, r3, #2097152
+ 102 004e 2364     		str	r3, [r4, #64]
+ 103              		.loc 1 42 3 view .LVU24
+ 104 0050 236C     		ldr	r3, [r4, #64]
+ 105 0052 03F40013 		and	r3, r3, #2097152
+ 106 0056 0293     		str	r3, [sp, #8]
+ 107              		.loc 1 42 3 view .LVU25
+ 108 0058 029B     		ldr	r3, [sp, #8]
+ 109              	.LBE3:
+  43:Src/i2c_driver.c **** 
+  44:Src/i2c_driver.c ****   /* Force the I2C peripheral clock reset */
+  45:Src/i2c_driver.c ****   EVAL_I2Cx_FORCE_RESET();
+ 110              		.loc 1 45 3 view .LVU26
+ 111 005a 236A     		ldr	r3, [r4, #32]
+ 112 005c 43F40013 		orr	r3, r3, #2097152
+ 113 0060 2362     		str	r3, [r4, #32]
+  46:Src/i2c_driver.c **** 
+  47:Src/i2c_driver.c ****   /* Release the I2C peripheral clock reset */
+  48:Src/i2c_driver.c ****   EVAL_I2Cx_RELEASE_RESET();
+ 114              		.loc 1 48 3 view .LVU27
+ 115 0062 236A     		ldr	r3, [r4, #32]
+ 116 0064 23F40013 		bic	r3, r3, #2097152
+ 117 0068 2362     		str	r3, [r4, #32]
+  49:Src/i2c_driver.c **** 
+  50:Src/i2c_driver.c ****   /* Enable and set I2Cx Interrupt to a lower priority */
+  51:Src/i2c_driver.c ****   HAL_NVIC_SetPriority(EVAL_I2Cx_EV_IRQn, 0x0F, 0);
+ 118              		.loc 1 51 3 view .LVU28
+ 119 006a 2A46     		mov	r2, r5
+ 120 006c 0F21     		movs	r1, #15
+ 121 006e 1F20     		movs	r0, #31
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 4
+
+
+ 122 0070 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 123              	.LVL2:
+  52:Src/i2c_driver.c ****   HAL_NVIC_EnableIRQ(EVAL_I2Cx_EV_IRQn);
+ 124              		.loc 1 52 3 view .LVU29
+ 125 0074 1F20     		movs	r0, #31
+ 126 0076 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 127              	.LVL3:
+  53:Src/i2c_driver.c **** 
+  54:Src/i2c_driver.c ****   /* Enable and set I2Cx Interrupt to a lower priority */
+  55:Src/i2c_driver.c ****   HAL_NVIC_SetPriority(EVAL_I2Cx_ER_IRQn, 0x0F, 0);
+ 128              		.loc 1 55 3 view .LVU30
+ 129 007a 2A46     		mov	r2, r5
+ 130 007c 0F21     		movs	r1, #15
+ 131 007e 2020     		movs	r0, #32
+ 132 0080 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 133              	.LVL4:
+  56:Src/i2c_driver.c ****   HAL_NVIC_EnableIRQ(EVAL_I2Cx_ER_IRQn);
+ 134              		.loc 1 56 3 view .LVU31
+ 135 0084 2020     		movs	r0, #32
+ 136 0086 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 137              	.LVL5:
+  57:Src/i2c_driver.c **** }
+ 138              		.loc 1 57 1 is_stmt 0 view .LVU32
+ 139 008a 08B0     		add	sp, sp, #32
+ 140              	.LCFI2:
+ 141              		.cfi_def_cfa_offset 16
+ 142              		@ sp needed
+ 143 008c 70BD     		pop	{r4, r5, r6, pc}
+ 144              	.L4:
+ 145 008e 00BF     		.align	2
+ 146              	.L3:
+ 147 0090 00380240 		.word	1073887232
+ 148 0094 00040240 		.word	1073873920
+ 149              		.cfi_endproc
+ 150              	.LFE130:
+ 152              		.section	.text.I2Cx_Init,"ax",%progbits
+ 153              		.align	1
+ 154              		.global	I2Cx_Init
+ 155              		.syntax unified
+ 156              		.thumb
+ 157              		.thumb_func
+ 158              		.fpu fpv4-sp-d16
+ 160              	I2Cx_Init:
+ 161              	.LFB131:
+  58:Src/i2c_driver.c **** 
+  59:Src/i2c_driver.c **** 
+  60:Src/i2c_driver.c **** /**
+  61:Src/i2c_driver.c ****   * @brief  Initializes I2C HAL.
+  62:Src/i2c_driver.c ****   */
+  63:Src/i2c_driver.c **** void I2Cx_Init()
+  64:Src/i2c_driver.c **** {
+ 162              		.loc 1 64 1 is_stmt 1 view -0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166 0000 10B5     		push	{r4, lr}
+ 167              	.LCFI3:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 5
+
+
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 4, -8
+ 170              		.cfi_offset 14, -4
+  65:Src/i2c_driver.c ****   if(HAL_I2C_GetState(&heval_I2c) == HAL_I2C_STATE_RESET)
+ 171              		.loc 1 65 3 view .LVU34
+ 172              		.loc 1 65 6 is_stmt 0 view .LVU35
+ 173 0002 0D48     		ldr	r0, .L9
+ 174 0004 FFF7FEFF 		bl	HAL_I2C_GetState
+ 175              	.LVL6:
+ 176              		.loc 1 65 5 view .LVU36
+ 177 0008 00B1     		cbz	r0, .L8
+ 178              	.L5:
+  66:Src/i2c_driver.c ****   {
+  67:Src/i2c_driver.c ****     heval_I2c.Instance = I2C1;
+  68:Src/i2c_driver.c ****     heval_I2c.Init.ClockSpeed      = BSP_I2C_SPEED;
+  69:Src/i2c_driver.c ****     heval_I2c.Init.DutyCycle       = I2C_DUTYCYCLE_2;
+  70:Src/i2c_driver.c ****     heval_I2c.Init.OwnAddress1     = 0;
+  71:Src/i2c_driver.c ****     heval_I2c.Init.AddressingMode  = I2C_ADDRESSINGMODE_7BIT;
+  72:Src/i2c_driver.c ****     heval_I2c.Init.DualAddressMode = I2C_DUALADDRESS_DISABLED;
+  73:Src/i2c_driver.c ****     heval_I2c.Init.OwnAddress2     = 0;
+  74:Src/i2c_driver.c ****     heval_I2c.Init.GeneralCallMode = I2C_GENERALCALL_DISABLED;
+  75:Src/i2c_driver.c ****     heval_I2c.Init.NoStretchMode   = I2C_NOSTRETCH_DISABLED;
+  76:Src/i2c_driver.c **** 
+  77:Src/i2c_driver.c ****     /* Init the I2C */
+  78:Src/i2c_driver.c ****     I2Cx_MspInit();
+  79:Src/i2c_driver.c ****     HAL_I2C_Init(&heval_I2c);
+  80:Src/i2c_driver.c ****   }
+  81:Src/i2c_driver.c **** }
+ 179              		.loc 1 81 1 view .LVU37
+ 180 000a 10BD     		pop	{r4, pc}
+ 181              	.L8:
+  67:Src/i2c_driver.c ****     heval_I2c.Init.ClockSpeed      = BSP_I2C_SPEED;
+ 182              		.loc 1 67 5 is_stmt 1 view .LVU38
+  67:Src/i2c_driver.c ****     heval_I2c.Init.ClockSpeed      = BSP_I2C_SPEED;
+ 183              		.loc 1 67 24 is_stmt 0 view .LVU39
+ 184 000c 0A4C     		ldr	r4, .L9
+ 185 000e 0B4B     		ldr	r3, .L9+4
+ 186 0010 2360     		str	r3, [r4]
+  68:Src/i2c_driver.c ****     heval_I2c.Init.DutyCycle       = I2C_DUTYCYCLE_2;
+ 187              		.loc 1 68 5 is_stmt 1 view .LVU40
+  68:Src/i2c_driver.c ****     heval_I2c.Init.DutyCycle       = I2C_DUTYCYCLE_2;
+ 188              		.loc 1 68 36 is_stmt 0 view .LVU41
+ 189 0012 0B4B     		ldr	r3, .L9+8
+ 190 0014 6360     		str	r3, [r4, #4]
+  69:Src/i2c_driver.c ****     heval_I2c.Init.OwnAddress1     = 0;
+ 191              		.loc 1 69 5 is_stmt 1 view .LVU42
+  69:Src/i2c_driver.c ****     heval_I2c.Init.OwnAddress1     = 0;
+ 192              		.loc 1 69 36 is_stmt 0 view .LVU43
+ 193 0016 0023     		movs	r3, #0
+ 194 0018 A360     		str	r3, [r4, #8]
+  70:Src/i2c_driver.c ****     heval_I2c.Init.AddressingMode  = I2C_ADDRESSINGMODE_7BIT;
+ 195              		.loc 1 70 5 is_stmt 1 view .LVU44
+  70:Src/i2c_driver.c ****     heval_I2c.Init.AddressingMode  = I2C_ADDRESSINGMODE_7BIT;
+ 196              		.loc 1 70 36 is_stmt 0 view .LVU45
+ 197 001a E360     		str	r3, [r4, #12]
+  71:Src/i2c_driver.c ****     heval_I2c.Init.DualAddressMode = I2C_DUALADDRESS_DISABLED;
+ 198              		.loc 1 71 5 is_stmt 1 view .LVU46
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 6
+
+
+  71:Src/i2c_driver.c ****     heval_I2c.Init.DualAddressMode = I2C_DUALADDRESS_DISABLED;
+ 199              		.loc 1 71 36 is_stmt 0 view .LVU47
+ 200 001c 4FF48042 		mov	r2, #16384
+ 201 0020 2261     		str	r2, [r4, #16]
+  72:Src/i2c_driver.c ****     heval_I2c.Init.OwnAddress2     = 0;
+ 202              		.loc 1 72 5 is_stmt 1 view .LVU48
+  72:Src/i2c_driver.c ****     heval_I2c.Init.OwnAddress2     = 0;
+ 203              		.loc 1 72 36 is_stmt 0 view .LVU49
+ 204 0022 6361     		str	r3, [r4, #20]
+  73:Src/i2c_driver.c ****     heval_I2c.Init.GeneralCallMode = I2C_GENERALCALL_DISABLED;
+ 205              		.loc 1 73 5 is_stmt 1 view .LVU50
+  73:Src/i2c_driver.c ****     heval_I2c.Init.GeneralCallMode = I2C_GENERALCALL_DISABLED;
+ 206              		.loc 1 73 36 is_stmt 0 view .LVU51
+ 207 0024 A361     		str	r3, [r4, #24]
+  74:Src/i2c_driver.c ****     heval_I2c.Init.NoStretchMode   = I2C_NOSTRETCH_DISABLED;
+ 208              		.loc 1 74 5 is_stmt 1 view .LVU52
+  74:Src/i2c_driver.c ****     heval_I2c.Init.NoStretchMode   = I2C_NOSTRETCH_DISABLED;
+ 209              		.loc 1 74 36 is_stmt 0 view .LVU53
+ 210 0026 E361     		str	r3, [r4, #28]
+  75:Src/i2c_driver.c **** 
+ 211              		.loc 1 75 5 is_stmt 1 view .LVU54
+  75:Src/i2c_driver.c **** 
+ 212              		.loc 1 75 36 is_stmt 0 view .LVU55
+ 213 0028 2362     		str	r3, [r4, #32]
+  78:Src/i2c_driver.c ****     HAL_I2C_Init(&heval_I2c);
+ 214              		.loc 1 78 5 is_stmt 1 view .LVU56
+ 215 002a FFF7FEFF 		bl	I2Cx_MspInit
+ 216              	.LVL7:
+  79:Src/i2c_driver.c ****   }
+ 217              		.loc 1 79 5 view .LVU57
+ 218 002e 2046     		mov	r0, r4
+ 219 0030 FFF7FEFF 		bl	HAL_I2C_Init
+ 220              	.LVL8:
+ 221              		.loc 1 81 1 is_stmt 0 view .LVU58
+ 222 0034 E9E7     		b	.L5
+ 223              	.L10:
+ 224 0036 00BF     		.align	2
+ 225              	.L9:
+ 226 0038 00000000 		.word	.LANCHOR0
+ 227 003c 00540040 		.word	1073763328
+ 228 0040 A0860100 		.word	100000
+ 229              		.cfi_endproc
+ 230              	.LFE131:
+ 232              		.section	.text.I2Cx_ITConfig,"ax",%progbits
+ 233              		.align	1
+ 234              		.global	I2Cx_ITConfig
+ 235              		.syntax unified
+ 236              		.thumb
+ 237              		.thumb_func
+ 238              		.fpu fpv4-sp-d16
+ 240              	I2Cx_ITConfig:
+ 241              	.LFB132:
+  82:Src/i2c_driver.c **** 
+  83:Src/i2c_driver.c **** /**
+  84:Src/i2c_driver.c ****   * @brief  Configures I2C Interrupt.
+  85:Src/i2c_driver.c ****   */
+  86:Src/i2c_driver.c **** void I2Cx_ITConfig(void)
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 7
+
+
+  87:Src/i2c_driver.c **** {
+ 242              		.loc 1 87 1 is_stmt 1 view -0
+ 243              		.cfi_startproc
+ 244              		@ args = 0, pretend = 0, frame = 32
+ 245              		@ frame_needed = 0, uses_anonymous_args = 0
+  88:Src/i2c_driver.c ****   static uint8_t I2C_IT_Enabled = 0;
+ 246              		.loc 1 88 3 view .LVU60
+  89:Src/i2c_driver.c ****   GPIO_InitTypeDef  GPIO_InitStruct;
+ 247              		.loc 1 89 3 view .LVU61
+  90:Src/i2c_driver.c **** 
+  91:Src/i2c_driver.c ****   if(I2C_IT_Enabled == 0)
+ 248              		.loc 1 91 3 view .LVU62
+ 249              		.loc 1 91 21 is_stmt 0 view .LVU63
+ 250 0000 1A4B     		ldr	r3, .L18
+ 251 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 252              		.loc 1 91 5 view .LVU64
+ 253 0004 03B1     		cbz	r3, .L17
+ 254 0006 7047     		bx	lr
+ 255              	.L17:
+  87:Src/i2c_driver.c ****   static uint8_t I2C_IT_Enabled = 0;
+ 256              		.loc 1 87 1 view .LVU65
+ 257 0008 00B5     		push	{lr}
+ 258              	.LCFI4:
+ 259              		.cfi_def_cfa_offset 4
+ 260              		.cfi_offset 14, -4
+ 261 000a 89B0     		sub	sp, sp, #36
+ 262              	.LCFI5:
+ 263              		.cfi_def_cfa_offset 40
+  92:Src/i2c_driver.c ****   {
+  93:Src/i2c_driver.c ****     I2C_IT_Enabled = 1;
+ 264              		.loc 1 93 5 is_stmt 1 view .LVU66
+ 265              		.loc 1 93 20 is_stmt 0 view .LVU67
+ 266 000c 174B     		ldr	r3, .L18
+ 267 000e 0122     		movs	r2, #1
+ 268 0010 1A70     		strb	r2, [r3]
+  94:Src/i2c_driver.c ****     /* Enable the GPIO EXTI clock */
+  95:Src/i2c_driver.c ****     __GPIOI_CLK_ENABLE();
+ 269              		.loc 1 95 5 is_stmt 1 view .LVU68
+ 270              	.LBB4:
+ 271              		.loc 1 95 5 view .LVU69
+ 272 0012 0022     		movs	r2, #0
+ 273 0014 0192     		str	r2, [sp, #4]
+ 274              		.loc 1 95 5 view .LVU70
+ 275 0016 164B     		ldr	r3, .L18+4
+ 276 0018 196B     		ldr	r1, [r3, #48]
+ 277 001a 41F48071 		orr	r1, r1, #256
+ 278 001e 1963     		str	r1, [r3, #48]
+ 279              		.loc 1 95 5 view .LVU71
+ 280 0020 196B     		ldr	r1, [r3, #48]
+ 281 0022 01F48071 		and	r1, r1, #256
+ 282 0026 0191     		str	r1, [sp, #4]
+ 283              		.loc 1 95 5 view .LVU72
+ 284 0028 0199     		ldr	r1, [sp, #4]
+ 285              	.LBE4:
+  96:Src/i2c_driver.c ****     __SYSCFG_CLK_ENABLE();
+ 286              		.loc 1 96 5 view .LVU73
+ 287              	.LBB5:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 8
+
+
+ 288              		.loc 1 96 5 view .LVU74
+ 289 002a 0292     		str	r2, [sp, #8]
+ 290              		.loc 1 96 5 view .LVU75
+ 291 002c 596C     		ldr	r1, [r3, #68]
+ 292 002e 41F48041 		orr	r1, r1, #16384
+ 293 0032 5964     		str	r1, [r3, #68]
+ 294              		.loc 1 96 5 view .LVU76
+ 295 0034 5B6C     		ldr	r3, [r3, #68]
+ 296 0036 03F48043 		and	r3, r3, #16384
+ 297 003a 0293     		str	r3, [sp, #8]
+ 298              		.loc 1 96 5 view .LVU77
+ 299 003c 029B     		ldr	r3, [sp, #8]
+ 300              	.LBE5:
+  97:Src/i2c_driver.c **** 
+  98:Src/i2c_driver.c ****     GPIO_InitStruct.Pin   = GPIO_PIN_8;
+ 301              		.loc 1 98 5 view .LVU78
+ 302              		.loc 1 98 27 is_stmt 0 view .LVU79
+ 303 003e 4FF48073 		mov	r3, #256
+ 304 0042 0393     		str	r3, [sp, #12]
+  99:Src/i2c_driver.c ****     GPIO_InitStruct.Pull  = GPIO_NOPULL;
+ 305              		.loc 1 99 5 is_stmt 1 view .LVU80
+ 306              		.loc 1 99 27 is_stmt 0 view .LVU81
+ 307 0044 0592     		str	r2, [sp, #20]
+ 100:Src/i2c_driver.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+ 308              		.loc 1 100 5 is_stmt 1 view .LVU82
+ 309              		.loc 1 100 27 is_stmt 0 view .LVU83
+ 310 0046 0692     		str	r2, [sp, #24]
+ 101:Src/i2c_driver.c ****     GPIO_InitStruct.Mode  = GPIO_MODE_IT_FALLING;
+ 311              		.loc 1 101 5 is_stmt 1 view .LVU84
+ 312              		.loc 1 101 27 is_stmt 0 view .LVU85
+ 313 0048 0A4B     		ldr	r3, .L18+8
+ 314 004a 0493     		str	r3, [sp, #16]
+ 102:Src/i2c_driver.c ****     HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+ 315              		.loc 1 102 5 is_stmt 1 view .LVU86
+ 316 004c 03A9     		add	r1, sp, #12
+ 317 004e 0A48     		ldr	r0, .L18+12
+ 318 0050 FFF7FEFF 		bl	HAL_GPIO_Init
+ 319              	.LVL9:
+ 103:Src/i2c_driver.c **** 
+ 104:Src/i2c_driver.c ****     /* Enable and set GPIO EXTI Interrupt to the lowest priority */
+ 105:Src/i2c_driver.c ****     HAL_NVIC_SetPriority((IRQn_Type)(EXTI9_5_IRQn), 0x0F, 0x0F);
+ 320              		.loc 1 105 5 view .LVU87
+ 321 0054 0F22     		movs	r2, #15
+ 322 0056 1146     		mov	r1, r2
+ 323 0058 1720     		movs	r0, #23
+ 324 005a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 325              	.LVL10:
+ 106:Src/i2c_driver.c ****     HAL_NVIC_EnableIRQ((IRQn_Type)(EXTI9_5_IRQn));
+ 326              		.loc 1 106 5 view .LVU88
+ 327 005e 1720     		movs	r0, #23
+ 328 0060 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 329              	.LVL11:
+ 107:Src/i2c_driver.c ****   }
+ 108:Src/i2c_driver.c **** }
+ 330              		.loc 1 108 1 is_stmt 0 view .LVU89
+ 331 0064 09B0     		add	sp, sp, #36
+ 332              	.LCFI6:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 9
+
+
+ 333              		.cfi_def_cfa_offset 4
+ 334              		@ sp needed
+ 335 0066 5DF804FB 		ldr	pc, [sp], #4
+ 336              	.L19:
+ 337 006a 00BF     		.align	2
+ 338              	.L18:
+ 339 006c 00000000 		.word	.LANCHOR1
+ 340 0070 00380240 		.word	1073887232
+ 341 0074 00002110 		.word	270598144
+ 342 0078 00200240 		.word	1073881088
+ 343              		.cfi_endproc
+ 344              	.LFE132:
+ 346              		.section	.text.I2Cx_IsDeviceReady,"ax",%progbits
+ 347              		.align	1
+ 348              		.global	I2Cx_IsDeviceReady
+ 349              		.syntax unified
+ 350              		.thumb
+ 351              		.thumb_func
+ 352              		.fpu fpv4-sp-d16
+ 354              	I2Cx_IsDeviceReady:
+ 355              	.LVL12:
+ 356              	.LFB137:
+ 109:Src/i2c_driver.c **** 
+ 110:Src/i2c_driver.c **** /**
+ 111:Src/i2c_driver.c ****   * @brief  Writes a single data.
+ 112:Src/i2c_driver.c ****   * @param  Addr: I2C address
+ 113:Src/i2c_driver.c ****   * @param  Reg: Register address
+ 114:Src/i2c_driver.c ****   * @param  Value: Data to be written
+ 115:Src/i2c_driver.c ****   */
+ 116:Src/i2c_driver.c **** void I2Cx_Write(uint8_t Addr, uint8_t Reg, uint8_t Value)
+ 117:Src/i2c_driver.c **** {
+ 118:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 119:Src/i2c_driver.c **** 
+ 120:Src/i2c_driver.c ****   status = HAL_I2C_Mem_Write(&heval_I2c, Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, &Value, 1, 100)
+ 121:Src/i2c_driver.c **** 
+ 122:Src/i2c_driver.c ****   /* Check the communication status */
+ 123:Src/i2c_driver.c ****   if(status != HAL_OK)
+ 124:Src/i2c_driver.c ****   {
+ 125:Src/i2c_driver.c ****     /* Execute user timeout callback */
+ 126:Src/i2c_driver.c ****     I2Cx_Error(Addr);
+ 127:Src/i2c_driver.c ****   }
+ 128:Src/i2c_driver.c **** }
+ 129:Src/i2c_driver.c **** 
+ 130:Src/i2c_driver.c **** /**
+ 131:Src/i2c_driver.c ****   * @brief  Reads a single data.
+ 132:Src/i2c_driver.c ****   * @param  Addr: I2C address
+ 133:Src/i2c_driver.c ****   * @param  Reg: Register address
+ 134:Src/i2c_driver.c ****   * @retval Read data
+ 135:Src/i2c_driver.c ****   */
+ 136:Src/i2c_driver.c **** uint8_t I2Cx_Read(uint8_t Addr, uint8_t Reg)
+ 137:Src/i2c_driver.c **** {
+ 138:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 139:Src/i2c_driver.c ****   uint8_t Value = 0;
+ 140:Src/i2c_driver.c **** 
+ 141:Src/i2c_driver.c ****   status = HAL_I2C_Mem_Read(&heval_I2c, Addr, Reg, I2C_MEMADD_SIZE_8BIT, &Value, 1, 1000);
+ 142:Src/i2c_driver.c **** 
+ 143:Src/i2c_driver.c ****   /* Check the communication status */
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 10
+
+
+ 144:Src/i2c_driver.c ****   if(status != HAL_OK)
+ 145:Src/i2c_driver.c ****   {
+ 146:Src/i2c_driver.c ****     /* Execute user timeout callback */
+ 147:Src/i2c_driver.c ****     I2Cx_Error(Addr);
+ 148:Src/i2c_driver.c ****   }
+ 149:Src/i2c_driver.c ****   return Value;
+ 150:Src/i2c_driver.c **** }
+ 151:Src/i2c_driver.c **** 
+ 152:Src/i2c_driver.c **** /**
+ 153:Src/i2c_driver.c ****   * @brief  Reads multiple data.
+ 154:Src/i2c_driver.c ****   * @param  Addr: I2C address
+ 155:Src/i2c_driver.c ****   * @param  Reg: Reg address
+ 156:Src/i2c_driver.c ****   * @param  MemAddress: Internal memory address
+ 157:Src/i2c_driver.c ****   * @param  Buffer: Pointer to data buffer
+ 158:Src/i2c_driver.c ****   * @param  Length: Length of the data
+ 159:Src/i2c_driver.c ****   * @retval Number of read data
+ 160:Src/i2c_driver.c ****   */
+ 161:Src/i2c_driver.c **** HAL_StatusTypeDef I2Cx_ReadMultiple(uint8_t Addr, uint16_t Reg, uint16_t MemAddress, uint8_t *Buffe
+ 162:Src/i2c_driver.c **** {
+ 163:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 164:Src/i2c_driver.c **** 
+ 165:Src/i2c_driver.c ****   if(Addr == EXC7200_I2C_ADDRESS)
+ 166:Src/i2c_driver.c ****   {
+ 167:Src/i2c_driver.c ****     status = HAL_I2C_Master_Receive(&heval_I2c, Addr, Buffer, Length, 1000);
+ 168:Src/i2c_driver.c ****   }
+ 169:Src/i2c_driver.c ****   else
+ 170:Src/i2c_driver.c ****   {
+ 171:Src/i2c_driver.c ****     status = HAL_I2C_Mem_Read(&heval_I2c, Addr, (uint16_t)Reg, MemAddress, Buffer, Length, 1000);
+ 172:Src/i2c_driver.c ****   }
+ 173:Src/i2c_driver.c **** 
+ 174:Src/i2c_driver.c ****   /* Check the communication status */
+ 175:Src/i2c_driver.c ****   if(status != HAL_OK)
+ 176:Src/i2c_driver.c ****   {
+ 177:Src/i2c_driver.c ****     /* I2C error occured */
+ 178:Src/i2c_driver.c ****     I2Cx_Error(Addr);
+ 179:Src/i2c_driver.c ****   }
+ 180:Src/i2c_driver.c ****   return status;
+ 181:Src/i2c_driver.c **** }
+ 182:Src/i2c_driver.c **** 
+ 183:Src/i2c_driver.c **** /**
+ 184:Src/i2c_driver.c ****   * @brief  Writes a value in a register of the device through BUS in using DMA mode.
+ 185:Src/i2c_driver.c ****   * @param  Addr: Device address on BUS Bus.
+ 186:Src/i2c_driver.c ****   * @param  Reg: The target register address to write
+ 187:Src/i2c_driver.c ****   * @param  MemAddress: Internal memory address
+ 188:Src/i2c_driver.c ****   * @param  Buffer: The target register value to be written
+ 189:Src/i2c_driver.c ****   * @param  Length: buffer size to be written
+ 190:Src/i2c_driver.c ****   * @retval HAL status
+ 191:Src/i2c_driver.c ****   */
+ 192:Src/i2c_driver.c **** HAL_StatusTypeDef I2Cx_WriteMultiple(uint8_t Addr, uint16_t Reg, uint16_t MemAddress, uint8_t *Buff
+ 193:Src/i2c_driver.c **** {
+ 194:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 195:Src/i2c_driver.c **** 
+ 196:Src/i2c_driver.c ****   status = HAL_I2C_Mem_Write(&heval_I2c, Addr, (uint16_t)Reg, MemAddress, Buffer, Length, 1000);
+ 197:Src/i2c_driver.c **** 
+ 198:Src/i2c_driver.c ****   /* Check the communication status */
+ 199:Src/i2c_driver.c ****   if(status != HAL_OK)
+ 200:Src/i2c_driver.c ****   {
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 11
+
+
+ 201:Src/i2c_driver.c ****     /* Re-Initialize the I2C Bus */
+ 202:Src/i2c_driver.c ****     I2Cx_Error(Addr);
+ 203:Src/i2c_driver.c ****   }
+ 204:Src/i2c_driver.c ****   return status;
+ 205:Src/i2c_driver.c **** }
+ 206:Src/i2c_driver.c **** 
+ 207:Src/i2c_driver.c **** /**
+ 208:Src/i2c_driver.c ****   * @brief  Checks if target device is ready for communication.
+ 209:Src/i2c_driver.c ****   * @note   This function is used with Memory devices
+ 210:Src/i2c_driver.c ****   * @param  DevAddress: Target device address
+ 211:Src/i2c_driver.c ****   * @param  Trials: Number of trials
+ 212:Src/i2c_driver.c ****   * @retval HAL status
+ 213:Src/i2c_driver.c ****   */
+ 214:Src/i2c_driver.c **** HAL_StatusTypeDef I2Cx_IsDeviceReady(uint16_t DevAddress, uint32_t Trials)
+ 215:Src/i2c_driver.c **** {
+ 357              		.loc 1 215 1 is_stmt 1 view -0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 361              		.loc 1 215 1 is_stmt 0 view .LVU91
+ 362 0000 08B5     		push	{r3, lr}
+ 363              	.LCFI7:
+ 364              		.cfi_def_cfa_offset 8
+ 365              		.cfi_offset 3, -8
+ 366              		.cfi_offset 14, -4
+ 216:Src/i2c_driver.c ****   return (HAL_I2C_IsDeviceReady(&heval_I2c, DevAddress, Trials, 1000));
+ 367              		.loc 1 216 3 is_stmt 1 view .LVU92
+ 368              		.loc 1 216 11 is_stmt 0 view .LVU93
+ 369 0002 4FF47A73 		mov	r3, #1000
+ 370 0006 0A46     		mov	r2, r1
+ 371 0008 0146     		mov	r1, r0
+ 372              	.LVL13:
+ 373              		.loc 1 216 11 view .LVU94
+ 374 000a 0248     		ldr	r0, .L22
+ 375              	.LVL14:
+ 376              		.loc 1 216 11 view .LVU95
+ 377 000c FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
+ 378              	.LVL15:
+ 217:Src/i2c_driver.c **** }
+ 379              		.loc 1 217 1 view .LVU96
+ 380 0010 08BD     		pop	{r3, pc}
+ 381              	.L23:
+ 382 0012 00BF     		.align	2
+ 383              	.L22:
+ 384 0014 00000000 		.word	.LANCHOR0
+ 385              		.cfi_endproc
+ 386              	.LFE137:
+ 388              		.section	.text.I2Cx_Error,"ax",%progbits
+ 389              		.align	1
+ 390              		.global	I2Cx_Error
+ 391              		.syntax unified
+ 392              		.thumb
+ 393              		.thumb_func
+ 394              		.fpu fpv4-sp-d16
+ 396              	I2Cx_Error:
+ 397              	.LVL16:
+ 398              	.LFB138:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 12
+
+
+ 218:Src/i2c_driver.c **** 
+ 219:Src/i2c_driver.c **** /**
+ 220:Src/i2c_driver.c ****   * @brief  Manages error callback by re-initializing I2C.
+ 221:Src/i2c_driver.c ****   * @param  Addr: I2C Address
+ 222:Src/i2c_driver.c ****   */
+ 223:Src/i2c_driver.c **** void I2Cx_Error(uint8_t Addr)
+ 224:Src/i2c_driver.c **** {
+ 399              		.loc 1 224 1 is_stmt 1 view -0
+ 400              		.cfi_startproc
+ 401              		@ args = 0, pretend = 0, frame = 0
+ 402              		@ frame_needed = 0, uses_anonymous_args = 0
+ 403              		.loc 1 224 1 is_stmt 0 view .LVU98
+ 404 0000 08B5     		push	{r3, lr}
+ 405              	.LCFI8:
+ 406              		.cfi_def_cfa_offset 8
+ 407              		.cfi_offset 3, -8
+ 408              		.cfi_offset 14, -4
+ 225:Src/i2c_driver.c ****   /* De-initialize the I2C communication bus */
+ 226:Src/i2c_driver.c ****   HAL_I2C_DeInit(&heval_I2c);
+ 409              		.loc 1 226 3 is_stmt 1 view .LVU99
+ 410 0002 0348     		ldr	r0, .L26
+ 411              	.LVL17:
+ 412              		.loc 1 226 3 is_stmt 0 view .LVU100
+ 413 0004 FFF7FEFF 		bl	HAL_I2C_DeInit
+ 414              	.LVL18:
+ 227:Src/i2c_driver.c **** 
+ 228:Src/i2c_driver.c ****   /* Re-Initialize the I2C communication bus */
+ 229:Src/i2c_driver.c ****   I2Cx_Init();
+ 415              		.loc 1 229 3 is_stmt 1 view .LVU101
+ 416 0008 FFF7FEFF 		bl	I2Cx_Init
+ 417              	.LVL19:
+ 230:Src/i2c_driver.c **** }
+ 418              		.loc 1 230 1 is_stmt 0 view .LVU102
+ 419 000c 08BD     		pop	{r3, pc}
+ 420              	.L27:
+ 421 000e 00BF     		.align	2
+ 422              	.L26:
+ 423 0010 00000000 		.word	.LANCHOR0
+ 424              		.cfi_endproc
+ 425              	.LFE138:
+ 427              		.section	.text.I2Cx_Write,"ax",%progbits
+ 428              		.align	1
+ 429              		.global	I2Cx_Write
+ 430              		.syntax unified
+ 431              		.thumb
+ 432              		.thumb_func
+ 433              		.fpu fpv4-sp-d16
+ 435              	I2Cx_Write:
+ 436              	.LVL20:
+ 437              	.LFB133:
+ 117:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 438              		.loc 1 117 1 is_stmt 1 view -0
+ 439              		.cfi_startproc
+ 440              		@ args = 0, pretend = 0, frame = 8
+ 441              		@ frame_needed = 0, uses_anonymous_args = 0
+ 117:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 442              		.loc 1 117 1 is_stmt 0 view .LVU104
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 13
+
+
+ 443 0000 10B5     		push	{r4, lr}
+ 444              	.LCFI9:
+ 445              		.cfi_def_cfa_offset 8
+ 446              		.cfi_offset 4, -8
+ 447              		.cfi_offset 14, -4
+ 448 0002 86B0     		sub	sp, sp, #24
+ 449              	.LCFI10:
+ 450              		.cfi_def_cfa_offset 32
+ 451 0004 0446     		mov	r4, r0
+ 452 0006 8DF81720 		strb	r2, [sp, #23]
+ 118:Src/i2c_driver.c **** 
+ 453              		.loc 1 118 3 is_stmt 1 view .LVU105
+ 454              	.LVL21:
+ 120:Src/i2c_driver.c **** 
+ 455              		.loc 1 120 3 view .LVU106
+ 120:Src/i2c_driver.c **** 
+ 456              		.loc 1 120 12 is_stmt 0 view .LVU107
+ 457 000a 6423     		movs	r3, #100
+ 458 000c 0293     		str	r3, [sp, #8]
+ 459 000e 0123     		movs	r3, #1
+ 460 0010 0193     		str	r3, [sp, #4]
+ 461 0012 0DF11702 		add	r2, sp, #23
+ 462              	.LVL22:
+ 120:Src/i2c_driver.c **** 
+ 463              		.loc 1 120 12 view .LVU108
+ 464 0016 0092     		str	r2, [sp]
+ 465 0018 0A46     		mov	r2, r1
+ 466              	.LVL23:
+ 120:Src/i2c_driver.c **** 
+ 467              		.loc 1 120 12 view .LVU109
+ 468 001a 0146     		mov	r1, r0
+ 469              	.LVL24:
+ 120:Src/i2c_driver.c **** 
+ 470              		.loc 1 120 12 view .LVU110
+ 471 001c 0448     		ldr	r0, .L32
+ 472              	.LVL25:
+ 120:Src/i2c_driver.c **** 
+ 473              		.loc 1 120 12 view .LVU111
+ 474 001e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 475              	.LVL26:
+ 123:Src/i2c_driver.c ****   {
+ 476              		.loc 1 123 3 is_stmt 1 view .LVU112
+ 123:Src/i2c_driver.c ****   {
+ 477              		.loc 1 123 5 is_stmt 0 view .LVU113
+ 478 0022 08B9     		cbnz	r0, .L31
+ 479              	.LVL27:
+ 480              	.L28:
+ 128:Src/i2c_driver.c **** 
+ 481              		.loc 1 128 1 view .LVU114
+ 482 0024 06B0     		add	sp, sp, #24
+ 483              	.LCFI11:
+ 484              		.cfi_remember_state
+ 485              		.cfi_def_cfa_offset 8
+ 486              		@ sp needed
+ 487 0026 10BD     		pop	{r4, pc}
+ 488              	.LVL28:
+ 489              	.L31:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 14
+
+
+ 490              	.LCFI12:
+ 491              		.cfi_restore_state
+ 126:Src/i2c_driver.c ****   }
+ 492              		.loc 1 126 5 is_stmt 1 view .LVU115
+ 493 0028 2046     		mov	r0, r4
+ 494              	.LVL29:
+ 126:Src/i2c_driver.c ****   }
+ 495              		.loc 1 126 5 is_stmt 0 view .LVU116
+ 496 002a FFF7FEFF 		bl	I2Cx_Error
+ 497              	.LVL30:
+ 128:Src/i2c_driver.c **** 
+ 498              		.loc 1 128 1 view .LVU117
+ 499 002e F9E7     		b	.L28
+ 500              	.L33:
+ 501              		.align	2
+ 502              	.L32:
+ 503 0030 00000000 		.word	.LANCHOR0
+ 504              		.cfi_endproc
+ 505              	.LFE133:
+ 507              		.section	.text.I2Cx_Read,"ax",%progbits
+ 508              		.align	1
+ 509              		.global	I2Cx_Read
+ 510              		.syntax unified
+ 511              		.thumb
+ 512              		.thumb_func
+ 513              		.fpu fpv4-sp-d16
+ 515              	I2Cx_Read:
+ 516              	.LVL31:
+ 517              	.LFB134:
+ 137:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 518              		.loc 1 137 1 is_stmt 1 view -0
+ 519              		.cfi_startproc
+ 520              		@ args = 0, pretend = 0, frame = 8
+ 521              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 522              		.loc 1 137 1 is_stmt 0 view .LVU119
+ 523 0000 10B5     		push	{r4, lr}
+ 524              	.LCFI13:
+ 525              		.cfi_def_cfa_offset 8
+ 526              		.cfi_offset 4, -8
+ 527              		.cfi_offset 14, -4
+ 528 0002 86B0     		sub	sp, sp, #24
+ 529              	.LCFI14:
+ 530              		.cfi_def_cfa_offset 32
+ 531 0004 0446     		mov	r4, r0
+ 138:Src/i2c_driver.c ****   uint8_t Value = 0;
+ 532              		.loc 1 138 3 is_stmt 1 view .LVU120
+ 533              	.LVL32:
+ 139:Src/i2c_driver.c **** 
+ 534              		.loc 1 139 3 view .LVU121
+ 139:Src/i2c_driver.c **** 
+ 535              		.loc 1 139 11 is_stmt 0 view .LVU122
+ 536 0006 0023     		movs	r3, #0
+ 537 0008 8DF81730 		strb	r3, [sp, #23]
+ 141:Src/i2c_driver.c **** 
+ 538              		.loc 1 141 3 is_stmt 1 view .LVU123
+ 141:Src/i2c_driver.c **** 
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 15
+
+
+ 539              		.loc 1 141 12 is_stmt 0 view .LVU124
+ 540 000c 4FF47A73 		mov	r3, #1000
+ 541 0010 0293     		str	r3, [sp, #8]
+ 542 0012 0123     		movs	r3, #1
+ 543 0014 0193     		str	r3, [sp, #4]
+ 544 0016 0DF11702 		add	r2, sp, #23
+ 545 001a 0092     		str	r2, [sp]
+ 546 001c 0A46     		mov	r2, r1
+ 547 001e 0146     		mov	r1, r0
+ 548              	.LVL33:
+ 141:Src/i2c_driver.c **** 
+ 549              		.loc 1 141 12 view .LVU125
+ 550 0020 0548     		ldr	r0, .L38
+ 551              	.LVL34:
+ 141:Src/i2c_driver.c **** 
+ 552              		.loc 1 141 12 view .LVU126
+ 553 0022 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 554              	.LVL35:
+ 144:Src/i2c_driver.c ****   {
+ 555              		.loc 1 144 3 is_stmt 1 view .LVU127
+ 144:Src/i2c_driver.c ****   {
+ 556              		.loc 1 144 5 is_stmt 0 view .LVU128
+ 557 0026 18B9     		cbnz	r0, .L37
+ 558              	.LVL36:
+ 559              	.L35:
+ 149:Src/i2c_driver.c **** }
+ 560              		.loc 1 149 3 is_stmt 1 view .LVU129
+ 150:Src/i2c_driver.c **** 
+ 561              		.loc 1 150 1 is_stmt 0 view .LVU130
+ 562 0028 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+ 563 002c 06B0     		add	sp, sp, #24
+ 564              	.LCFI15:
+ 565              		.cfi_remember_state
+ 566              		.cfi_def_cfa_offset 8
+ 567              		@ sp needed
+ 568 002e 10BD     		pop	{r4, pc}
+ 569              	.LVL37:
+ 570              	.L37:
+ 571              	.LCFI16:
+ 572              		.cfi_restore_state
+ 147:Src/i2c_driver.c ****   }
+ 573              		.loc 1 147 5 is_stmt 1 view .LVU131
+ 574 0030 2046     		mov	r0, r4
+ 575              	.LVL38:
+ 147:Src/i2c_driver.c ****   }
+ 576              		.loc 1 147 5 is_stmt 0 view .LVU132
+ 577 0032 FFF7FEFF 		bl	I2Cx_Error
+ 578              	.LVL39:
+ 579 0036 F7E7     		b	.L35
+ 580              	.L39:
+ 581              		.align	2
+ 582              	.L38:
+ 583 0038 00000000 		.word	.LANCHOR0
+ 584              		.cfi_endproc
+ 585              	.LFE134:
+ 587              		.section	.text.I2Cx_ReadMultiple,"ax",%progbits
+ 588              		.align	1
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 16
+
+
+ 589              		.global	I2Cx_ReadMultiple
+ 590              		.syntax unified
+ 591              		.thumb
+ 592              		.thumb_func
+ 593              		.fpu fpv4-sp-d16
+ 595              	I2Cx_ReadMultiple:
+ 596              	.LVL40:
+ 597              	.LFB135:
+ 162:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 598              		.loc 1 162 1 is_stmt 1 view -0
+ 599              		.cfi_startproc
+ 600              		@ args = 4, pretend = 0, frame = 0
+ 601              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 602              		.loc 1 162 1 is_stmt 0 view .LVU134
+ 603 0000 30B5     		push	{r4, r5, lr}
+ 604              	.LCFI17:
+ 605              		.cfi_def_cfa_offset 12
+ 606              		.cfi_offset 4, -12
+ 607              		.cfi_offset 5, -8
+ 608              		.cfi_offset 14, -4
+ 609 0002 85B0     		sub	sp, sp, #20
+ 610              	.LCFI18:
+ 611              		.cfi_def_cfa_offset 32
+ 612 0004 0446     		mov	r4, r0
+ 613 0006 1846     		mov	r0, r3
+ 614              	.LVL41:
+ 162:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 615              		.loc 1 162 1 view .LVU135
+ 616 0008 BDF82030 		ldrh	r3, [sp, #32]
+ 617              	.LVL42:
+ 163:Src/i2c_driver.c **** 
+ 618              		.loc 1 163 3 is_stmt 1 view .LVU136
+ 165:Src/i2c_driver.c ****   {
+ 619              		.loc 1 165 3 view .LVU137
+ 165:Src/i2c_driver.c ****   {
+ 620              		.loc 1 165 5 is_stmt 0 view .LVU138
+ 621 000c 082C     		cmp	r4, #8
+ 622 000e 0FD0     		beq	.L45
+ 171:Src/i2c_driver.c ****   }
+ 623              		.loc 1 171 5 is_stmt 1 view .LVU139
+ 171:Src/i2c_driver.c ****   }
+ 624              		.loc 1 171 14 is_stmt 0 view .LVU140
+ 625 0010 4FF47A75 		mov	r5, #1000
+ 626 0014 0295     		str	r5, [sp, #8]
+ 627 0016 0193     		str	r3, [sp, #4]
+ 628 0018 0090     		str	r0, [sp]
+ 629 001a 1346     		mov	r3, r2
+ 630 001c 0A46     		mov	r2, r1
+ 631              	.LVL43:
+ 171:Src/i2c_driver.c ****   }
+ 632              		.loc 1 171 14 view .LVU141
+ 633 001e 2146     		mov	r1, r4
+ 634              	.LVL44:
+ 171:Src/i2c_driver.c ****   }
+ 635              		.loc 1 171 14 view .LVU142
+ 636 0020 0A48     		ldr	r0, .L47
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 17
+
+
+ 637              	.LVL45:
+ 171:Src/i2c_driver.c ****   }
+ 638              		.loc 1 171 14 view .LVU143
+ 639 0022 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 640              	.LVL46:
+ 171:Src/i2c_driver.c ****   }
+ 641              		.loc 1 171 14 view .LVU144
+ 642 0026 0546     		mov	r5, r0
+ 643              	.LVL47:
+ 644              	.L42:
+ 175:Src/i2c_driver.c ****   {
+ 645              		.loc 1 175 3 is_stmt 1 view .LVU145
+ 175:Src/i2c_driver.c ****   {
+ 646              		.loc 1 175 5 is_stmt 0 view .LVU146
+ 647 0028 65B9     		cbnz	r5, .L46
+ 648              	.L43:
+ 180:Src/i2c_driver.c **** }
+ 649              		.loc 1 180 3 is_stmt 1 view .LVU147
+ 181:Src/i2c_driver.c **** 
+ 650              		.loc 1 181 1 is_stmt 0 view .LVU148
+ 651 002a 2846     		mov	r0, r5
+ 652 002c 05B0     		add	sp, sp, #20
+ 653              	.LCFI19:
+ 654              		.cfi_remember_state
+ 655              		.cfi_def_cfa_offset 12
+ 656              		@ sp needed
+ 657 002e 30BD     		pop	{r4, r5, pc}
+ 658              	.LVL48:
+ 659              	.L45:
+ 660              	.LCFI20:
+ 661              		.cfi_restore_state
+ 167:Src/i2c_driver.c ****   }
+ 662              		.loc 1 167 5 is_stmt 1 view .LVU149
+ 167:Src/i2c_driver.c ****   }
+ 663              		.loc 1 167 14 is_stmt 0 view .LVU150
+ 664 0030 4FF47A72 		mov	r2, #1000
+ 665              	.LVL49:
+ 167:Src/i2c_driver.c ****   }
+ 666              		.loc 1 167 14 view .LVU151
+ 667 0034 0092     		str	r2, [sp]
+ 668 0036 0246     		mov	r2, r0
+ 669 0038 2146     		mov	r1, r4
+ 670              	.LVL50:
+ 167:Src/i2c_driver.c ****   }
+ 671              		.loc 1 167 14 view .LVU152
+ 672 003a 0448     		ldr	r0, .L47
+ 673              	.LVL51:
+ 167:Src/i2c_driver.c ****   }
+ 674              		.loc 1 167 14 view .LVU153
+ 675 003c FFF7FEFF 		bl	HAL_I2C_Master_Receive
+ 676              	.LVL52:
+ 167:Src/i2c_driver.c ****   }
+ 677              		.loc 1 167 14 view .LVU154
+ 678 0040 0546     		mov	r5, r0
+ 679              	.LVL53:
+ 167:Src/i2c_driver.c ****   }
+ 680              		.loc 1 167 14 view .LVU155
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 18
+
+
+ 681 0042 F1E7     		b	.L42
+ 682              	.L46:
+ 178:Src/i2c_driver.c ****   }
+ 683              		.loc 1 178 5 is_stmt 1 view .LVU156
+ 684 0044 2046     		mov	r0, r4
+ 685 0046 FFF7FEFF 		bl	I2Cx_Error
+ 686              	.LVL54:
+ 687 004a EEE7     		b	.L43
+ 688              	.L48:
+ 689              		.align	2
+ 690              	.L47:
+ 691 004c 00000000 		.word	.LANCHOR0
+ 692              		.cfi_endproc
+ 693              	.LFE135:
+ 695              		.section	.text.I2Cx_WriteMultiple,"ax",%progbits
+ 696              		.align	1
+ 697              		.global	I2Cx_WriteMultiple
+ 698              		.syntax unified
+ 699              		.thumb
+ 700              		.thumb_func
+ 701              		.fpu fpv4-sp-d16
+ 703              	I2Cx_WriteMultiple:
+ 704              	.LVL55:
+ 705              	.LFB136:
+ 193:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 706              		.loc 1 193 1 view -0
+ 707              		.cfi_startproc
+ 708              		@ args = 4, pretend = 0, frame = 0
+ 709              		@ frame_needed = 0, uses_anonymous_args = 0
+ 193:Src/i2c_driver.c ****   HAL_StatusTypeDef status = HAL_OK;
+ 710              		.loc 1 193 1 is_stmt 0 view .LVU158
+ 711 0000 30B5     		push	{r4, r5, lr}
+ 712              	.LCFI21:
+ 713              		.cfi_def_cfa_offset 12
+ 714              		.cfi_offset 4, -12
+ 715              		.cfi_offset 5, -8
+ 716              		.cfi_offset 14, -4
+ 717 0002 85B0     		sub	sp, sp, #20
+ 718              	.LCFI22:
+ 719              		.cfi_def_cfa_offset 32
+ 720 0004 0446     		mov	r4, r0
+ 194:Src/i2c_driver.c **** 
+ 721              		.loc 1 194 3 is_stmt 1 view .LVU159
+ 722              	.LVL56:
+ 196:Src/i2c_driver.c **** 
+ 723              		.loc 1 196 3 view .LVU160
+ 196:Src/i2c_driver.c **** 
+ 724              		.loc 1 196 12 is_stmt 0 view .LVU161
+ 725 0006 4FF47A70 		mov	r0, #1000
+ 726              	.LVL57:
+ 196:Src/i2c_driver.c **** 
+ 727              		.loc 1 196 12 view .LVU162
+ 728 000a 0290     		str	r0, [sp, #8]
+ 729 000c BDF82000 		ldrh	r0, [sp, #32]
+ 730 0010 0190     		str	r0, [sp, #4]
+ 731 0012 0093     		str	r3, [sp]
+ 732 0014 1346     		mov	r3, r2
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 19
+
+
+ 733              	.LVL58:
+ 196:Src/i2c_driver.c **** 
+ 734              		.loc 1 196 12 view .LVU163
+ 735 0016 0A46     		mov	r2, r1
+ 736              	.LVL59:
+ 196:Src/i2c_driver.c **** 
+ 737              		.loc 1 196 12 view .LVU164
+ 738 0018 2146     		mov	r1, r4
+ 739              	.LVL60:
+ 196:Src/i2c_driver.c **** 
+ 740              		.loc 1 196 12 view .LVU165
+ 741 001a 0648     		ldr	r0, .L53
+ 742 001c FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 743              	.LVL61:
+ 199:Src/i2c_driver.c ****   {
+ 744              		.loc 1 199 3 is_stmt 1 view .LVU166
+ 199:Src/i2c_driver.c ****   {
+ 745              		.loc 1 199 5 is_stmt 0 view .LVU167
+ 746 0020 0546     		mov	r5, r0
+ 747 0022 10B9     		cbnz	r0, .L52
+ 748              	.LVL62:
+ 749              	.L50:
+ 204:Src/i2c_driver.c **** }
+ 750              		.loc 1 204 3 is_stmt 1 view .LVU168
+ 205:Src/i2c_driver.c **** 
+ 751              		.loc 1 205 1 is_stmt 0 view .LVU169
+ 752 0024 2846     		mov	r0, r5
+ 753 0026 05B0     		add	sp, sp, #20
+ 754              	.LCFI23:
+ 755              		.cfi_remember_state
+ 756              		.cfi_def_cfa_offset 12
+ 757              		@ sp needed
+ 758 0028 30BD     		pop	{r4, r5, pc}
+ 759              	.LVL63:
+ 760              	.L52:
+ 761              	.LCFI24:
+ 762              		.cfi_restore_state
+ 202:Src/i2c_driver.c ****   }
+ 763              		.loc 1 202 5 is_stmt 1 view .LVU170
+ 764 002a 2046     		mov	r0, r4
+ 765              	.LVL64:
+ 202:Src/i2c_driver.c ****   }
+ 766              		.loc 1 202 5 is_stmt 0 view .LVU171
+ 767 002c FFF7FEFF 		bl	I2Cx_Error
+ 768              	.LVL65:
+ 769 0030 F8E7     		b	.L50
+ 770              	.L54:
+ 771 0032 00BF     		.align	2
+ 772              	.L53:
+ 773 0034 00000000 		.word	.LANCHOR0
+ 774              		.cfi_endproc
+ 775              	.LFE136:
+ 777              		.section	.bss.I2C_IT_Enabled.8143,"aw",%nobits
+ 778              		.set	.LANCHOR1,. + 0
+ 781              	I2C_IT_Enabled.8143:
+ 782 0000 00       		.space	1
+ 783              		.section	.bss.heval_I2c,"aw",%nobits
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 20
+
+
+ 784              		.align	2
+ 785              		.set	.LANCHOR0,. + 0
+ 788              	heval_I2c:
+ 789 0000 00000000 		.space	84
+ 789      00000000 
+ 789      00000000 
+ 789      00000000 
+ 789      00000000 
+ 790              		.text
+ 791              	.Letext0:
+ 792              		.file 2 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 793              		.file 3 "c:\\users\\hungv\\appdata\\roaming\\xpacks\\@gnu-mcu-eclipse\\arm-none-eabi-gcc\\8.2.1-1.
+ 794              		.file 4 "c:\\users\\hungv\\appdata\\roaming\\xpacks\\@gnu-mcu-eclipse\\arm-none-eabi-gcc\\8.2.1-1.
+ 795              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ 796              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 797              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 798              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 799              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 800              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 801              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h"
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s 			page 21
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 i2c_driver.c
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:18     .text.I2Cx_MspInit:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:26     .text.I2Cx_MspInit:0000000000000000 I2Cx_MspInit
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:147    .text.I2Cx_MspInit:0000000000000090 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:153    .text.I2Cx_Init:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:160    .text.I2Cx_Init:0000000000000000 I2Cx_Init
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:226    .text.I2Cx_Init:0000000000000038 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:233    .text.I2Cx_ITConfig:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:240    .text.I2Cx_ITConfig:0000000000000000 I2Cx_ITConfig
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:339    .text.I2Cx_ITConfig:000000000000006c $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:347    .text.I2Cx_IsDeviceReady:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:354    .text.I2Cx_IsDeviceReady:0000000000000000 I2Cx_IsDeviceReady
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:384    .text.I2Cx_IsDeviceReady:0000000000000014 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:389    .text.I2Cx_Error:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:396    .text.I2Cx_Error:0000000000000000 I2Cx_Error
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:423    .text.I2Cx_Error:0000000000000010 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:428    .text.I2Cx_Write:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:435    .text.I2Cx_Write:0000000000000000 I2Cx_Write
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:503    .text.I2Cx_Write:0000000000000030 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:508    .text.I2Cx_Read:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:515    .text.I2Cx_Read:0000000000000000 I2Cx_Read
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:583    .text.I2Cx_Read:0000000000000038 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:588    .text.I2Cx_ReadMultiple:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:595    .text.I2Cx_ReadMultiple:0000000000000000 I2Cx_ReadMultiple
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:691    .text.I2Cx_ReadMultiple:000000000000004c $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:696    .text.I2Cx_WriteMultiple:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:703    .text.I2Cx_WriteMultiple:0000000000000000 I2Cx_WriteMultiple
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:773    .text.I2Cx_WriteMultiple:0000000000000034 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:781    .bss.I2C_IT_Enabled.8143:0000000000000000 I2C_IT_Enabled.8143
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:782    .bss.I2C_IT_Enabled.8143:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:784    .bss.heval_I2c:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\ccGy23dy.s:788    .bss.heval_I2c:0000000000000000 heval_I2c
+
+UNDEFINED SYMBOLS
+HAL_GPIO_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_I2C_GetState
+HAL_I2C_Init
+HAL_I2C_IsDeviceReady
+HAL_I2C_DeInit
+HAL_I2C_Mem_Write
+HAL_I2C_Mem_Read
+HAL_I2C_Master_Receive
