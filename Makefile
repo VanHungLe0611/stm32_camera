@@ -41,6 +41,7 @@ Src/i2c_driver.c \
 Src/ov2640.c \
 Src/io_pin_driver.c \
 Src/hdmi_driver.c \
+Src/stmpe1600.c \
 Src/stm32f4xx_it.c \
 Src/stm32f4xx_hal_msp.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dcmi.c \
