@@ -8,9 +8,7 @@
 #include "hdmi_driver.h"
 #include "stm32f4xx_hal.h"
 #include "i2c_driver.h"
-#include "io.h"
 #include "ov2640.h"
-#include "io_pin_driver.h"
 
 DCMI_HandleTypeDef hdcmi;
 CAMERA_DrvTypeDef *camera;
@@ -36,18 +34,6 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
 	hdcmi.Init.CaptureRate = DCMI_CR_ALL_FRAME;
 	hdcmi.Init.ExtendedDataMode = DCMI_EXTEND_DATA_8B;
 	hdcmi.Init.JPEGMode = DCMI_JPEG_DISABLE;
-
-	/* Configure IO functionalities for camera detect pin */
-	BSP_IO_Init();
-
-	/* Set the camera STANDBY pin */
-	BSP_IO_ConfigPin(GPIO_PIN_0, IO_MODE_OUTPUT);
-	BSP_IO_WritePin(GPIO_PIN_0, SET);
-
-	/* Check if the camera is plugged */
-	if (BSP_IO_ReadPin(GPIO_PIN_3)) {
-		return CAMERA_ERROR;
-	}
 
 	/* DCMI Initialization */
 	BSP_CAMERA_MsInit();
@@ -166,13 +152,43 @@ uint8_t BSP_CAMERA_Stop(void) {
 		ret = CAMERA_OK;
 	}
 
-	/* Initialize IO */
-	BSP_IO_Init();
-
-	/* Reset the camera STANDBY pin */
-	BSP_IO_ConfigPin(0x0001, IO_MODE_OUTPUT);
-	BSP_IO_WritePin(0x0001, RESET);
+	// TODO: make a camera on/off switch
 
 	return ret;
 }
 
+uint32_t GetSize(uint32_t resolution)
+{
+  uint32_t size = 0;
+
+  /* Get capture size */
+  switch (resolution)
+  {
+  case CAMERA_R160x120:
+    {
+      size =  0x2580;
+    }
+    break;
+  case CAMERA_R320x240:
+    {
+      size =  0x9600;
+    }
+    break;
+  case CAMERA_R480x272:
+    {
+      size =  0xFF00;
+    }
+    break;
+  case CAMERA_R640x480:
+    {
+      size =  0x25800;
+    }
+    break;
+  default:
+    {
+      break;
+    }
+  }
+
+  return size;
+}
