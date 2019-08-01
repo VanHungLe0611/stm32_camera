@@ -1,2 +1,4 @@
-.setting/
+.settings/
+.project
 .cproject
+build/
