@@ -103,10 +103,11 @@ int main(void) {
 	/* USER CODE BEGIN WHILE */
 	while (1) {
 		/* USER CODE END WHILE */
-		while (!(ov2640_ReadID(CAMERA_I2C_ADDRESS) & 0x26))
-			;
+//		while (!(ov2640_ReadID(CAMERA_I2C_ADDRESS) & 0x26))
+//			;
 		uint16_t a = ov2640_ReadID(CAMERA_I2C_ADDRESS);
-		printf("%d\n", a);
+		HAL_Delay(300);
+//		printf("%d\n", a);
 
 		/* USER CODE BEGIN 3 */
 	}
