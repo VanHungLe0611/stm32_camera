@@ -36,6 +36,7 @@ uint8_t BSP_IO_Init(void)
     /* Initialize the IO driver structure */
     io_driver = &stmpe1600_io_drv;
     ret = 0; // IO_OK
+
   }
 
   if(ret == 0) // IO_OK

@@ -1,0 +1,2809 @@
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stmpe1600.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.stmpe1600_Start,"ax",%progbits
+  18              		.align	1
+  19              		.global	stmpe1600_Start
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	stmpe1600_Start:
+  27              	.LVL0:
+  28              	.LFB138:
+  29              		.file 1 "Src/stmpe1600.c"
+   1:Src/stmpe1600.c **** /**
+   2:Src/stmpe1600.c ****   ******************************************************************************
+   3:Src/stmpe1600.c ****   * @file    stmpe1600.c
+   4:Src/stmpe1600.c ****   * @author  MCD Application Team
+   5:Src/stmpe1600.c ****   * @version V1.1.0
+   6:Src/stmpe1600.c ****   * @date    10-February-2015
+   7:Src/stmpe1600.c ****   * @brief   This file provides a set of functions needed to manage the STMPE1600
+   8:Src/stmpe1600.c ****   *          IO Expander devices.
+   9:Src/stmpe1600.c ****   ******************************************************************************
+  10:Src/stmpe1600.c ****   * @attention
+  11:Src/stmpe1600.c ****   *
+  12:Src/stmpe1600.c ****   * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  13:Src/stmpe1600.c ****   *
+  14:Src/stmpe1600.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  15:Src/stmpe1600.c ****   * are permitted provided that the following conditions are met:
+  16:Src/stmpe1600.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  17:Src/stmpe1600.c ****   *      this list of conditions and the following disclaimer.
+  18:Src/stmpe1600.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  19:Src/stmpe1600.c ****   *      this list of conditions and the following disclaimer in the documentation
+  20:Src/stmpe1600.c ****   *      and/or other materials provided with the distribution.
+  21:Src/stmpe1600.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  22:Src/stmpe1600.c ****   *      may be used to endorse or promote products derived from this software
+  23:Src/stmpe1600.c ****   *      without specific prior written permission.
+  24:Src/stmpe1600.c ****   *
+  25:Src/stmpe1600.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  26:Src/stmpe1600.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  27:Src/stmpe1600.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  28:Src/stmpe1600.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  29:Src/stmpe1600.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 2
+
+
+  30:Src/stmpe1600.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  31:Src/stmpe1600.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  32:Src/stmpe1600.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  33:Src/stmpe1600.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  34:Src/stmpe1600.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  35:Src/stmpe1600.c ****   *
+  36:Src/stmpe1600.c ****   ******************************************************************************
+  37:Src/stmpe1600.c ****   */ 
+  38:Src/stmpe1600.c **** 
+  39:Src/stmpe1600.c **** /* Includes ------------------------------------------------------------------*/
+  40:Src/stmpe1600.c **** #include "stmpe1600.h"
+  41:Src/stmpe1600.c **** #include "stm32f4xx_hal.h"
+  42:Src/stmpe1600.c **** #include "i2c_driver.h"
+  43:Src/stmpe1600.c **** 
+  44:Src/stmpe1600.c **** /** @addtogroup BSP
+  45:Src/stmpe1600.c ****   * @{
+  46:Src/stmpe1600.c ****   */
+  47:Src/stmpe1600.c **** 
+  48:Src/stmpe1600.c **** /** @addtogroup Components
+  49:Src/stmpe1600.c ****   * @{
+  50:Src/stmpe1600.c ****   */ 
+  51:Src/stmpe1600.c ****   
+  52:Src/stmpe1600.c **** /** @defgroup STMPE1600
+  53:Src/stmpe1600.c ****   * @{
+  54:Src/stmpe1600.c ****   */   
+  55:Src/stmpe1600.c ****   
+  56:Src/stmpe1600.c **** /* Private typedef -----------------------------------------------------------*/
+  57:Src/stmpe1600.c **** 
+  58:Src/stmpe1600.c **** /** @defgroup STMPE1600_Private_Types_Definitions
+  59:Src/stmpe1600.c ****   * @{
+  60:Src/stmpe1600.c ****   */ 
+  61:Src/stmpe1600.c ****   
+  62:Src/stmpe1600.c **** /* Private define ------------------------------------------------------------*/
+  63:Src/stmpe1600.c **** 
+  64:Src/stmpe1600.c **** /** @defgroup STMPE1600_Private_Defines
+  65:Src/stmpe1600.c ****   * @{
+  66:Src/stmpe1600.c ****   */ 
+  67:Src/stmpe1600.c **** #define STMPE1600_MAX_INSTANCE        2
+  68:Src/stmpe1600.c **** 
+  69:Src/stmpe1600.c **** /* Private macro -------------------------------------------------------------*/
+  70:Src/stmpe1600.c **** 
+  71:Src/stmpe1600.c **** /** @defgroup STMPE1600_Private_Macros
+  72:Src/stmpe1600.c ****   * @{
+  73:Src/stmpe1600.c ****   */ 
+  74:Src/stmpe1600.c ****   
+  75:Src/stmpe1600.c **** /* Private variables ---------------------------------------------------------*/
+  76:Src/stmpe1600.c **** static uint16_t tmp = 0;
+  77:Src/stmpe1600.c **** 
+  78:Src/stmpe1600.c **** /** @defgroup STMPE1600_Private_Variables
+  79:Src/stmpe1600.c ****   * @{
+  80:Src/stmpe1600.c ****   */ 
+  81:Src/stmpe1600.c **** /* IO driver structure initialization */  
+  82:Src/stmpe1600.c **** IO_DrvTypeDef stmpe1600_io_drv = 
+  83:Src/stmpe1600.c **** {
+  84:Src/stmpe1600.c ****   stmpe1600_Init,
+  85:Src/stmpe1600.c ****   stmpe1600_ReadID,
+  86:Src/stmpe1600.c ****   stmpe1600_Reset,
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 3
+
+
+  87:Src/stmpe1600.c ****   stmpe1600_Start,
+  88:Src/stmpe1600.c ****   stmpe1600_IO_Config,
+  89:Src/stmpe1600.c ****   stmpe1600_IO_WritePin,
+  90:Src/stmpe1600.c ****   stmpe1600_IO_ReadPin,
+  91:Src/stmpe1600.c ****   0,
+  92:Src/stmpe1600.c ****   0,
+  93:Src/stmpe1600.c ****   stmpe1600_IO_ITStatus,
+  94:Src/stmpe1600.c ****   stmpe1600_IO_ClearIT,
+  95:Src/stmpe1600.c **** };
+  96:Src/stmpe1600.c **** 
+  97:Src/stmpe1600.c **** uint8_t stmpe1600[STMPE1600_MAX_INSTANCE] = {0};
+  98:Src/stmpe1600.c **** /**
+  99:Src/stmpe1600.c ****   * @}
+ 100:Src/stmpe1600.c ****   */ 
+ 101:Src/stmpe1600.c ****     
+ 102:Src/stmpe1600.c **** /* Private function prototypes -----------------------------------------------*/
+ 103:Src/stmpe1600.c **** 
+ 104:Src/stmpe1600.c **** /** @defgroup STMPE1600_Private_Function_Prototypes
+ 105:Src/stmpe1600.c ****   * @{
+ 106:Src/stmpe1600.c ****   */
+ 107:Src/stmpe1600.c **** static uint8_t stmpe1600_GetInstance(uint16_t DeviceAddr);
+ 108:Src/stmpe1600.c **** 
+ 109:Src/stmpe1600.c **** /* Private functions ---------------------------------------------------------*/
+ 110:Src/stmpe1600.c **** 
+ 111:Src/stmpe1600.c **** /********************************* LINK IOE ***********************************/
+ 112:Src/stmpe1600.c **** 
+ 113:Src/stmpe1600.c **** /**
+ 114:Src/stmpe1600.c ****   * @brief  Initializes IOE low level.
+ 115:Src/stmpe1600.c ****   */
+ 116:Src/stmpe1600.c **** void IOE_Init(void)
+ 117:Src/stmpe1600.c **** {
+ 118:Src/stmpe1600.c ****   I2Cx_Init();
+ 119:Src/stmpe1600.c **** }
+ 120:Src/stmpe1600.c **** 
+ 121:Src/stmpe1600.c **** /**
+ 122:Src/stmpe1600.c ****   * @brief  Configures IOE low level interrupt.
+ 123:Src/stmpe1600.c ****   */
+ 124:Src/stmpe1600.c **** void IOE_ITConfig(void)
+ 125:Src/stmpe1600.c **** {
+ 126:Src/stmpe1600.c ****   I2Cx_ITConfig();
+ 127:Src/stmpe1600.c **** }
+ 128:Src/stmpe1600.c **** 
+ 129:Src/stmpe1600.c **** /**
+ 130:Src/stmpe1600.c ****   * @brief  IOE writes single data.
+ 131:Src/stmpe1600.c ****   * @param  Addr: I2C address
+ 132:Src/stmpe1600.c ****   * @param  Reg: Register address
+ 133:Src/stmpe1600.c ****   * @param  Value: Data to be written
+ 134:Src/stmpe1600.c ****   */
+ 135:Src/stmpe1600.c **** void IOE_Write(uint8_t Addr, uint8_t Reg, uint8_t Value)
+ 136:Src/stmpe1600.c **** {
+ 137:Src/stmpe1600.c ****   I2Cx_Write(Addr, Reg, Value);
+ 138:Src/stmpe1600.c **** }
+ 139:Src/stmpe1600.c **** 
+ 140:Src/stmpe1600.c **** /**
+ 141:Src/stmpe1600.c ****   * @brief  IOE reads single data.
+ 142:Src/stmpe1600.c ****   * @param  Addr: I2C address
+ 143:Src/stmpe1600.c ****   * @param  Reg: Register address
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 4
+
+
+ 144:Src/stmpe1600.c ****   * @retval Read data
+ 145:Src/stmpe1600.c ****   */
+ 146:Src/stmpe1600.c **** uint8_t IOE_Read(uint8_t Addr, uint8_t Reg)
+ 147:Src/stmpe1600.c **** {
+ 148:Src/stmpe1600.c ****   return I2Cx_Read(Addr, Reg);
+ 149:Src/stmpe1600.c **** }
+ 150:Src/stmpe1600.c **** 
+ 151:Src/stmpe1600.c **** /**
+ 152:Src/stmpe1600.c ****   * @brief  IOE reads multiple data.
+ 153:Src/stmpe1600.c ****   * @param  Addr: I2C address
+ 154:Src/stmpe1600.c ****   * @param  Reg: Register address
+ 155:Src/stmpe1600.c ****   * @param  Buffer: Pointer to data buffer
+ 156:Src/stmpe1600.c ****   * @param  Length: Length of the data
+ 157:Src/stmpe1600.c ****   * @retval Number of read data
+ 158:Src/stmpe1600.c ****   */
+ 159:Src/stmpe1600.c **** uint16_t IOE_ReadMultiple(uint8_t Addr, uint8_t Reg, uint8_t *Buffer, uint16_t Length)
+ 160:Src/stmpe1600.c **** {
+ 161:Src/stmpe1600.c ****  return I2Cx_ReadMultiple(Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, Buffer, Length);
+ 162:Src/stmpe1600.c **** }
+ 163:Src/stmpe1600.c **** 
+ 164:Src/stmpe1600.c **** /**
+ 165:Src/stmpe1600.c ****   * @brief  IOE writes multiple data.
+ 166:Src/stmpe1600.c ****   * @param  Addr: I2C address
+ 167:Src/stmpe1600.c ****   * @param  Reg: Register address
+ 168:Src/stmpe1600.c ****   * @param  Buffer: Pointer to data buffer
+ 169:Src/stmpe1600.c ****   * @param  Length: Length of the data
+ 170:Src/stmpe1600.c ****   */
+ 171:Src/stmpe1600.c **** void IOE_WriteMultiple(uint8_t Addr, uint8_t Reg, uint8_t *Buffer, uint16_t Length)
+ 172:Src/stmpe1600.c **** {
+ 173:Src/stmpe1600.c ****   I2Cx_WriteMultiple(Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, Buffer, Length);
+ 174:Src/stmpe1600.c **** }
+ 175:Src/stmpe1600.c **** 
+ 176:Src/stmpe1600.c **** /**
+ 177:Src/stmpe1600.c ****   * @brief  IOE delay
+ 178:Src/stmpe1600.c ****   * @param  Delay: Delay in ms
+ 179:Src/stmpe1600.c ****   */
+ 180:Src/stmpe1600.c **** void IOE_Delay(uint32_t Delay)
+ 181:Src/stmpe1600.c **** {
+ 182:Src/stmpe1600.c ****   HAL_Delay(Delay);
+ 183:Src/stmpe1600.c **** }
+ 184:Src/stmpe1600.c **** 
+ 185:Src/stmpe1600.c **** 
+ 186:Src/stmpe1600.c **** /** @defgroup STMPE1600_Private_Functions
+ 187:Src/stmpe1600.c ****   * @{
+ 188:Src/stmpe1600.c ****   */ 
+ 189:Src/stmpe1600.c **** 
+ 190:Src/stmpe1600.c **** /**
+ 191:Src/stmpe1600.c ****   * @brief  Initialize the stmpe1600 and configure the needed hardware resources
+ 192:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.  
+ 193:Src/stmpe1600.c ****   * @retval None
+ 194:Src/stmpe1600.c ****   */
+ 195:Src/stmpe1600.c **** void stmpe1600_Init(uint16_t DeviceAddr)
+ 196:Src/stmpe1600.c **** {
+ 197:Src/stmpe1600.c ****   uint8_t instance;
+ 198:Src/stmpe1600.c ****   uint8_t empty;
+ 199:Src/stmpe1600.c ****   
+ 200:Src/stmpe1600.c ****   /* Check if device instance already exists */
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 5
+
+
+ 201:Src/stmpe1600.c ****   instance = stmpe1600_GetInstance(DeviceAddr);
+ 202:Src/stmpe1600.c ****   
+ 203:Src/stmpe1600.c ****   if(instance == 0xFF)
+ 204:Src/stmpe1600.c ****   {
+ 205:Src/stmpe1600.c ****     /* Look for empty instance */
+ 206:Src/stmpe1600.c ****     empty = stmpe1600_GetInstance(0);
+ 207:Src/stmpe1600.c ****     
+ 208:Src/stmpe1600.c ****     if(empty < STMPE1600_MAX_INSTANCE)
+ 209:Src/stmpe1600.c ****     {
+ 210:Src/stmpe1600.c ****       /* Register the current device instance */
+ 211:Src/stmpe1600.c ****       stmpe1600[empty] = DeviceAddr;
+ 212:Src/stmpe1600.c ****       
+ 213:Src/stmpe1600.c ****       /* Initialize IO BUS layer */
+ 214:Src/stmpe1600.c ****       IOE_Init(); 
+ 215:Src/stmpe1600.c ****       
+ 216:Src/stmpe1600.c ****       /* Generate stmpe1600 Software reset */
+ 217:Src/stmpe1600.c ****       stmpe1600_Reset(DeviceAddr);
+ 218:Src/stmpe1600.c ****     }
+ 219:Src/stmpe1600.c ****   } 
+ 220:Src/stmpe1600.c **** }
+ 221:Src/stmpe1600.c **** 
+ 222:Src/stmpe1600.c **** /**
+ 223:Src/stmpe1600.c ****   * @brief  Configures the touch Screen Controller (Single point detection)
+ 224:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.
+ 225:Src/stmpe1600.c ****   * @retval None.
+ 226:Src/stmpe1600.c ****   */
+ 227:Src/stmpe1600.c **** void stmpe1600_Start(uint16_t DeviceAddr, uint32_t IO_Pin)
+ 228:Src/stmpe1600.c **** {
+  30              		.loc 1 228 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+ 229:Src/stmpe1600.c ****   /*Configuration already done during the initialization */ 
+ 230:Src/stmpe1600.c **** }
+  35              		.loc 1 230 1 view .LVU1
+  36 0000 7047     		bx	lr
+  37              		.cfi_endproc
+  38              	.LFE138:
+  40              		.section	.text.stmpe1600_GetInstance,"ax",%progbits
+  41              		.align	1
+  42              		.syntax unified
+  43              		.thumb
+  44              		.thumb_func
+  45              		.fpu fpv4-sp-d16
+  47              	stmpe1600_GetInstance:
+  48              	.LVL1:
+  49              	.LFB155:
+ 231:Src/stmpe1600.c **** 
+ 232:Src/stmpe1600.c **** /**
+ 233:Src/stmpe1600.c ****   * @brief  Reset the stmpe1600 by Software.
+ 234:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.  
+ 235:Src/stmpe1600.c ****   * @retval None
+ 236:Src/stmpe1600.c ****   */
+ 237:Src/stmpe1600.c **** void stmpe1600_Reset(uint16_t DeviceAddr)
+ 238:Src/stmpe1600.c **** {
+ 239:Src/stmpe1600.c ****   /* Power Down the stmpe1600 */
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 6
+
+
+ 240:Src/stmpe1600.c ****   IOE_Write(DeviceAddr, STMPE1600_REG_SYS_CTRL, (uint16_t)0x80);
+ 241:Src/stmpe1600.c **** 
+ 242:Src/stmpe1600.c ****   /* Wait for a delay to ensure registers erasing */
+ 243:Src/stmpe1600.c ****   IOE_Delay(2); 
+ 244:Src/stmpe1600.c ****   
+ 245:Src/stmpe1600.c ****   /* Power On the Codec after the power off: all registers are reinitialized */
+ 246:Src/stmpe1600.c ****   IOE_Write(DeviceAddr, STMPE1600_REG_SYS_CTRL, (uint16_t)0x00); 
+ 247:Src/stmpe1600.c ****   
+ 248:Src/stmpe1600.c ****   /* Wait for a delay to ensure registers erasing */
+ 249:Src/stmpe1600.c ****   IOE_Delay(2); 
+ 250:Src/stmpe1600.c **** }
+ 251:Src/stmpe1600.c **** 
+ 252:Src/stmpe1600.c **** /**
+ 253:Src/stmpe1600.c ****   * @brief  Read the stmpe1600 device ID.
+ 254:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.  
+ 255:Src/stmpe1600.c ****   * @retval The Device ID (two bytes).
+ 256:Src/stmpe1600.c ****   */
+ 257:Src/stmpe1600.c **** uint16_t stmpe1600_ReadID(uint16_t DeviceAddr)
+ 258:Src/stmpe1600.c **** {
+ 259:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 260:Src/stmpe1600.c **** 
+ 261:Src/stmpe1600.c ****   /* Initialize IO BUS layer */
+ 262:Src/stmpe1600.c ****   IOE_Init(); 
+ 263:Src/stmpe1600.c ****   
+ 264:Src/stmpe1600.c ****   /* Read the stmpe1600 device ID */
+ 265:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_CHP_ID, tmpData, 2);
+ 266:Src/stmpe1600.c ****   
+ 267:Src/stmpe1600.c ****   /* Return the device ID value */
+ 268:Src/stmpe1600.c ****   return((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));
+ 269:Src/stmpe1600.c **** }
+ 270:Src/stmpe1600.c **** 
+ 271:Src/stmpe1600.c **** /**
+ 272:Src/stmpe1600.c ****   * @brief  Set the global interrupt Polarity.
+ 273:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.  
+ 274:Src/stmpe1600.c ****   * @param  Polarity: could be one of these values; 
+ 275:Src/stmpe1600.c ****   *   @arg  STMPE1600_POLARITY_LOW: Interrupt line is active Low/Falling edge      
+ 276:Src/stmpe1600.c ****   *   @arg  STMPE1600_POLARITY_HIGH: Interrupt line is active High/Rising edge               
+ 277:Src/stmpe1600.c ****   * @retval None
+ 278:Src/stmpe1600.c ****   */
+ 279:Src/stmpe1600.c **** void stmpe1600_SetITPolarity(uint16_t DeviceAddr, uint8_t Polarity)
+ 280:Src/stmpe1600.c **** {
+ 281:Src/stmpe1600.c ****   uint8_t tmp = 0;
+ 282:Src/stmpe1600.c ****   
+ 283:Src/stmpe1600.c ****   /* Get the current register value */ 
+ 284:Src/stmpe1600.c ****   tmp = IOE_Read(DeviceAddr, STMPE1600_REG_SYS_CTRL);
+ 285:Src/stmpe1600.c ****   
+ 286:Src/stmpe1600.c ****   /* Mask the polarity bit */
+ 287:Src/stmpe1600.c ****   tmp &= ~(uint16_t)0x01;
+ 288:Src/stmpe1600.c ****     
+ 289:Src/stmpe1600.c ****   /* Set the Interrupt Output line polarity */
+ 290:Src/stmpe1600.c ****   tmp |= (uint8_t)Polarity;
+ 291:Src/stmpe1600.c ****   
+ 292:Src/stmpe1600.c ****   /* Set the new register value */
+ 293:Src/stmpe1600.c ****   IOE_Write(DeviceAddr, STMPE1600_REG_SYS_CTRL, tmp);
+ 294:Src/stmpe1600.c **** }
+ 295:Src/stmpe1600.c **** 
+ 296:Src/stmpe1600.c **** /**
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 7
+
+
+ 297:Src/stmpe1600.c ****   * @brief  Enable the Global interrupt.
+ 298:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.        
+ 299:Src/stmpe1600.c ****   * @retval None
+ 300:Src/stmpe1600.c ****   */
+ 301:Src/stmpe1600.c **** void stmpe1600_EnableGlobalIT(uint16_t DeviceAddr)
+ 302:Src/stmpe1600.c **** {
+ 303:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 304:Src/stmpe1600.c **** 
+ 305:Src/stmpe1600.c ****   /* Configure NVIC IT for IOE */
+ 306:Src/stmpe1600.c ****   IOE_ITConfig();
+ 307:Src/stmpe1600.c ****   
+ 308:Src/stmpe1600.c ****   /* Get the current register value */
+ 309:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_SYS_CTRL, tmpData, 2);
+ 310:Src/stmpe1600.c ****   
+ 311:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));
+ 312:Src/stmpe1600.c ****   
+ 313:Src/stmpe1600.c ****   /* Set the global interrupts to be Enabled */    
+ 314:Src/stmpe1600.c ****   tmp |= (uint16_t)STMPE1600_IT_ENABLE;
+ 315:Src/stmpe1600.c ****   
+ 316:Src/stmpe1600.c ****   /* Write Back the Interrupt Control register */
+ 317:Src/stmpe1600.c ****   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_SYS_CTRL, (uint8_t *)&tmp, 2); 
+ 318:Src/stmpe1600.c **** 
+ 319:Src/stmpe1600.c **** }
+ 320:Src/stmpe1600.c **** 
+ 321:Src/stmpe1600.c **** /**
+ 322:Src/stmpe1600.c ****   * @brief  Disable the Global interrupt.
+ 323:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.        
+ 324:Src/stmpe1600.c ****   * @retval None
+ 325:Src/stmpe1600.c ****   */
+ 326:Src/stmpe1600.c **** void stmpe1600_DisableGlobalIT(uint16_t DeviceAddr)
+ 327:Src/stmpe1600.c **** { 
+ 328:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 329:Src/stmpe1600.c **** 
+ 330:Src/stmpe1600.c ****   /* Get the current register value */
+ 331:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_SYS_CTRL, tmpData, 2);
+ 332:Src/stmpe1600.c ****   
+ 333:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));
+ 334:Src/stmpe1600.c ****   
+ 335:Src/stmpe1600.c ****   /* Set the global interrupts to be Enabled */    
+ 336:Src/stmpe1600.c ****   tmp &= ~(uint16_t)STMPE1600_IT_ENABLE;
+ 337:Src/stmpe1600.c ****   
+ 338:Src/stmpe1600.c ****   /* Write Back the Interrupt Control register */
+ 339:Src/stmpe1600.c ****   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_SYS_CTRL, (uint8_t *)&tmp, 2); 
+ 340:Src/stmpe1600.c **** }
+ 341:Src/stmpe1600.c **** 
+ 342:Src/stmpe1600.c **** /**
+ 343:Src/stmpe1600.c ****   * @brief  Initialize the selected pin(s) direction.
+ 344:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.   
+ 345:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be configured. 
+ 346:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 347:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15.  
+ 348:Src/stmpe1600.c ****   * @param  Direction: could be STMPE1600_DIRECTION_IN or STMPE1600_DIRECTION_OUT.      
+ 349:Src/stmpe1600.c ****   * @retval None
+ 350:Src/stmpe1600.c ****   */
+ 351:Src/stmpe1600.c **** void stmpe1600_IO_InitPin(uint16_t DeviceAddr, uint32_t IO_Pin, uint8_t Direction)
+ 352:Src/stmpe1600.c **** {
+ 353:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 8
+
+
+ 354:Src/stmpe1600.c ****   
+ 355:Src/stmpe1600.c ****   /* Get the current register value */
+ 356:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_GPDR, tmpData, 2);
+ 357:Src/stmpe1600.c **** 
+ 358:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));
+ 359:Src/stmpe1600.c ****   
+ 360:Src/stmpe1600.c ****   /* Set the Pin direction */
+ 361:Src/stmpe1600.c ****   if (Direction != STMPE1600_DIRECTION_IN)
+ 362:Src/stmpe1600.c ****   {
+ 363:Src/stmpe1600.c ****     tmp |= (uint16_t)IO_Pin;
+ 364:Src/stmpe1600.c ****   }  
+ 365:Src/stmpe1600.c ****   else 
+ 366:Src/stmpe1600.c ****   {
+ 367:Src/stmpe1600.c ****     tmp &= ~(uint16_t)IO_Pin;
+ 368:Src/stmpe1600.c ****   }
+ 369:Src/stmpe1600.c ****     
+ 370:Src/stmpe1600.c ****   /* Set the new register value */
+ 371:Src/stmpe1600.c ****   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_GPDR, (uint8_t *)&tmp, 2);      
+ 372:Src/stmpe1600.c **** }
+ 373:Src/stmpe1600.c **** 
+ 374:Src/stmpe1600.c **** /**
+ 375:Src/stmpe1600.c ****   * @brief  Configure the IO pin(s) according to IO mode structure value.
+ 376:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.  
+ 377:Src/stmpe1600.c ****   * @param  IO_Pin: The output pin to be set or reset. This parameter can be one 
+ 378:Src/stmpe1600.c ****   *         of the following values:   
+ 379:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 7.
+ 380:Src/stmpe1600.c ****   * @param  IO_Mode: The IO pin mode to configure, could be one of the following values:
+ 381:Src/stmpe1600.c ****   *   @arg  IO_MODE_INPUT
+ 382:Src/stmpe1600.c ****   *   @arg  IO_MODE_OUTPUT
+ 383:Src/stmpe1600.c ****   *   @arg  IO_MODE_IT_RISING_EDGE
+ 384:Src/stmpe1600.c ****   *   @arg  IO_MODE_IT_FALLING_EDGE         
+ 385:Src/stmpe1600.c ****   * @retval 0 if no error, IO_Mode if error
+ 386:Src/stmpe1600.c ****   */
+ 387:Src/stmpe1600.c **** uint8_t stmpe1600_IO_Config(uint16_t DeviceAddr, uint32_t IO_Pin, IO_ModeTypedef IO_Mode)
+ 388:Src/stmpe1600.c **** {
+ 389:Src/stmpe1600.c ****   uint8_t error_code = 0;
+ 390:Src/stmpe1600.c ****     uint8_t buffer[2] = {0,0};  
+ 391:Src/stmpe1600.c ****     
+ 392:Src/stmpe1600.c ****   /* Configure IO pin according to selected IO mode */
+ 393:Src/stmpe1600.c ****   switch(IO_Mode)
+ 394:Src/stmpe1600.c ****   {
+ 395:Src/stmpe1600.c ****   case IO_MODE_INPUT: /* Input mode */
+ 396:Src/stmpe1600.c ****     stmpe1600_IO_DisablePinIT(DeviceAddr, IO_Pin);
+ 397:Src/stmpe1600.c ****     stmpe1600_IO_InitPin(DeviceAddr, IO_Pin, STMPE1600_DIRECTION_IN);
+ 398:Src/stmpe1600.c ****     break;
+ 399:Src/stmpe1600.c ****     
+ 400:Src/stmpe1600.c ****   case IO_MODE_OUTPUT: /* Output mode */
+ 401:Src/stmpe1600.c ****     stmpe1600_IO_DisablePinIT(DeviceAddr, IO_Pin);
+ 402:Src/stmpe1600.c ****     stmpe1600_IO_InitPin(DeviceAddr, IO_Pin, STMPE1600_DIRECTION_OUT);
+ 403:Src/stmpe1600.c ****     break;
+ 404:Src/stmpe1600.c ****   
+ 405:Src/stmpe1600.c ****   case IO_MODE_IT_RISING_EDGE: /* Interrupt rising edge mode */
+ 406:Src/stmpe1600.c ****     stmpe1600_SetITPolarity(DeviceAddr, STMPE1600_POLARITY_HIGH);
+ 407:Src/stmpe1600.c ****     stmpe1600_IO_EnablePinIT(DeviceAddr, IO_Pin);
+ 408:Src/stmpe1600.c ****     stmpe1600_IO_InitPin(DeviceAddr, IO_Pin, STMPE1600_DIRECTION_IN); 
+ 409:Src/stmpe1600.c ****     /* Clear all IO IT pending bits if any */
+ 410:Src/stmpe1600.c ****     stmpe1600_IO_ClearIT(DeviceAddr, IO_Pin);
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 9
+
+
+ 411:Src/stmpe1600.c ****     
+ 412:Src/stmpe1600.c ****     /* Read GMPR to enable interrupt */
+ 413:Src/stmpe1600.c ****     IOE_ReadMultiple(DeviceAddr , STMPE1600_REG_GPMR, buffer, 2);
+ 414:Src/stmpe1600.c ****     break; 
+ 415:Src/stmpe1600.c ****     
+ 416:Src/stmpe1600.c ****   case IO_MODE_IT_FALLING_EDGE: /* Interrupt falling edge mode */
+ 417:Src/stmpe1600.c ****     stmpe1600_SetITPolarity(DeviceAddr, STMPE1600_POLARITY_LOW);
+ 418:Src/stmpe1600.c ****     stmpe1600_IO_EnablePinIT(DeviceAddr, IO_Pin);
+ 419:Src/stmpe1600.c ****     stmpe1600_IO_InitPin(DeviceAddr, IO_Pin, STMPE1600_DIRECTION_IN); 
+ 420:Src/stmpe1600.c ****     
+ 421:Src/stmpe1600.c ****     /* Clear all IO IT pending bits if any */
+ 422:Src/stmpe1600.c ****     stmpe1600_IO_ClearIT(DeviceAddr, IO_Pin);
+ 423:Src/stmpe1600.c ****     
+ 424:Src/stmpe1600.c ****     /* Read GMPR to enable interrupt */
+ 425:Src/stmpe1600.c ****     IOE_ReadMultiple(DeviceAddr , STMPE1600_REG_GPMR, buffer, 2);    
+ 426:Src/stmpe1600.c ****     break;
+ 427:Src/stmpe1600.c **** 
+ 428:Src/stmpe1600.c ****   default:
+ 429:Src/stmpe1600.c ****     error_code = (uint8_t) IO_Mode;
+ 430:Src/stmpe1600.c **** 	break;
+ 431:Src/stmpe1600.c ****   } 
+ 432:Src/stmpe1600.c ****   return error_code;
+ 433:Src/stmpe1600.c **** }
+ 434:Src/stmpe1600.c **** 
+ 435:Src/stmpe1600.c **** /**
+ 436:Src/stmpe1600.c ****   * @brief  Enable polarity inversion of the selected IO pin(s).
+ 437:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.    
+ 438:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be configured.  
+ 439:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 440:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15. 
+ 441:Src/stmpe1600.c ****   * @retval None
+ 442:Src/stmpe1600.c ****   */ 
+ 443:Src/stmpe1600.c **** void stmpe1600_IO_PolarityInv_Enable(uint16_t DeviceAddr, uint32_t IO_Pin)
+ 444:Src/stmpe1600.c **** {
+ 445:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 446:Src/stmpe1600.c ****   
+ 447:Src/stmpe1600.c ****   /* Get the current register value */
+ 448:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_GPPIR, tmpData, 2);
+ 449:Src/stmpe1600.c ****   
+ 450:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));  
+ 451:Src/stmpe1600.c **** 
+ 452:Src/stmpe1600.c ****   /* Enable pin polarity inversion */
+ 453:Src/stmpe1600.c ****   tmp |= (uint16_t)IO_Pin;
+ 454:Src/stmpe1600.c ****     
+ 455:Src/stmpe1600.c ****   /* Set the new register value */  
+ 456:Src/stmpe1600.c ****   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_GPPIR, (uint8_t *)&tmp, 2);
+ 457:Src/stmpe1600.c **** }
+ 458:Src/stmpe1600.c **** 
+ 459:Src/stmpe1600.c **** /**
+ 460:Src/stmpe1600.c ****   * @brief  Disable polarity inversion of the selected IO pins.
+ 461:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.    
+ 462:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be configured. 
+ 463:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 464:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15.
+ 465:Src/stmpe1600.c ****   * @retval None
+ 466:Src/stmpe1600.c ****   */ 
+ 467:Src/stmpe1600.c **** void stmpe1600_IO_PolarityInv_Disable(uint16_t DeviceAddr, uint32_t IO_Pin)
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 10
+
+
+ 468:Src/stmpe1600.c **** {
+ 469:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 470:Src/stmpe1600.c ****   
+ 471:Src/stmpe1600.c ****   /* Get the current register value */
+ 472:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_GPPIR, tmpData, 2);
+ 473:Src/stmpe1600.c ****   
+ 474:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));  
+ 475:Src/stmpe1600.c **** 
+ 476:Src/stmpe1600.c ****   /* Disable pin polarity inversion */
+ 477:Src/stmpe1600.c ****    tmp &= ~ (uint16_t)IO_Pin;
+ 478:Src/stmpe1600.c ****     
+ 479:Src/stmpe1600.c ****   /* Set the new register value */  
+ 480:Src/stmpe1600.c ****   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_GPPIR, (uint8_t *)&tmp, 2);  
+ 481:Src/stmpe1600.c **** }
+ 482:Src/stmpe1600.c **** 
+ 483:Src/stmpe1600.c **** /**
+ 484:Src/stmpe1600.c ****   * @brief  Set the value of the selected IO pins.
+ 485:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.  
+ 486:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be set.
+ 487:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 488:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15.
+ 489:Src/stmpe1600.c ****   * @param  PinState: The value to be set. 
+ 490:Src/stmpe1600.c ****   * @retval None
+ 491:Src/stmpe1600.c ****   */
+ 492:Src/stmpe1600.c **** void stmpe1600_IO_WritePin(uint16_t DeviceAddr, uint32_t IO_Pin, uint8_t PinState)
+ 493:Src/stmpe1600.c **** {
+ 494:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 495:Src/stmpe1600.c ****   
+ 496:Src/stmpe1600.c ****   /* Get the current register value */
+ 497:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_GPMR, tmpData, 2);
+ 498:Src/stmpe1600.c ****   
+ 499:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));  
+ 500:Src/stmpe1600.c ****   
+ 501:Src/stmpe1600.c ****   /* Set the pin state */
+ 502:Src/stmpe1600.c ****   if(PinState != 0)
+ 503:Src/stmpe1600.c ****   {
+ 504:Src/stmpe1600.c ****     tmp |= (uint16_t)IO_Pin;
+ 505:Src/stmpe1600.c ****   }  
+ 506:Src/stmpe1600.c ****   else 
+ 507:Src/stmpe1600.c ****   {
+ 508:Src/stmpe1600.c ****     tmp &= ~(uint16_t)IO_Pin;
+ 509:Src/stmpe1600.c ****   }
+ 510:Src/stmpe1600.c ****     
+ 511:Src/stmpe1600.c ****   /* Set the new register value */  
+ 512:Src/stmpe1600.c ****   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_GPSR, (uint8_t *)&tmp, 2);
+ 513:Src/stmpe1600.c **** }
+ 514:Src/stmpe1600.c **** 
+ 515:Src/stmpe1600.c **** /**
+ 516:Src/stmpe1600.c ****   * @brief  Read the state of the selected IO pin(s).
+ 517:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus. 
+ 518:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be read.  
+ 519:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 520:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15.
+ 521:Src/stmpe1600.c ****   * @retval State of the selected IO pin(s).
+ 522:Src/stmpe1600.c ****   */
+ 523:Src/stmpe1600.c **** uint32_t stmpe1600_IO_ReadPin(uint16_t DeviceAddr, uint32_t IO_Pin)
+ 524:Src/stmpe1600.c **** {
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 11
+
+
+ 525:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 526:Src/stmpe1600.c ****   
+ 527:Src/stmpe1600.c ****   /* Get the register value */
+ 528:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_GPMR, tmpData, 2);
+ 529:Src/stmpe1600.c ****   
+ 530:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));
+ 531:Src/stmpe1600.c ****   
+ 532:Src/stmpe1600.c ****   /* Return the pin(s) state */
+ 533:Src/stmpe1600.c ****   return(tmp & IO_Pin);  
+ 534:Src/stmpe1600.c **** }
+ 535:Src/stmpe1600.c **** 
+ 536:Src/stmpe1600.c **** /**
+ 537:Src/stmpe1600.c ****   * @brief  Enable the interrupt mode for the selected IO pin(s).
+ 538:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.     
+ 539:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be configured.  
+ 540:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 541:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15. 
+ 542:Src/stmpe1600.c ****   * @retval None
+ 543:Src/stmpe1600.c ****   */
+ 544:Src/stmpe1600.c **** void stmpe1600_IO_EnablePinIT(uint16_t DeviceAddr, uint32_t IO_Pin)
+ 545:Src/stmpe1600.c **** {
+ 546:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 547:Src/stmpe1600.c ****     
+ 548:Src/stmpe1600.c ****   /* Enable global interrupt */
+ 549:Src/stmpe1600.c ****   stmpe1600_EnableGlobalIT(DeviceAddr);
+ 550:Src/stmpe1600.c **** 
+ 551:Src/stmpe1600.c ****   /* Get the current register value */
+ 552:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_IEGPIOR, tmpData, 2);
+ 553:Src/stmpe1600.c ****   
+ 554:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));  
+ 555:Src/stmpe1600.c ****   
+ 556:Src/stmpe1600.c ****   /* Put pin in IT mode */
+ 557:Src/stmpe1600.c ****   tmp |= (uint16_t)IO_Pin;
+ 558:Src/stmpe1600.c ****     
+ 559:Src/stmpe1600.c ****   /* Write the new register value */
+ 560:Src/stmpe1600.c ****   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_IEGPIOR, (uint8_t *)&tmp, 2);
+ 561:Src/stmpe1600.c **** }
+ 562:Src/stmpe1600.c **** 
+ 563:Src/stmpe1600.c **** /**
+ 564:Src/stmpe1600.c ****   * @brief  Disable the interrupt mode for the selected IO pin(s).
+ 565:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.    
+ 566:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be configured.  
+ 567:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 568:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15. 
+ 569:Src/stmpe1600.c ****   * @retval None
+ 570:Src/stmpe1600.c ****   */
+ 571:Src/stmpe1600.c **** void stmpe1600_IO_DisablePinIT(uint16_t DeviceAddr, uint32_t IO_Pin)
+ 572:Src/stmpe1600.c **** {
+ 573:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 574:Src/stmpe1600.c ****   
+ 575:Src/stmpe1600.c ****   /* Get the current register value */
+ 576:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_IEGPIOR, tmpData, 2);
+ 577:Src/stmpe1600.c ****   
+ 578:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));  
+ 579:Src/stmpe1600.c ****   
+ 580:Src/stmpe1600.c ****   /* Disable the IT pin mode */
+ 581:Src/stmpe1600.c ****   tmp &= ~(uint16_t)IO_Pin;
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 12
+
+
+ 582:Src/stmpe1600.c ****     
+ 583:Src/stmpe1600.c ****   /* Set the new register value */
+ 584:Src/stmpe1600.c ****   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_IEGPIOR, (uint8_t *)&tmp, 2); 
+ 585:Src/stmpe1600.c **** }
+ 586:Src/stmpe1600.c **** 
+ 587:Src/stmpe1600.c **** /**
+ 588:Src/stmpe1600.c ****   * @brief  Read the IT status of the selected IO pin(s)
+ 589:Src/stmpe1600.c ****   *         (clears all the pending bits if any). 
+ 590:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.  
+ 591:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be checked.  
+ 592:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 593:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15.           
+ 594:Src/stmpe1600.c ****   * @retval IT Status of the selected IO pin(s).
+ 595:Src/stmpe1600.c ****   */
+ 596:Src/stmpe1600.c **** uint32_t stmpe1600_IO_ITStatus(uint16_t DeviceAddr, uint32_t IO_Pin)
+ 597:Src/stmpe1600.c **** {
+ 598:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 599:Src/stmpe1600.c ****   
+ 600:Src/stmpe1600.c ****   /* Get the register value */
+ 601:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_ISGPIOR, tmpData, 2);
+ 602:Src/stmpe1600.c ****   
+ 603:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));
+ 604:Src/stmpe1600.c ****   
+ 605:Src/stmpe1600.c ****   /* Return the pin IT status */
+ 606:Src/stmpe1600.c ****   return((tmp & IO_Pin) == IO_Pin);  
+ 607:Src/stmpe1600.c **** }
+ 608:Src/stmpe1600.c **** 
+ 609:Src/stmpe1600.c **** /**
+ 610:Src/stmpe1600.c ****   * @brief  Detect an IT pending bit from the selected IO pin(s).
+ 611:Src/stmpe1600.c ****   *         (clears all the pending bits if any).
+ 612:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.  
+ 613:Src/stmpe1600.c ****   * @param  IO_Pin: IO pin(s) to be checked.  
+ 614:Src/stmpe1600.c ****   *         This parameter could be any combination of the following values:
+ 615:Src/stmpe1600.c ****   *   @arg  STMPE1600_PIN_x: where x can be from 0 to 15.           
+ 616:Src/stmpe1600.c ****   * @retval IT pending bit detection status.
+ 617:Src/stmpe1600.c ****   */
+ 618:Src/stmpe1600.c **** uint8_t stmpe1600_IO_ReadIT(uint16_t DeviceAddr, uint32_t IO_Pin)
+ 619:Src/stmpe1600.c **** {
+ 620:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 621:Src/stmpe1600.c ****   
+ 622:Src/stmpe1600.c ****   /* Get the register value */
+ 623:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_ISGPIOR, tmpData, 2);
+ 624:Src/stmpe1600.c ****   
+ 625:Src/stmpe1600.c ****   tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));
+ 626:Src/stmpe1600.c ****   
+ 627:Src/stmpe1600.c ****   /* Return if there is an IT pending bit or not */
+ 628:Src/stmpe1600.c ****   return(tmp & IO_Pin);
+ 629:Src/stmpe1600.c **** }
+ 630:Src/stmpe1600.c **** 
+ 631:Src/stmpe1600.c **** /**
+ 632:Src/stmpe1600.c ****   * @brief  Clear all the IT pending bits if any. 
+ 633:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.            
+ 634:Src/stmpe1600.c ****   * @retval None
+ 635:Src/stmpe1600.c ****   */
+ 636:Src/stmpe1600.c **** void stmpe1600_IO_ClearIT(uint16_t DeviceAddr, uint32_t IO_Pin)
+ 637:Src/stmpe1600.c **** {
+ 638:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 13
+
+
+ 639:Src/stmpe1600.c ****     
+ 640:Src/stmpe1600.c ****   /* Get the register value to clear all pending bits */
+ 641:Src/stmpe1600.c ****   IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_ISGPIOR, tmpData, 2);
+ 642:Src/stmpe1600.c **** }
+ 643:Src/stmpe1600.c **** 
+ 644:Src/stmpe1600.c **** /**
+ 645:Src/stmpe1600.c ****   * @brief  Check if the device instance of the selected address is already registered
+ 646:Src/stmpe1600.c ****   *         and return its index 
+ 647:Src/stmpe1600.c ****   * @param  DeviceAddr: Device address on communication Bus.
+ 648:Src/stmpe1600.c ****   * @retval Index of the device instance if registered, 0xFF if not.
+ 649:Src/stmpe1600.c ****   */
+ 650:Src/stmpe1600.c **** static uint8_t stmpe1600_GetInstance(uint16_t DeviceAddr)
+ 651:Src/stmpe1600.c **** {
+  50              		.loc 1 651 1 view -0
+  51              		.cfi_startproc
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54              		@ link register save eliminated.
+ 652:Src/stmpe1600.c ****   uint8_t idx = 0;
+  55              		.loc 1 652 3 view .LVU3
+ 653:Src/stmpe1600.c ****   
+ 654:Src/stmpe1600.c ****   /* Check all the registered instances */
+ 655:Src/stmpe1600.c ****   for(idx = 0; idx < STMPE1600_MAX_INSTANCE ; idx ++)
+  56              		.loc 1 655 3 view .LVU4
+  57              		.loc 1 655 11 is_stmt 0 view .LVU5
+  58 0000 0023     		movs	r3, #0
+  59              	.LVL2:
+  60              	.L3:
+  61              		.loc 1 655 3 discriminator 1 view .LVU6
+  62 0002 012B     		cmp	r3, #1
+  63 0004 06D8     		bhi	.L6
+ 656:Src/stmpe1600.c ****   {
+ 657:Src/stmpe1600.c ****     /* Return index if there is address match */
+ 658:Src/stmpe1600.c ****     if(stmpe1600[idx] == DeviceAddr)
+  64              		.loc 1 658 5 is_stmt 1 view .LVU7
+  65              		.loc 1 658 17 is_stmt 0 view .LVU8
+  66 0006 054A     		ldr	r2, .L7
+  67 0008 D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
+  68              		.loc 1 658 7 view .LVU9
+  69 000a 8242     		cmp	r2, r0
+  70 000c 03D0     		beq	.L4
+ 655:Src/stmpe1600.c ****   {
+  71              		.loc 1 655 51 discriminator 2 view .LVU10
+  72 000e 0133     		adds	r3, r3, #1
+  73              	.LVL3:
+ 655:Src/stmpe1600.c ****   {
+  74              		.loc 1 655 51 discriminator 2 view .LVU11
+  75 0010 DBB2     		uxtb	r3, r3
+  76              	.LVL4:
+ 655:Src/stmpe1600.c ****   {
+  77              		.loc 1 655 51 discriminator 2 view .LVU12
+  78 0012 F6E7     		b	.L3
+  79              	.L6:
+ 659:Src/stmpe1600.c ****     {
+ 660:Src/stmpe1600.c ****       return idx; 
+ 661:Src/stmpe1600.c ****     }
+ 662:Src/stmpe1600.c ****   }
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 14
+
+
+ 663:Src/stmpe1600.c ****   
+ 664:Src/stmpe1600.c ****   return 0xFF;
+  80              		.loc 1 664 10 view .LVU13
+  81 0014 FF23     		movs	r3, #255
+  82              	.LVL5:
+  83              	.L4:
+ 665:Src/stmpe1600.c **** }
+  84              		.loc 1 665 1 view .LVU14
+  85 0016 1846     		mov	r0, r3
+  86              	.LVL6:
+  87              		.loc 1 665 1 view .LVU15
+  88 0018 7047     		bx	lr
+  89              	.L8:
+  90 001a 00BF     		.align	2
+  91              	.L7:
+  92 001c 00000000 		.word	.LANCHOR0
+  93              		.cfi_endproc
+  94              	.LFE155:
+  96              		.section	.text.IOE_Init,"ax",%progbits
+  97              		.align	1
+  98              		.global	IOE_Init
+  99              		.syntax unified
+ 100              		.thumb
+ 101              		.thumb_func
+ 102              		.fpu fpv4-sp-d16
+ 104              	IOE_Init:
+ 105              	.LFB130:
+ 117:Src/stmpe1600.c ****   I2Cx_Init();
+ 106              		.loc 1 117 1 is_stmt 1 view -0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110 0000 08B5     		push	{r3, lr}
+ 111              	.LCFI0:
+ 112              		.cfi_def_cfa_offset 8
+ 113              		.cfi_offset 3, -8
+ 114              		.cfi_offset 14, -4
+ 118:Src/stmpe1600.c **** }
+ 115              		.loc 1 118 3 view .LVU17
+ 116 0002 FFF7FEFF 		bl	I2Cx_Init
+ 117              	.LVL7:
+ 119:Src/stmpe1600.c **** 
+ 118              		.loc 1 119 1 is_stmt 0 view .LVU18
+ 119 0006 08BD     		pop	{r3, pc}
+ 120              		.cfi_endproc
+ 121              	.LFE130:
+ 123              		.section	.text.IOE_ITConfig,"ax",%progbits
+ 124              		.align	1
+ 125              		.global	IOE_ITConfig
+ 126              		.syntax unified
+ 127              		.thumb
+ 128              		.thumb_func
+ 129              		.fpu fpv4-sp-d16
+ 131              	IOE_ITConfig:
+ 132              	.LFB131:
+ 125:Src/stmpe1600.c ****   I2Cx_ITConfig();
+ 133              		.loc 1 125 1 is_stmt 1 view -0
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 15
+
+
+ 134              		.cfi_startproc
+ 135              		@ args = 0, pretend = 0, frame = 0
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137 0000 08B5     		push	{r3, lr}
+ 138              	.LCFI1:
+ 139              		.cfi_def_cfa_offset 8
+ 140              		.cfi_offset 3, -8
+ 141              		.cfi_offset 14, -4
+ 126:Src/stmpe1600.c **** }
+ 142              		.loc 1 126 3 view .LVU20
+ 143 0002 FFF7FEFF 		bl	I2Cx_ITConfig
+ 144              	.LVL8:
+ 127:Src/stmpe1600.c **** 
+ 145              		.loc 1 127 1 is_stmt 0 view .LVU21
+ 146 0006 08BD     		pop	{r3, pc}
+ 147              		.cfi_endproc
+ 148              	.LFE131:
+ 150              		.section	.text.IOE_Write,"ax",%progbits
+ 151              		.align	1
+ 152              		.global	IOE_Write
+ 153              		.syntax unified
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.fpu fpv4-sp-d16
+ 158              	IOE_Write:
+ 159              	.LVL9:
+ 160              	.LFB132:
+ 136:Src/stmpe1600.c ****   I2Cx_Write(Addr, Reg, Value);
+ 161              		.loc 1 136 1 is_stmt 1 view -0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 136:Src/stmpe1600.c ****   I2Cx_Write(Addr, Reg, Value);
+ 165              		.loc 1 136 1 is_stmt 0 view .LVU23
+ 166 0000 08B5     		push	{r3, lr}
+ 167              	.LCFI2:
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 3, -8
+ 170              		.cfi_offset 14, -4
+ 137:Src/stmpe1600.c **** }
+ 171              		.loc 1 137 3 is_stmt 1 view .LVU24
+ 172 0002 FFF7FEFF 		bl	I2Cx_Write
+ 173              	.LVL10:
+ 138:Src/stmpe1600.c **** 
+ 174              		.loc 1 138 1 is_stmt 0 view .LVU25
+ 175 0006 08BD     		pop	{r3, pc}
+ 176              		.cfi_endproc
+ 177              	.LFE132:
+ 179              		.section	.text.IOE_Read,"ax",%progbits
+ 180              		.align	1
+ 181              		.global	IOE_Read
+ 182              		.syntax unified
+ 183              		.thumb
+ 184              		.thumb_func
+ 185              		.fpu fpv4-sp-d16
+ 187              	IOE_Read:
+ 188              	.LVL11:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 16
+
+
+ 189              	.LFB133:
+ 147:Src/stmpe1600.c ****   return I2Cx_Read(Addr, Reg);
+ 190              		.loc 1 147 1 is_stmt 1 view -0
+ 191              		.cfi_startproc
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 147:Src/stmpe1600.c ****   return I2Cx_Read(Addr, Reg);
+ 194              		.loc 1 147 1 is_stmt 0 view .LVU27
+ 195 0000 08B5     		push	{r3, lr}
+ 196              	.LCFI3:
+ 197              		.cfi_def_cfa_offset 8
+ 198              		.cfi_offset 3, -8
+ 199              		.cfi_offset 14, -4
+ 148:Src/stmpe1600.c **** }
+ 200              		.loc 1 148 3 is_stmt 1 view .LVU28
+ 148:Src/stmpe1600.c **** }
+ 201              		.loc 1 148 10 is_stmt 0 view .LVU29
+ 202 0002 FFF7FEFF 		bl	I2Cx_Read
+ 203              	.LVL12:
+ 149:Src/stmpe1600.c **** 
+ 204              		.loc 1 149 1 view .LVU30
+ 205 0006 08BD     		pop	{r3, pc}
+ 206              		.cfi_endproc
+ 207              	.LFE133:
+ 209              		.section	.text.IOE_ReadMultiple,"ax",%progbits
+ 210              		.align	1
+ 211              		.global	IOE_ReadMultiple
+ 212              		.syntax unified
+ 213              		.thumb
+ 214              		.thumb_func
+ 215              		.fpu fpv4-sp-d16
+ 217              	IOE_ReadMultiple:
+ 218              	.LVL13:
+ 219              	.LFB134:
+ 160:Src/stmpe1600.c ****  return I2Cx_ReadMultiple(Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, Buffer, Length);
+ 220              		.loc 1 160 1 is_stmt 1 view -0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 160:Src/stmpe1600.c ****  return I2Cx_ReadMultiple(Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, Buffer, Length);
+ 224              		.loc 1 160 1 is_stmt 0 view .LVU32
+ 225 0000 00B5     		push	{lr}
+ 226              	.LCFI4:
+ 227              		.cfi_def_cfa_offset 4
+ 228              		.cfi_offset 14, -4
+ 229 0002 83B0     		sub	sp, sp, #12
+ 230              	.LCFI5:
+ 231              		.cfi_def_cfa_offset 16
+ 161:Src/stmpe1600.c **** }
+ 232              		.loc 1 161 2 is_stmt 1 view .LVU33
+ 161:Src/stmpe1600.c **** }
+ 233              		.loc 1 161 9 is_stmt 0 view .LVU34
+ 234 0004 0093     		str	r3, [sp]
+ 235 0006 1346     		mov	r3, r2
+ 236              	.LVL14:
+ 161:Src/stmpe1600.c **** }
+ 237              		.loc 1 161 9 view .LVU35
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 17
+
+
+ 238 0008 0122     		movs	r2, #1
+ 239              	.LVL15:
+ 161:Src/stmpe1600.c **** }
+ 240              		.loc 1 161 9 view .LVU36
+ 241 000a FFF7FEFF 		bl	I2Cx_ReadMultiple
+ 242              	.LVL16:
+ 162:Src/stmpe1600.c **** 
+ 243              		.loc 1 162 1 view .LVU37
+ 244 000e 03B0     		add	sp, sp, #12
+ 245              	.LCFI6:
+ 246              		.cfi_def_cfa_offset 4
+ 247              		@ sp needed
+ 248 0010 5DF804FB 		ldr	pc, [sp], #4
+ 249              		.cfi_endproc
+ 250              	.LFE134:
+ 252              		.section	.text.stmpe1600_ReadID,"ax",%progbits
+ 253              		.align	1
+ 254              		.global	stmpe1600_ReadID
+ 255              		.syntax unified
+ 256              		.thumb
+ 257              		.thumb_func
+ 258              		.fpu fpv4-sp-d16
+ 260              	stmpe1600_ReadID:
+ 261              	.LVL17:
+ 262              	.LFB140:
+ 258:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 263              		.loc 1 258 1 is_stmt 1 view -0
+ 264              		.cfi_startproc
+ 265              		@ args = 0, pretend = 0, frame = 8
+ 266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 258:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 267              		.loc 1 258 1 is_stmt 0 view .LVU39
+ 268 0000 30B5     		push	{r4, r5, lr}
+ 269              	.LCFI7:
+ 270              		.cfi_def_cfa_offset 12
+ 271              		.cfi_offset 4, -12
+ 272              		.cfi_offset 5, -8
+ 273              		.cfi_offset 14, -4
+ 274 0002 83B0     		sub	sp, sp, #12
+ 275              	.LCFI8:
+ 276              		.cfi_def_cfa_offset 24
+ 277 0004 0546     		mov	r5, r0
+ 259:Src/stmpe1600.c **** 
+ 278              		.loc 1 259 3 is_stmt 1 view .LVU40
+ 259:Src/stmpe1600.c **** 
+ 279              		.loc 1 259 11 is_stmt 0 view .LVU41
+ 280 0006 0024     		movs	r4, #0
+ 281 0008 8DF80440 		strb	r4, [sp, #4]
+ 282 000c 8DF80540 		strb	r4, [sp, #5]
+ 262:Src/stmpe1600.c ****   
+ 283              		.loc 1 262 3 is_stmt 1 view .LVU42
+ 284 0010 FFF7FEFF 		bl	IOE_Init
+ 285              	.LVL18:
+ 265:Src/stmpe1600.c ****   
+ 286              		.loc 1 265 3 view .LVU43
+ 287 0014 0223     		movs	r3, #2
+ 288 0016 01AA     		add	r2, sp, #4
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 18
+
+
+ 289 0018 2146     		mov	r1, r4
+ 290 001a E8B2     		uxtb	r0, r5
+ 291 001c FFF7FEFF 		bl	IOE_ReadMultiple
+ 292              	.LVL19:
+ 268:Src/stmpe1600.c **** }
+ 293              		.loc 1 268 3 view .LVU44
+ 268:Src/stmpe1600.c **** }
+ 294              		.loc 1 268 27 is_stmt 0 view .LVU45
+ 295 0020 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 268:Src/stmpe1600.c **** }
+ 296              		.loc 1 268 52 view .LVU46
+ 297 0024 9DF80500 		ldrb	r0, [sp, #5]	@ zero_extendqisi2
+ 269:Src/stmpe1600.c **** 
+ 298              		.loc 1 269 1 view .LVU47
+ 299 0028 43EA0020 		orr	r0, r3, r0, lsl #8
+ 300 002c 03B0     		add	sp, sp, #12
+ 301              	.LCFI9:
+ 302              		.cfi_def_cfa_offset 12
+ 303              		@ sp needed
+ 304 002e 30BD     		pop	{r4, r5, pc}
+ 305              		.cfi_endproc
+ 306              	.LFE140:
+ 308              		.section	.text.stmpe1600_IO_ReadPin,"ax",%progbits
+ 309              		.align	1
+ 310              		.global	stmpe1600_IO_ReadPin
+ 311              		.syntax unified
+ 312              		.thumb
+ 313              		.thumb_func
+ 314              		.fpu fpv4-sp-d16
+ 316              	stmpe1600_IO_ReadPin:
+ 317              	.LVL20:
+ 318              	.LFB149:
+ 524:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 319              		.loc 1 524 1 is_stmt 1 view -0
+ 320              		.cfi_startproc
+ 321              		@ args = 0, pretend = 0, frame = 8
+ 322              		@ frame_needed = 0, uses_anonymous_args = 0
+ 524:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 323              		.loc 1 524 1 is_stmt 0 view .LVU49
+ 324 0000 10B5     		push	{r4, lr}
+ 325              	.LCFI10:
+ 326              		.cfi_def_cfa_offset 8
+ 327              		.cfi_offset 4, -8
+ 328              		.cfi_offset 14, -4
+ 329 0002 82B0     		sub	sp, sp, #8
+ 330              	.LCFI11:
+ 331              		.cfi_def_cfa_offset 16
+ 332 0004 0C46     		mov	r4, r1
+ 525:Src/stmpe1600.c ****   
+ 333              		.loc 1 525 3 is_stmt 1 view .LVU50
+ 525:Src/stmpe1600.c ****   
+ 334              		.loc 1 525 11 is_stmt 0 view .LVU51
+ 335 0006 0023     		movs	r3, #0
+ 336 0008 8DF80430 		strb	r3, [sp, #4]
+ 337 000c 8DF80530 		strb	r3, [sp, #5]
+ 528:Src/stmpe1600.c ****   
+ 338              		.loc 1 528 3 is_stmt 1 view .LVU52
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 19
+
+
+ 339 0010 0223     		movs	r3, #2
+ 340 0012 01AA     		add	r2, sp, #4
+ 341 0014 1021     		movs	r1, #16
+ 342              	.LVL21:
+ 528:Src/stmpe1600.c ****   
+ 343              		.loc 1 528 3 is_stmt 0 view .LVU53
+ 344 0016 C0B2     		uxtb	r0, r0
+ 345              	.LVL22:
+ 528:Src/stmpe1600.c ****   
+ 346              		.loc 1 528 3 view .LVU54
+ 347 0018 FFF7FEFF 		bl	IOE_ReadMultiple
+ 348              	.LVL23:
+ 530:Src/stmpe1600.c ****   
+ 349              		.loc 1 530 3 is_stmt 1 view .LVU55
+ 530:Src/stmpe1600.c ****   
+ 350              		.loc 1 530 27 is_stmt 0 view .LVU56
+ 351 001c 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 530:Src/stmpe1600.c ****   
+ 352              		.loc 1 530 52 view .LVU57
+ 353 0020 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 530:Src/stmpe1600.c ****   
+ 354              		.loc 1 530 31 view .LVU58
+ 355 0024 40EA0320 		orr	r0, r0, r3, lsl #8
+ 530:Src/stmpe1600.c ****   
+ 356              		.loc 1 530 7 view .LVU59
+ 357 0028 024B     		ldr	r3, .L23
+ 358 002a 1880     		strh	r0, [r3]	@ movhi
+ 533:Src/stmpe1600.c **** }
+ 359              		.loc 1 533 3 is_stmt 1 view .LVU60
+ 534:Src/stmpe1600.c **** 
+ 360              		.loc 1 534 1 is_stmt 0 view .LVU61
+ 361 002c 2040     		ands	r0, r0, r4
+ 362 002e 02B0     		add	sp, sp, #8
+ 363              	.LCFI12:
+ 364              		.cfi_def_cfa_offset 8
+ 365              		@ sp needed
+ 366 0030 10BD     		pop	{r4, pc}
+ 367              	.LVL24:
+ 368              	.L24:
+ 534:Src/stmpe1600.c **** 
+ 369              		.loc 1 534 1 view .LVU62
+ 370 0032 00BF     		.align	2
+ 371              	.L23:
+ 372 0034 00000000 		.word	.LANCHOR1
+ 373              		.cfi_endproc
+ 374              	.LFE149:
+ 376              		.section	.text.stmpe1600_IO_ITStatus,"ax",%progbits
+ 377              		.align	1
+ 378              		.global	stmpe1600_IO_ITStatus
+ 379              		.syntax unified
+ 380              		.thumb
+ 381              		.thumb_func
+ 382              		.fpu fpv4-sp-d16
+ 384              	stmpe1600_IO_ITStatus:
+ 385              	.LVL25:
+ 386              	.LFB152:
+ 597:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 20
+
+
+ 387              		.loc 1 597 1 is_stmt 1 view -0
+ 388              		.cfi_startproc
+ 389              		@ args = 0, pretend = 0, frame = 8
+ 390              		@ frame_needed = 0, uses_anonymous_args = 0
+ 597:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 391              		.loc 1 597 1 is_stmt 0 view .LVU64
+ 392 0000 10B5     		push	{r4, lr}
+ 393              	.LCFI13:
+ 394              		.cfi_def_cfa_offset 8
+ 395              		.cfi_offset 4, -8
+ 396              		.cfi_offset 14, -4
+ 397 0002 82B0     		sub	sp, sp, #8
+ 398              	.LCFI14:
+ 399              		.cfi_def_cfa_offset 16
+ 400 0004 0C46     		mov	r4, r1
+ 598:Src/stmpe1600.c ****   
+ 401              		.loc 1 598 3 is_stmt 1 view .LVU65
+ 598:Src/stmpe1600.c ****   
+ 402              		.loc 1 598 11 is_stmt 0 view .LVU66
+ 403 0006 0023     		movs	r3, #0
+ 404 0008 8DF80430 		strb	r3, [sp, #4]
+ 405 000c 8DF80530 		strb	r3, [sp, #5]
+ 601:Src/stmpe1600.c ****   
+ 406              		.loc 1 601 3 is_stmt 1 view .LVU67
+ 407 0010 0223     		movs	r3, #2
+ 408 0012 01AA     		add	r2, sp, #4
+ 409 0014 0A21     		movs	r1, #10
+ 410              	.LVL26:
+ 601:Src/stmpe1600.c ****   
+ 411              		.loc 1 601 3 is_stmt 0 view .LVU68
+ 412 0016 C0B2     		uxtb	r0, r0
+ 413              	.LVL27:
+ 601:Src/stmpe1600.c ****   
+ 414              		.loc 1 601 3 view .LVU69
+ 415 0018 FFF7FEFF 		bl	IOE_ReadMultiple
+ 416              	.LVL28:
+ 603:Src/stmpe1600.c ****   
+ 417              		.loc 1 603 3 is_stmt 1 view .LVU70
+ 603:Src/stmpe1600.c ****   
+ 418              		.loc 1 603 27 is_stmt 0 view .LVU71
+ 419 001c 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 603:Src/stmpe1600.c ****   
+ 420              		.loc 1 603 52 view .LVU72
+ 421 0020 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 603:Src/stmpe1600.c ****   
+ 422              		.loc 1 603 31 view .LVU73
+ 423 0024 43EA0223 		orr	r3, r3, r2, lsl #8
+ 603:Src/stmpe1600.c ****   
+ 424              		.loc 1 603 7 view .LVU74
+ 425 0028 044A     		ldr	r2, .L27
+ 426 002a 1380     		strh	r3, [r2]	@ movhi
+ 606:Src/stmpe1600.c **** }
+ 427              		.loc 1 606 3 is_stmt 1 view .LVU75
+ 606:Src/stmpe1600.c **** }
+ 428              		.loc 1 606 25 is_stmt 0 view .LVU76
+ 429 002c 34EA0303 		bics	r3, r4, r3
+ 607:Src/stmpe1600.c **** 
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 21
+
+
+ 430              		.loc 1 607 1 view .LVU77
+ 431 0030 0CBF     		ite	eq
+ 432 0032 0120     		moveq	r0, #1
+ 433 0034 0020     		movne	r0, #0
+ 434 0036 02B0     		add	sp, sp, #8
+ 435              	.LCFI15:
+ 436              		.cfi_def_cfa_offset 8
+ 437              		@ sp needed
+ 438 0038 10BD     		pop	{r4, pc}
+ 439              	.LVL29:
+ 440              	.L28:
+ 607:Src/stmpe1600.c **** 
+ 441              		.loc 1 607 1 view .LVU78
+ 442 003a 00BF     		.align	2
+ 443              	.L27:
+ 444 003c 00000000 		.word	.LANCHOR1
+ 445              		.cfi_endproc
+ 446              	.LFE152:
+ 448              		.section	.text.stmpe1600_IO_ClearIT,"ax",%progbits
+ 449              		.align	1
+ 450              		.global	stmpe1600_IO_ClearIT
+ 451              		.syntax unified
+ 452              		.thumb
+ 453              		.thumb_func
+ 454              		.fpu fpv4-sp-d16
+ 456              	stmpe1600_IO_ClearIT:
+ 457              	.LVL30:
+ 458              	.LFB154:
+ 637:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 459              		.loc 1 637 1 is_stmt 1 view -0
+ 460              		.cfi_startproc
+ 461              		@ args = 0, pretend = 0, frame = 8
+ 462              		@ frame_needed = 0, uses_anonymous_args = 0
+ 637:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 463              		.loc 1 637 1 is_stmt 0 view .LVU80
+ 464 0000 00B5     		push	{lr}
+ 465              	.LCFI16:
+ 466              		.cfi_def_cfa_offset 4
+ 467              		.cfi_offset 14, -4
+ 468 0002 83B0     		sub	sp, sp, #12
+ 469              	.LCFI17:
+ 470              		.cfi_def_cfa_offset 16
+ 638:Src/stmpe1600.c ****     
+ 471              		.loc 1 638 3 is_stmt 1 view .LVU81
+ 638:Src/stmpe1600.c ****     
+ 472              		.loc 1 638 11 is_stmt 0 view .LVU82
+ 473 0004 0023     		movs	r3, #0
+ 474 0006 8DF80430 		strb	r3, [sp, #4]
+ 475 000a 8DF80530 		strb	r3, [sp, #5]
+ 641:Src/stmpe1600.c **** }
+ 476              		.loc 1 641 3 is_stmt 1 view .LVU83
+ 477 000e 0223     		movs	r3, #2
+ 478 0010 01AA     		add	r2, sp, #4
+ 479 0012 0A21     		movs	r1, #10
+ 480              	.LVL31:
+ 641:Src/stmpe1600.c **** }
+ 481              		.loc 1 641 3 is_stmt 0 view .LVU84
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 22
+
+
+ 482 0014 C0B2     		uxtb	r0, r0
+ 483              	.LVL32:
+ 641:Src/stmpe1600.c **** }
+ 484              		.loc 1 641 3 view .LVU85
+ 485 0016 FFF7FEFF 		bl	IOE_ReadMultiple
+ 486              	.LVL33:
+ 642:Src/stmpe1600.c **** 
+ 487              		.loc 1 642 1 view .LVU86
+ 488 001a 03B0     		add	sp, sp, #12
+ 489              	.LCFI18:
+ 490              		.cfi_def_cfa_offset 4
+ 491              		@ sp needed
+ 492 001c 5DF804FB 		ldr	pc, [sp], #4
+ 493              		.cfi_endproc
+ 494              	.LFE154:
+ 496              		.section	.text.IOE_WriteMultiple,"ax",%progbits
+ 497              		.align	1
+ 498              		.global	IOE_WriteMultiple
+ 499              		.syntax unified
+ 500              		.thumb
+ 501              		.thumb_func
+ 502              		.fpu fpv4-sp-d16
+ 504              	IOE_WriteMultiple:
+ 505              	.LVL34:
+ 506              	.LFB135:
+ 172:Src/stmpe1600.c ****   I2Cx_WriteMultiple(Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, Buffer, Length);
+ 507              		.loc 1 172 1 is_stmt 1 view -0
+ 508              		.cfi_startproc
+ 509              		@ args = 0, pretend = 0, frame = 0
+ 510              		@ frame_needed = 0, uses_anonymous_args = 0
+ 172:Src/stmpe1600.c ****   I2Cx_WriteMultiple(Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, Buffer, Length);
+ 511              		.loc 1 172 1 is_stmt 0 view .LVU88
+ 512 0000 00B5     		push	{lr}
+ 513              	.LCFI19:
+ 514              		.cfi_def_cfa_offset 4
+ 515              		.cfi_offset 14, -4
+ 516 0002 83B0     		sub	sp, sp, #12
+ 517              	.LCFI20:
+ 518              		.cfi_def_cfa_offset 16
+ 173:Src/stmpe1600.c **** }
+ 519              		.loc 1 173 3 is_stmt 1 view .LVU89
+ 520 0004 0093     		str	r3, [sp]
+ 521 0006 1346     		mov	r3, r2
+ 522              	.LVL35:
+ 173:Src/stmpe1600.c **** }
+ 523              		.loc 1 173 3 is_stmt 0 view .LVU90
+ 524 0008 0122     		movs	r2, #1
+ 525              	.LVL36:
+ 173:Src/stmpe1600.c **** }
+ 526              		.loc 1 173 3 view .LVU91
+ 527 000a FFF7FEFF 		bl	I2Cx_WriteMultiple
+ 528              	.LVL37:
+ 174:Src/stmpe1600.c **** 
+ 529              		.loc 1 174 1 view .LVU92
+ 530 000e 03B0     		add	sp, sp, #12
+ 531              	.LCFI21:
+ 532              		.cfi_def_cfa_offset 4
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 23
+
+
+ 533              		@ sp needed
+ 534 0010 5DF804FB 		ldr	pc, [sp], #4
+ 535              		.cfi_endproc
+ 536              	.LFE135:
+ 538              		.section	.text.stmpe1600_IO_WritePin,"ax",%progbits
+ 539              		.align	1
+ 540              		.global	stmpe1600_IO_WritePin
+ 541              		.syntax unified
+ 542              		.thumb
+ 543              		.thumb_func
+ 544              		.fpu fpv4-sp-d16
+ 546              	stmpe1600_IO_WritePin:
+ 547              	.LVL38:
+ 548              	.LFB148:
+ 493:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 549              		.loc 1 493 1 is_stmt 1 view -0
+ 550              		.cfi_startproc
+ 551              		@ args = 0, pretend = 0, frame = 8
+ 552              		@ frame_needed = 0, uses_anonymous_args = 0
+ 493:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 553              		.loc 1 493 1 is_stmt 0 view .LVU94
+ 554 0000 70B5     		push	{r4, r5, r6, lr}
+ 555              	.LCFI22:
+ 556              		.cfi_def_cfa_offset 16
+ 557              		.cfi_offset 4, -16
+ 558              		.cfi_offset 5, -12
+ 559              		.cfi_offset 6, -8
+ 560              		.cfi_offset 14, -4
+ 561 0002 82B0     		sub	sp, sp, #8
+ 562              	.LCFI23:
+ 563              		.cfi_def_cfa_offset 24
+ 564 0004 0D46     		mov	r5, r1
+ 565 0006 1646     		mov	r6, r2
+ 494:Src/stmpe1600.c ****   
+ 566              		.loc 1 494 3 is_stmt 1 view .LVU95
+ 494:Src/stmpe1600.c ****   
+ 567              		.loc 1 494 11 is_stmt 0 view .LVU96
+ 568 0008 0023     		movs	r3, #0
+ 569 000a 8DF80430 		strb	r3, [sp, #4]
+ 570 000e 8DF80530 		strb	r3, [sp, #5]
+ 497:Src/stmpe1600.c ****   
+ 571              		.loc 1 497 3 is_stmt 1 view .LVU97
+ 572 0012 C4B2     		uxtb	r4, r0
+ 573 0014 0223     		movs	r3, #2
+ 574 0016 01AA     		add	r2, sp, #4
+ 575              	.LVL39:
+ 497:Src/stmpe1600.c ****   
+ 576              		.loc 1 497 3 is_stmt 0 view .LVU98
+ 577 0018 1021     		movs	r1, #16
+ 578              	.LVL40:
+ 497:Src/stmpe1600.c ****   
+ 579              		.loc 1 497 3 view .LVU99
+ 580 001a 2046     		mov	r0, r4
+ 581              	.LVL41:
+ 497:Src/stmpe1600.c ****   
+ 582              		.loc 1 497 3 view .LVU100
+ 583 001c FFF7FEFF 		bl	IOE_ReadMultiple
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 24
+
+
+ 584              	.LVL42:
+ 499:Src/stmpe1600.c ****   
+ 585              		.loc 1 499 3 is_stmt 1 view .LVU101
+ 499:Src/stmpe1600.c ****   
+ 586              		.loc 1 499 27 is_stmt 0 view .LVU102
+ 587 0020 9DF80410 		ldrb	r1, [sp, #4]	@ zero_extendqisi2
+ 499:Src/stmpe1600.c ****   
+ 588              		.loc 1 499 52 view .LVU103
+ 589 0024 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 499:Src/stmpe1600.c ****   
+ 590              		.loc 1 499 31 view .LVU104
+ 591 0028 41EA0321 		orr	r1, r1, r3, lsl #8
+ 592 002c 09B2     		sxth	r1, r1
+ 502:Src/stmpe1600.c ****   {
+ 593              		.loc 1 502 3 is_stmt 1 view .LVU105
+ 502:Src/stmpe1600.c ****   {
+ 594              		.loc 1 502 5 is_stmt 0 view .LVU106
+ 595 002e 66B1     		cbz	r6, .L34
+ 596 0030 8BB2     		uxth	r3, r1
+ 504:Src/stmpe1600.c ****   }  
+ 597              		.loc 1 504 5 is_stmt 1 view .LVU107
+ 504:Src/stmpe1600.c ****   }  
+ 598              		.loc 1 504 12 is_stmt 0 view .LVU108
+ 599 0032 A9B2     		uxth	r1, r5
+ 504:Src/stmpe1600.c ****   }  
+ 600              		.loc 1 504 9 view .LVU109
+ 601 0034 0B43     		orrs	r3, r3, r1
+ 602 0036 074A     		ldr	r2, .L37
+ 603 0038 1380     		strh	r3, [r2]	@ movhi
+ 604              	.L35:
+ 512:Src/stmpe1600.c **** }
+ 605              		.loc 1 512 3 is_stmt 1 view .LVU110
+ 606 003a 0223     		movs	r3, #2
+ 607 003c 054A     		ldr	r2, .L37
+ 608 003e 1221     		movs	r1, #18
+ 609 0040 2046     		mov	r0, r4
+ 610 0042 FFF7FEFF 		bl	IOE_WriteMultiple
+ 611              	.LVL43:
+ 513:Src/stmpe1600.c **** 
+ 612              		.loc 1 513 1 is_stmt 0 view .LVU111
+ 613 0046 02B0     		add	sp, sp, #8
+ 614              	.LCFI24:
+ 615              		.cfi_remember_state
+ 616              		.cfi_def_cfa_offset 16
+ 617              		@ sp needed
+ 618 0048 70BD     		pop	{r4, r5, r6, pc}
+ 619              	.LVL44:
+ 620              	.L34:
+ 621              	.LCFI25:
+ 622              		.cfi_restore_state
+ 508:Src/stmpe1600.c ****   }
+ 623              		.loc 1 508 5 is_stmt 1 view .LVU112
+ 508:Src/stmpe1600.c ****   }
+ 624              		.loc 1 508 9 is_stmt 0 view .LVU113
+ 625 004a 21EA0501 		bic	r1, r1, r5
+ 626 004e 014B     		ldr	r3, .L37
+ 627 0050 1980     		strh	r1, [r3]	@ movhi
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 25
+
+
+ 628 0052 F2E7     		b	.L35
+ 629              	.L38:
+ 630              		.align	2
+ 631              	.L37:
+ 632 0054 00000000 		.word	.LANCHOR1
+ 633              		.cfi_endproc
+ 634              	.LFE148:
+ 636              		.section	.text.IOE_Delay,"ax",%progbits
+ 637              		.align	1
+ 638              		.global	IOE_Delay
+ 639              		.syntax unified
+ 640              		.thumb
+ 641              		.thumb_func
+ 642              		.fpu fpv4-sp-d16
+ 644              	IOE_Delay:
+ 645              	.LVL45:
+ 646              	.LFB136:
+ 181:Src/stmpe1600.c ****   HAL_Delay(Delay);
+ 647              		.loc 1 181 1 is_stmt 1 view -0
+ 648              		.cfi_startproc
+ 649              		@ args = 0, pretend = 0, frame = 0
+ 650              		@ frame_needed = 0, uses_anonymous_args = 0
+ 181:Src/stmpe1600.c ****   HAL_Delay(Delay);
+ 651              		.loc 1 181 1 is_stmt 0 view .LVU115
+ 652 0000 08B5     		push	{r3, lr}
+ 653              	.LCFI26:
+ 654              		.cfi_def_cfa_offset 8
+ 655              		.cfi_offset 3, -8
+ 656              		.cfi_offset 14, -4
+ 182:Src/stmpe1600.c **** }
+ 657              		.loc 1 182 3 is_stmt 1 view .LVU116
+ 658 0002 FFF7FEFF 		bl	HAL_Delay
+ 659              	.LVL46:
+ 183:Src/stmpe1600.c **** 
+ 660              		.loc 1 183 1 is_stmt 0 view .LVU117
+ 661 0006 08BD     		pop	{r3, pc}
+ 662              		.cfi_endproc
+ 663              	.LFE136:
+ 665              		.section	.text.stmpe1600_Reset,"ax",%progbits
+ 666              		.align	1
+ 667              		.global	stmpe1600_Reset
+ 668              		.syntax unified
+ 669              		.thumb
+ 670              		.thumb_func
+ 671              		.fpu fpv4-sp-d16
+ 673              	stmpe1600_Reset:
+ 674              	.LVL47:
+ 675              	.LFB139:
+ 238:Src/stmpe1600.c ****   /* Power Down the stmpe1600 */
+ 676              		.loc 1 238 1 is_stmt 1 view -0
+ 677              		.cfi_startproc
+ 678              		@ args = 0, pretend = 0, frame = 0
+ 679              		@ frame_needed = 0, uses_anonymous_args = 0
+ 238:Src/stmpe1600.c ****   /* Power Down the stmpe1600 */
+ 680              		.loc 1 238 1 is_stmt 0 view .LVU119
+ 681 0000 10B5     		push	{r4, lr}
+ 682              	.LCFI27:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 26
+
+
+ 683              		.cfi_def_cfa_offset 8
+ 684              		.cfi_offset 4, -8
+ 685              		.cfi_offset 14, -4
+ 240:Src/stmpe1600.c **** 
+ 686              		.loc 1 240 3 is_stmt 1 view .LVU120
+ 687 0002 C4B2     		uxtb	r4, r0
+ 688 0004 8022     		movs	r2, #128
+ 689 0006 0321     		movs	r1, #3
+ 690 0008 2046     		mov	r0, r4
+ 691              	.LVL48:
+ 240:Src/stmpe1600.c **** 
+ 692              		.loc 1 240 3 is_stmt 0 view .LVU121
+ 693 000a FFF7FEFF 		bl	IOE_Write
+ 694              	.LVL49:
+ 243:Src/stmpe1600.c ****   
+ 695              		.loc 1 243 3 is_stmt 1 view .LVU122
+ 696 000e 0220     		movs	r0, #2
+ 697 0010 FFF7FEFF 		bl	IOE_Delay
+ 698              	.LVL50:
+ 246:Src/stmpe1600.c ****   
+ 699              		.loc 1 246 3 view .LVU123
+ 700 0014 0022     		movs	r2, #0
+ 701 0016 0321     		movs	r1, #3
+ 702 0018 2046     		mov	r0, r4
+ 703 001a FFF7FEFF 		bl	IOE_Write
+ 704              	.LVL51:
+ 249:Src/stmpe1600.c **** }
+ 705              		.loc 1 249 3 view .LVU124
+ 706 001e 0220     		movs	r0, #2
+ 707 0020 FFF7FEFF 		bl	IOE_Delay
+ 708              	.LVL52:
+ 250:Src/stmpe1600.c **** 
+ 709              		.loc 1 250 1 is_stmt 0 view .LVU125
+ 710 0024 10BD     		pop	{r4, pc}
+ 711              		.cfi_endproc
+ 712              	.LFE139:
+ 714              		.section	.text.stmpe1600_Init,"ax",%progbits
+ 715              		.align	1
+ 716              		.global	stmpe1600_Init
+ 717              		.syntax unified
+ 718              		.thumb
+ 719              		.thumb_func
+ 720              		.fpu fpv4-sp-d16
+ 722              	stmpe1600_Init:
+ 723              	.LVL53:
+ 724              	.LFB137:
+ 196:Src/stmpe1600.c ****   uint8_t instance;
+ 725              		.loc 1 196 1 is_stmt 1 view -0
+ 726              		.cfi_startproc
+ 727              		@ args = 0, pretend = 0, frame = 0
+ 728              		@ frame_needed = 0, uses_anonymous_args = 0
+ 196:Src/stmpe1600.c ****   uint8_t instance;
+ 729              		.loc 1 196 1 is_stmt 0 view .LVU127
+ 730 0000 10B5     		push	{r4, lr}
+ 731              	.LCFI28:
+ 732              		.cfi_def_cfa_offset 8
+ 733              		.cfi_offset 4, -8
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 27
+
+
+ 734              		.cfi_offset 14, -4
+ 735 0002 0446     		mov	r4, r0
+ 197:Src/stmpe1600.c ****   uint8_t empty;
+ 736              		.loc 1 197 3 is_stmt 1 view .LVU128
+ 198:Src/stmpe1600.c ****   
+ 737              		.loc 1 198 3 view .LVU129
+ 201:Src/stmpe1600.c ****   
+ 738              		.loc 1 201 3 view .LVU130
+ 201:Src/stmpe1600.c ****   
+ 739              		.loc 1 201 14 is_stmt 0 view .LVU131
+ 740 0004 FFF7FEFF 		bl	stmpe1600_GetInstance
+ 741              	.LVL54:
+ 203:Src/stmpe1600.c ****   {
+ 742              		.loc 1 203 3 is_stmt 1 view .LVU132
+ 203:Src/stmpe1600.c ****   {
+ 743              		.loc 1 203 5 is_stmt 0 view .LVU133
+ 744 0008 FF28     		cmp	r0, #255
+ 745 000a 00D0     		beq	.L46
+ 746              	.LVL55:
+ 747              	.L43:
+ 220:Src/stmpe1600.c **** 
+ 748              		.loc 1 220 1 view .LVU134
+ 749 000c 10BD     		pop	{r4, pc}
+ 750              	.LVL56:
+ 751              	.L46:
+ 206:Src/stmpe1600.c ****     
+ 752              		.loc 1 206 5 is_stmt 1 view .LVU135
+ 206:Src/stmpe1600.c ****     
+ 753              		.loc 1 206 13 is_stmt 0 view .LVU136
+ 754 000e 0020     		movs	r0, #0
+ 755              	.LVL57:
+ 206:Src/stmpe1600.c ****     
+ 756              		.loc 1 206 13 view .LVU137
+ 757 0010 FFF7FEFF 		bl	stmpe1600_GetInstance
+ 758              	.LVL58:
+ 208:Src/stmpe1600.c ****     {
+ 759              		.loc 1 208 5 is_stmt 1 view .LVU138
+ 208:Src/stmpe1600.c ****     {
+ 760              		.loc 1 208 7 is_stmt 0 view .LVU139
+ 761 0014 0128     		cmp	r0, #1
+ 762 0016 F9D8     		bhi	.L43
+ 211:Src/stmpe1600.c ****       
+ 763              		.loc 1 211 7 is_stmt 1 view .LVU140
+ 211:Src/stmpe1600.c ****       
+ 764              		.loc 1 211 24 is_stmt 0 view .LVU141
+ 765 0018 034B     		ldr	r3, .L47
+ 766 001a 1C54     		strb	r4, [r3, r0]
+ 214:Src/stmpe1600.c ****       
+ 767              		.loc 1 214 7 is_stmt 1 view .LVU142
+ 768 001c FFF7FEFF 		bl	IOE_Init
+ 769              	.LVL59:
+ 217:Src/stmpe1600.c ****     }
+ 770              		.loc 1 217 7 view .LVU143
+ 771 0020 2046     		mov	r0, r4
+ 772 0022 FFF7FEFF 		bl	stmpe1600_Reset
+ 773              	.LVL60:
+ 220:Src/stmpe1600.c **** 
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 28
+
+
+ 774              		.loc 1 220 1 is_stmt 0 view .LVU144
+ 775 0026 F1E7     		b	.L43
+ 776              	.L48:
+ 777              		.align	2
+ 778              	.L47:
+ 779 0028 00000000 		.word	.LANCHOR0
+ 780              		.cfi_endproc
+ 781              	.LFE137:
+ 783              		.section	.text.stmpe1600_SetITPolarity,"ax",%progbits
+ 784              		.align	1
+ 785              		.global	stmpe1600_SetITPolarity
+ 786              		.syntax unified
+ 787              		.thumb
+ 788              		.thumb_func
+ 789              		.fpu fpv4-sp-d16
+ 791              	stmpe1600_SetITPolarity:
+ 792              	.LVL61:
+ 793              	.LFB141:
+ 280:Src/stmpe1600.c ****   uint8_t tmp = 0;
+ 794              		.loc 1 280 1 is_stmt 1 view -0
+ 795              		.cfi_startproc
+ 796              		@ args = 0, pretend = 0, frame = 0
+ 797              		@ frame_needed = 0, uses_anonymous_args = 0
+ 280:Src/stmpe1600.c ****   uint8_t tmp = 0;
+ 798              		.loc 1 280 1 is_stmt 0 view .LVU146
+ 799 0000 38B5     		push	{r3, r4, r5, lr}
+ 800              	.LCFI29:
+ 801              		.cfi_def_cfa_offset 16
+ 802              		.cfi_offset 3, -16
+ 803              		.cfi_offset 4, -12
+ 804              		.cfi_offset 5, -8
+ 805              		.cfi_offset 14, -4
+ 806 0002 0D46     		mov	r5, r1
+ 281:Src/stmpe1600.c ****   
+ 807              		.loc 1 281 3 is_stmt 1 view .LVU147
+ 808              	.LVL62:
+ 284:Src/stmpe1600.c ****   
+ 809              		.loc 1 284 3 view .LVU148
+ 284:Src/stmpe1600.c ****   
+ 810              		.loc 1 284 9 is_stmt 0 view .LVU149
+ 811 0004 C4B2     		uxtb	r4, r0
+ 812 0006 0321     		movs	r1, #3
+ 813              	.LVL63:
+ 284:Src/stmpe1600.c ****   
+ 814              		.loc 1 284 9 view .LVU150
+ 815 0008 2046     		mov	r0, r4
+ 816              	.LVL64:
+ 284:Src/stmpe1600.c ****   
+ 817              		.loc 1 284 9 view .LVU151
+ 818 000a FFF7FEFF 		bl	IOE_Read
+ 819              	.LVL65:
+ 287:Src/stmpe1600.c ****     
+ 820              		.loc 1 287 3 is_stmt 1 view .LVU152
+ 287:Src/stmpe1600.c ****     
+ 821              		.loc 1 287 7 is_stmt 0 view .LVU153
+ 822 000e 00F0FE02 		and	r2, r0, #254
+ 823              	.LVL66:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 29
+
+
+ 290:Src/stmpe1600.c ****   
+ 824              		.loc 1 290 3 is_stmt 1 view .LVU154
+ 293:Src/stmpe1600.c **** }
+ 825              		.loc 1 293 3 view .LVU155
+ 826 0012 2A43     		orrs	r2, r2, r5
+ 827              	.LVL67:
+ 293:Src/stmpe1600.c **** }
+ 828              		.loc 1 293 3 is_stmt 0 view .LVU156
+ 829 0014 0321     		movs	r1, #3
+ 830 0016 2046     		mov	r0, r4
+ 831 0018 FFF7FEFF 		bl	IOE_Write
+ 832              	.LVL68:
+ 294:Src/stmpe1600.c **** 
+ 833              		.loc 1 294 1 view .LVU157
+ 834 001c 38BD     		pop	{r3, r4, r5, pc}
+ 835              		.cfi_endproc
+ 836              	.LFE141:
+ 838              		.section	.text.stmpe1600_EnableGlobalIT,"ax",%progbits
+ 839              		.align	1
+ 840              		.global	stmpe1600_EnableGlobalIT
+ 841              		.syntax unified
+ 842              		.thumb
+ 843              		.thumb_func
+ 844              		.fpu fpv4-sp-d16
+ 846              	stmpe1600_EnableGlobalIT:
+ 847              	.LVL69:
+ 848              	.LFB142:
+ 302:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 849              		.loc 1 302 1 is_stmt 1 view -0
+ 850              		.cfi_startproc
+ 851              		@ args = 0, pretend = 0, frame = 8
+ 852              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 853              		.loc 1 302 1 is_stmt 0 view .LVU159
+ 854 0000 10B5     		push	{r4, lr}
+ 855              	.LCFI30:
+ 856              		.cfi_def_cfa_offset 8
+ 857              		.cfi_offset 4, -8
+ 858              		.cfi_offset 14, -4
+ 859 0002 82B0     		sub	sp, sp, #8
+ 860              	.LCFI31:
+ 861              		.cfi_def_cfa_offset 16
+ 862 0004 0446     		mov	r4, r0
+ 303:Src/stmpe1600.c **** 
+ 863              		.loc 1 303 3 is_stmt 1 view .LVU160
+ 303:Src/stmpe1600.c **** 
+ 864              		.loc 1 303 11 is_stmt 0 view .LVU161
+ 865 0006 0023     		movs	r3, #0
+ 866 0008 8DF80430 		strb	r3, [sp, #4]
+ 867 000c 8DF80530 		strb	r3, [sp, #5]
+ 306:Src/stmpe1600.c ****   
+ 868              		.loc 1 306 3 is_stmt 1 view .LVU162
+ 869 0010 FFF7FEFF 		bl	IOE_ITConfig
+ 870              	.LVL70:
+ 309:Src/stmpe1600.c ****   
+ 871              		.loc 1 309 3 view .LVU163
+ 872 0014 E4B2     		uxtb	r4, r4
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 30
+
+
+ 873 0016 0223     		movs	r3, #2
+ 874 0018 01AA     		add	r2, sp, #4
+ 875 001a 0321     		movs	r1, #3
+ 876 001c 2046     		mov	r0, r4
+ 877 001e FFF7FEFF 		bl	IOE_ReadMultiple
+ 878              	.LVL71:
+ 311:Src/stmpe1600.c ****   
+ 879              		.loc 1 311 3 view .LVU164
+ 311:Src/stmpe1600.c ****   
+ 880              		.loc 1 311 27 is_stmt 0 view .LVU165
+ 881 0022 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 311:Src/stmpe1600.c ****   
+ 882              		.loc 1 311 52 view .LVU166
+ 883 0026 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 311:Src/stmpe1600.c ****   
+ 884              		.loc 1 311 31 view .LVU167
+ 885 002a 43EA0223 		orr	r3, r3, r2, lsl #8
+ 314:Src/stmpe1600.c ****   
+ 886              		.loc 1 314 3 is_stmt 1 view .LVU168
+ 314:Src/stmpe1600.c ****   
+ 887              		.loc 1 314 7 is_stmt 0 view .LVU169
+ 888 002e 054A     		ldr	r2, .L53
+ 889 0030 43F00403 		orr	r3, r3, #4
+ 890 0034 1380     		strh	r3, [r2]	@ movhi
+ 317:Src/stmpe1600.c **** 
+ 891              		.loc 1 317 3 is_stmt 1 view .LVU170
+ 892 0036 0223     		movs	r3, #2
+ 893 0038 0321     		movs	r1, #3
+ 894 003a 2046     		mov	r0, r4
+ 895 003c FFF7FEFF 		bl	IOE_WriteMultiple
+ 896              	.LVL72:
+ 319:Src/stmpe1600.c **** 
+ 897              		.loc 1 319 1 is_stmt 0 view .LVU171
+ 898 0040 02B0     		add	sp, sp, #8
+ 899              	.LCFI32:
+ 900              		.cfi_def_cfa_offset 8
+ 901              		@ sp needed
+ 902 0042 10BD     		pop	{r4, pc}
+ 903              	.L54:
+ 904              		.align	2
+ 905              	.L53:
+ 906 0044 00000000 		.word	.LANCHOR1
+ 907              		.cfi_endproc
+ 908              	.LFE142:
+ 910              		.section	.text.stmpe1600_DisableGlobalIT,"ax",%progbits
+ 911              		.align	1
+ 912              		.global	stmpe1600_DisableGlobalIT
+ 913              		.syntax unified
+ 914              		.thumb
+ 915              		.thumb_func
+ 916              		.fpu fpv4-sp-d16
+ 918              	stmpe1600_DisableGlobalIT:
+ 919              	.LVL73:
+ 920              	.LFB143:
+ 327:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 921              		.loc 1 327 1 is_stmt 1 view -0
+ 922              		.cfi_startproc
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 31
+
+
+ 923              		@ args = 0, pretend = 0, frame = 8
+ 924              		@ frame_needed = 0, uses_anonymous_args = 0
+ 327:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 925              		.loc 1 327 1 is_stmt 0 view .LVU173
+ 926 0000 10B5     		push	{r4, lr}
+ 927              	.LCFI33:
+ 928              		.cfi_def_cfa_offset 8
+ 929              		.cfi_offset 4, -8
+ 930              		.cfi_offset 14, -4
+ 931 0002 82B0     		sub	sp, sp, #8
+ 932              	.LCFI34:
+ 933              		.cfi_def_cfa_offset 16
+ 328:Src/stmpe1600.c **** 
+ 934              		.loc 1 328 3 is_stmt 1 view .LVU174
+ 328:Src/stmpe1600.c **** 
+ 935              		.loc 1 328 11 is_stmt 0 view .LVU175
+ 936 0004 0023     		movs	r3, #0
+ 937 0006 8DF80430 		strb	r3, [sp, #4]
+ 938 000a 8DF80530 		strb	r3, [sp, #5]
+ 331:Src/stmpe1600.c ****   
+ 939              		.loc 1 331 3 is_stmt 1 view .LVU176
+ 940 000e C4B2     		uxtb	r4, r0
+ 941 0010 0223     		movs	r3, #2
+ 942 0012 01AA     		add	r2, sp, #4
+ 943 0014 0321     		movs	r1, #3
+ 944 0016 2046     		mov	r0, r4
+ 945              	.LVL74:
+ 331:Src/stmpe1600.c ****   
+ 946              		.loc 1 331 3 is_stmt 0 view .LVU177
+ 947 0018 FFF7FEFF 		bl	IOE_ReadMultiple
+ 948              	.LVL75:
+ 333:Src/stmpe1600.c ****   
+ 949              		.loc 1 333 3 is_stmt 1 view .LVU178
+ 333:Src/stmpe1600.c ****   
+ 950              		.loc 1 333 27 is_stmt 0 view .LVU179
+ 951 001c 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+ 333:Src/stmpe1600.c ****   
+ 952              		.loc 1 333 52 view .LVU180
+ 953 0020 9DF80520 		ldrb	r2, [sp, #5]	@ zero_extendqisi2
+ 333:Src/stmpe1600.c ****   
+ 954              		.loc 1 333 31 view .LVU181
+ 955 0024 43EA0223 		orr	r3, r3, r2, lsl #8
+ 336:Src/stmpe1600.c ****   
+ 956              		.loc 1 336 3 is_stmt 1 view .LVU182
+ 336:Src/stmpe1600.c ****   
+ 957              		.loc 1 336 7 is_stmt 0 view .LVU183
+ 958 0028 054A     		ldr	r2, .L57
+ 959 002a 23F00403 		bic	r3, r3, #4
+ 960 002e 1380     		strh	r3, [r2]	@ movhi
+ 339:Src/stmpe1600.c **** }
+ 961              		.loc 1 339 3 is_stmt 1 view .LVU184
+ 962 0030 0223     		movs	r3, #2
+ 963 0032 0321     		movs	r1, #3
+ 964 0034 2046     		mov	r0, r4
+ 965 0036 FFF7FEFF 		bl	IOE_WriteMultiple
+ 966              	.LVL76:
+ 340:Src/stmpe1600.c **** 
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 32
+
+
+ 967              		.loc 1 340 1 is_stmt 0 view .LVU185
+ 968 003a 02B0     		add	sp, sp, #8
+ 969              	.LCFI35:
+ 970              		.cfi_def_cfa_offset 8
+ 971              		@ sp needed
+ 972 003c 10BD     		pop	{r4, pc}
+ 973              	.L58:
+ 974 003e 00BF     		.align	2
+ 975              	.L57:
+ 976 0040 00000000 		.word	.LANCHOR1
+ 977              		.cfi_endproc
+ 978              	.LFE143:
+ 980              		.section	.text.stmpe1600_IO_InitPin,"ax",%progbits
+ 981              		.align	1
+ 982              		.global	stmpe1600_IO_InitPin
+ 983              		.syntax unified
+ 984              		.thumb
+ 985              		.thumb_func
+ 986              		.fpu fpv4-sp-d16
+ 988              	stmpe1600_IO_InitPin:
+ 989              	.LVL77:
+ 990              	.LFB144:
+ 352:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 991              		.loc 1 352 1 is_stmt 1 view -0
+ 992              		.cfi_startproc
+ 993              		@ args = 0, pretend = 0, frame = 8
+ 994              		@ frame_needed = 0, uses_anonymous_args = 0
+ 352:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 995              		.loc 1 352 1 is_stmt 0 view .LVU187
+ 996 0000 70B5     		push	{r4, r5, r6, lr}
+ 997              	.LCFI36:
+ 998              		.cfi_def_cfa_offset 16
+ 999              		.cfi_offset 4, -16
+ 1000              		.cfi_offset 5, -12
+ 1001              		.cfi_offset 6, -8
+ 1002              		.cfi_offset 14, -4
+ 1003 0002 82B0     		sub	sp, sp, #8
+ 1004              	.LCFI37:
+ 1005              		.cfi_def_cfa_offset 24
+ 1006 0004 0D46     		mov	r5, r1
+ 1007 0006 1646     		mov	r6, r2
+ 353:Src/stmpe1600.c ****   
+ 1008              		.loc 1 353 3 is_stmt 1 view .LVU188
+ 353:Src/stmpe1600.c ****   
+ 1009              		.loc 1 353 11 is_stmt 0 view .LVU189
+ 1010 0008 0023     		movs	r3, #0
+ 1011 000a 8DF80430 		strb	r3, [sp, #4]
+ 1012 000e 8DF80530 		strb	r3, [sp, #5]
+ 356:Src/stmpe1600.c **** 
+ 1013              		.loc 1 356 3 is_stmt 1 view .LVU190
+ 1014 0012 C4B2     		uxtb	r4, r0
+ 1015 0014 0223     		movs	r3, #2
+ 1016 0016 01AA     		add	r2, sp, #4
+ 1017              	.LVL78:
+ 356:Src/stmpe1600.c **** 
+ 1018              		.loc 1 356 3 is_stmt 0 view .LVU191
+ 1019 0018 1421     		movs	r1, #20
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 33
+
+
+ 1020              	.LVL79:
+ 356:Src/stmpe1600.c **** 
+ 1021              		.loc 1 356 3 view .LVU192
+ 1022 001a 2046     		mov	r0, r4
+ 1023              	.LVL80:
+ 356:Src/stmpe1600.c **** 
+ 1024              		.loc 1 356 3 view .LVU193
+ 1025 001c FFF7FEFF 		bl	IOE_ReadMultiple
+ 1026              	.LVL81:
+ 358:Src/stmpe1600.c ****   
+ 1027              		.loc 1 358 3 is_stmt 1 view .LVU194
+ 358:Src/stmpe1600.c ****   
+ 1028              		.loc 1 358 27 is_stmt 0 view .LVU195
+ 1029 0020 9DF80410 		ldrb	r1, [sp, #4]	@ zero_extendqisi2
+ 358:Src/stmpe1600.c ****   
+ 1030              		.loc 1 358 52 view .LVU196
+ 1031 0024 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 358:Src/stmpe1600.c ****   
+ 1032              		.loc 1 358 31 view .LVU197
+ 1033 0028 41EA0321 		orr	r1, r1, r3, lsl #8
+ 1034 002c 09B2     		sxth	r1, r1
+ 361:Src/stmpe1600.c ****   {
+ 1035              		.loc 1 361 3 is_stmt 1 view .LVU198
+ 361:Src/stmpe1600.c ****   {
+ 1036              		.loc 1 361 6 is_stmt 0 view .LVU199
+ 1037 002e 66B1     		cbz	r6, .L60
+ 1038 0030 8BB2     		uxth	r3, r1
+ 363:Src/stmpe1600.c ****   }  
+ 1039              		.loc 1 363 5 is_stmt 1 view .LVU200
+ 363:Src/stmpe1600.c ****   }  
+ 1040              		.loc 1 363 12 is_stmt 0 view .LVU201
+ 1041 0032 A9B2     		uxth	r1, r5
+ 363:Src/stmpe1600.c ****   }  
+ 1042              		.loc 1 363 9 view .LVU202
+ 1043 0034 0B43     		orrs	r3, r3, r1
+ 1044 0036 074A     		ldr	r2, .L63
+ 1045 0038 1380     		strh	r3, [r2]	@ movhi
+ 1046              	.L61:
+ 371:Src/stmpe1600.c **** }
+ 1047              		.loc 1 371 3 is_stmt 1 view .LVU203
+ 1048 003a 0223     		movs	r3, #2
+ 1049 003c 054A     		ldr	r2, .L63
+ 1050 003e 1421     		movs	r1, #20
+ 1051 0040 2046     		mov	r0, r4
+ 1052 0042 FFF7FEFF 		bl	IOE_WriteMultiple
+ 1053              	.LVL82:
+ 372:Src/stmpe1600.c **** 
+ 1054              		.loc 1 372 1 is_stmt 0 view .LVU204
+ 1055 0046 02B0     		add	sp, sp, #8
+ 1056              	.LCFI38:
+ 1057              		.cfi_remember_state
+ 1058              		.cfi_def_cfa_offset 16
+ 1059              		@ sp needed
+ 1060 0048 70BD     		pop	{r4, r5, r6, pc}
+ 1061              	.LVL83:
+ 1062              	.L60:
+ 1063              	.LCFI39:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 34
+
+
+ 1064              		.cfi_restore_state
+ 367:Src/stmpe1600.c ****   }
+ 1065              		.loc 1 367 5 is_stmt 1 view .LVU205
+ 367:Src/stmpe1600.c ****   }
+ 1066              		.loc 1 367 9 is_stmt 0 view .LVU206
+ 1067 004a 21EA0501 		bic	r1, r1, r5
+ 1068 004e 014B     		ldr	r3, .L63
+ 1069 0050 1980     		strh	r1, [r3]	@ movhi
+ 1070 0052 F2E7     		b	.L61
+ 1071              	.L64:
+ 1072              		.align	2
+ 1073              	.L63:
+ 1074 0054 00000000 		.word	.LANCHOR1
+ 1075              		.cfi_endproc
+ 1076              	.LFE144:
+ 1078              		.section	.text.stmpe1600_IO_PolarityInv_Enable,"ax",%progbits
+ 1079              		.align	1
+ 1080              		.global	stmpe1600_IO_PolarityInv_Enable
+ 1081              		.syntax unified
+ 1082              		.thumb
+ 1083              		.thumb_func
+ 1084              		.fpu fpv4-sp-d16
+ 1086              	stmpe1600_IO_PolarityInv_Enable:
+ 1087              	.LVL84:
+ 1088              	.LFB146:
+ 444:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1089              		.loc 1 444 1 is_stmt 1 view -0
+ 1090              		.cfi_startproc
+ 1091              		@ args = 0, pretend = 0, frame = 8
+ 1092              		@ frame_needed = 0, uses_anonymous_args = 0
+ 444:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1093              		.loc 1 444 1 is_stmt 0 view .LVU208
+ 1094 0000 30B5     		push	{r4, r5, lr}
+ 1095              	.LCFI40:
+ 1096              		.cfi_def_cfa_offset 12
+ 1097              		.cfi_offset 4, -12
+ 1098              		.cfi_offset 5, -8
+ 1099              		.cfi_offset 14, -4
+ 1100 0002 83B0     		sub	sp, sp, #12
+ 1101              	.LCFI41:
+ 1102              		.cfi_def_cfa_offset 24
+ 1103 0004 0C46     		mov	r4, r1
+ 445:Src/stmpe1600.c ****   
+ 1104              		.loc 1 445 3 is_stmt 1 view .LVU209
+ 445:Src/stmpe1600.c ****   
+ 1105              		.loc 1 445 11 is_stmt 0 view .LVU210
+ 1106 0006 0023     		movs	r3, #0
+ 1107 0008 8DF80430 		strb	r3, [sp, #4]
+ 1108 000c 8DF80530 		strb	r3, [sp, #5]
+ 448:Src/stmpe1600.c ****   
+ 1109              		.loc 1 448 3 is_stmt 1 view .LVU211
+ 1110 0010 C5B2     		uxtb	r5, r0
+ 1111 0012 0223     		movs	r3, #2
+ 1112 0014 01AA     		add	r2, sp, #4
+ 1113 0016 1621     		movs	r1, #22
+ 1114              	.LVL85:
+ 448:Src/stmpe1600.c ****   
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 35
+
+
+ 1115              		.loc 1 448 3 is_stmt 0 view .LVU212
+ 1116 0018 2846     		mov	r0, r5
+ 1117              	.LVL86:
+ 448:Src/stmpe1600.c ****   
+ 1118              		.loc 1 448 3 view .LVU213
+ 1119 001a FFF7FEFF 		bl	IOE_ReadMultiple
+ 1120              	.LVL87:
+ 450:Src/stmpe1600.c **** 
+ 1121              		.loc 1 450 3 is_stmt 1 view .LVU214
+ 450:Src/stmpe1600.c **** 
+ 1122              		.loc 1 450 27 is_stmt 0 view .LVU215
+ 1123 001e 9DF80410 		ldrb	r1, [sp, #4]	@ zero_extendqisi2
+ 450:Src/stmpe1600.c **** 
+ 1124              		.loc 1 450 52 view .LVU216
+ 1125 0022 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 450:Src/stmpe1600.c **** 
+ 1126              		.loc 1 450 31 view .LVU217
+ 1127 0026 41EA0321 		orr	r1, r1, r3, lsl #8
+ 453:Src/stmpe1600.c ****     
+ 1128              		.loc 1 453 3 is_stmt 1 view .LVU218
+ 453:Src/stmpe1600.c ****     
+ 1129              		.loc 1 453 10 is_stmt 0 view .LVU219
+ 1130 002a A4B2     		uxth	r4, r4
+ 1131              	.LVL88:
+ 453:Src/stmpe1600.c ****     
+ 1132              		.loc 1 453 7 view .LVU220
+ 1133 002c 044A     		ldr	r2, .L67
+ 1134 002e 2143     		orrs	r1, r1, r4
+ 1135 0030 1180     		strh	r1, [r2]	@ movhi
+ 456:Src/stmpe1600.c **** }
+ 1136              		.loc 1 456 3 is_stmt 1 view .LVU221
+ 1137 0032 0223     		movs	r3, #2
+ 1138 0034 1621     		movs	r1, #22
+ 1139 0036 2846     		mov	r0, r5
+ 1140 0038 FFF7FEFF 		bl	IOE_WriteMultiple
+ 1141              	.LVL89:
+ 457:Src/stmpe1600.c **** 
+ 1142              		.loc 1 457 1 is_stmt 0 view .LVU222
+ 1143 003c 03B0     		add	sp, sp, #12
+ 1144              	.LCFI42:
+ 1145              		.cfi_def_cfa_offset 12
+ 1146              		@ sp needed
+ 1147 003e 30BD     		pop	{r4, r5, pc}
+ 1148              	.L68:
+ 1149              		.align	2
+ 1150              	.L67:
+ 1151 0040 00000000 		.word	.LANCHOR1
+ 1152              		.cfi_endproc
+ 1153              	.LFE146:
+ 1155              		.section	.text.stmpe1600_IO_PolarityInv_Disable,"ax",%progbits
+ 1156              		.align	1
+ 1157              		.global	stmpe1600_IO_PolarityInv_Disable
+ 1158              		.syntax unified
+ 1159              		.thumb
+ 1160              		.thumb_func
+ 1161              		.fpu fpv4-sp-d16
+ 1163              	stmpe1600_IO_PolarityInv_Disable:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 36
+
+
+ 1164              	.LVL90:
+ 1165              	.LFB147:
+ 468:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1166              		.loc 1 468 1 is_stmt 1 view -0
+ 1167              		.cfi_startproc
+ 1168              		@ args = 0, pretend = 0, frame = 8
+ 1169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 468:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1170              		.loc 1 468 1 is_stmt 0 view .LVU224
+ 1171 0000 30B5     		push	{r4, r5, lr}
+ 1172              	.LCFI43:
+ 1173              		.cfi_def_cfa_offset 12
+ 1174              		.cfi_offset 4, -12
+ 1175              		.cfi_offset 5, -8
+ 1176              		.cfi_offset 14, -4
+ 1177 0002 83B0     		sub	sp, sp, #12
+ 1178              	.LCFI44:
+ 1179              		.cfi_def_cfa_offset 24
+ 1180 0004 0D46     		mov	r5, r1
+ 469:Src/stmpe1600.c ****   
+ 1181              		.loc 1 469 3 is_stmt 1 view .LVU225
+ 469:Src/stmpe1600.c ****   
+ 1182              		.loc 1 469 11 is_stmt 0 view .LVU226
+ 1183 0006 0023     		movs	r3, #0
+ 1184 0008 8DF80430 		strb	r3, [sp, #4]
+ 1185 000c 8DF80530 		strb	r3, [sp, #5]
+ 472:Src/stmpe1600.c ****   
+ 1186              		.loc 1 472 3 is_stmt 1 view .LVU227
+ 1187 0010 C4B2     		uxtb	r4, r0
+ 1188 0012 0223     		movs	r3, #2
+ 1189 0014 01AA     		add	r2, sp, #4
+ 1190 0016 1621     		movs	r1, #22
+ 1191              	.LVL91:
+ 472:Src/stmpe1600.c ****   
+ 1192              		.loc 1 472 3 is_stmt 0 view .LVU228
+ 1193 0018 2046     		mov	r0, r4
+ 1194              	.LVL92:
+ 472:Src/stmpe1600.c ****   
+ 1195              		.loc 1 472 3 view .LVU229
+ 1196 001a FFF7FEFF 		bl	IOE_ReadMultiple
+ 1197              	.LVL93:
+ 474:Src/stmpe1600.c **** 
+ 1198              		.loc 1 474 3 is_stmt 1 view .LVU230
+ 474:Src/stmpe1600.c **** 
+ 1199              		.loc 1 474 27 is_stmt 0 view .LVU231
+ 1200 001e 9DF80410 		ldrb	r1, [sp, #4]	@ zero_extendqisi2
+ 474:Src/stmpe1600.c **** 
+ 1201              		.loc 1 474 52 view .LVU232
+ 1202 0022 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 474:Src/stmpe1600.c **** 
+ 1203              		.loc 1 474 31 view .LVU233
+ 1204 0026 41EA0321 		orr	r1, r1, r3, lsl #8
+ 1205 002a 09B2     		sxth	r1, r1
+ 477:Src/stmpe1600.c ****     
+ 1206              		.loc 1 477 4 is_stmt 1 view .LVU234
+ 477:Src/stmpe1600.c ****     
+ 1207              		.loc 1 477 8 is_stmt 0 view .LVU235
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 37
+
+
+ 1208 002c 054A     		ldr	r2, .L71
+ 1209 002e 21EA0501 		bic	r1, r1, r5
+ 1210 0032 1180     		strh	r1, [r2]	@ movhi
+ 480:Src/stmpe1600.c **** }
+ 1211              		.loc 1 480 3 is_stmt 1 view .LVU236
+ 1212 0034 0223     		movs	r3, #2
+ 1213 0036 1621     		movs	r1, #22
+ 1214 0038 2046     		mov	r0, r4
+ 1215 003a FFF7FEFF 		bl	IOE_WriteMultiple
+ 1216              	.LVL94:
+ 481:Src/stmpe1600.c **** 
+ 1217              		.loc 1 481 1 is_stmt 0 view .LVU237
+ 1218 003e 03B0     		add	sp, sp, #12
+ 1219              	.LCFI45:
+ 1220              		.cfi_def_cfa_offset 12
+ 1221              		@ sp needed
+ 1222 0040 30BD     		pop	{r4, r5, pc}
+ 1223              	.LVL95:
+ 1224              	.L72:
+ 481:Src/stmpe1600.c **** 
+ 1225              		.loc 1 481 1 view .LVU238
+ 1226 0042 00BF     		.align	2
+ 1227              	.L71:
+ 1228 0044 00000000 		.word	.LANCHOR1
+ 1229              		.cfi_endproc
+ 1230              	.LFE147:
+ 1232              		.section	.text.stmpe1600_IO_EnablePinIT,"ax",%progbits
+ 1233              		.align	1
+ 1234              		.global	stmpe1600_IO_EnablePinIT
+ 1235              		.syntax unified
+ 1236              		.thumb
+ 1237              		.thumb_func
+ 1238              		.fpu fpv4-sp-d16
+ 1240              	stmpe1600_IO_EnablePinIT:
+ 1241              	.LVL96:
+ 1242              	.LFB150:
+ 545:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1243              		.loc 1 545 1 is_stmt 1 view -0
+ 1244              		.cfi_startproc
+ 1245              		@ args = 0, pretend = 0, frame = 8
+ 1246              		@ frame_needed = 0, uses_anonymous_args = 0
+ 545:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1247              		.loc 1 545 1 is_stmt 0 view .LVU240
+ 1248 0000 30B5     		push	{r4, r5, lr}
+ 1249              	.LCFI46:
+ 1250              		.cfi_def_cfa_offset 12
+ 1251              		.cfi_offset 4, -12
+ 1252              		.cfi_offset 5, -8
+ 1253              		.cfi_offset 14, -4
+ 1254 0002 83B0     		sub	sp, sp, #12
+ 1255              	.LCFI47:
+ 1256              		.cfi_def_cfa_offset 24
+ 1257 0004 0446     		mov	r4, r0
+ 1258 0006 0D46     		mov	r5, r1
+ 546:Src/stmpe1600.c ****     
+ 1259              		.loc 1 546 3 is_stmt 1 view .LVU241
+ 546:Src/stmpe1600.c ****     
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 38
+
+
+ 1260              		.loc 1 546 11 is_stmt 0 view .LVU242
+ 1261 0008 0023     		movs	r3, #0
+ 1262 000a 8DF80430 		strb	r3, [sp, #4]
+ 1263 000e 8DF80530 		strb	r3, [sp, #5]
+ 549:Src/stmpe1600.c **** 
+ 1264              		.loc 1 549 3 is_stmt 1 view .LVU243
+ 1265 0012 FFF7FEFF 		bl	stmpe1600_EnableGlobalIT
+ 1266              	.LVL97:
+ 552:Src/stmpe1600.c ****   
+ 1267              		.loc 1 552 3 view .LVU244
+ 1268 0016 E4B2     		uxtb	r4, r4
+ 1269 0018 0223     		movs	r3, #2
+ 1270 001a 01AA     		add	r2, sp, #4
+ 1271 001c 0821     		movs	r1, #8
+ 1272 001e 2046     		mov	r0, r4
+ 1273 0020 FFF7FEFF 		bl	IOE_ReadMultiple
+ 1274              	.LVL98:
+ 554:Src/stmpe1600.c ****   
+ 1275              		.loc 1 554 3 view .LVU245
+ 554:Src/stmpe1600.c ****   
+ 1276              		.loc 1 554 27 is_stmt 0 view .LVU246
+ 1277 0024 9DF80410 		ldrb	r1, [sp, #4]	@ zero_extendqisi2
+ 554:Src/stmpe1600.c ****   
+ 1278              		.loc 1 554 52 view .LVU247
+ 1279 0028 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 554:Src/stmpe1600.c ****   
+ 1280              		.loc 1 554 31 view .LVU248
+ 1281 002c 41EA0321 		orr	r1, r1, r3, lsl #8
+ 557:Src/stmpe1600.c ****     
+ 1282              		.loc 1 557 3 is_stmt 1 view .LVU249
+ 557:Src/stmpe1600.c ****     
+ 1283              		.loc 1 557 10 is_stmt 0 view .LVU250
+ 1284 0030 ADB2     		uxth	r5, r5
+ 1285              	.LVL99:
+ 557:Src/stmpe1600.c ****     
+ 1286              		.loc 1 557 7 view .LVU251
+ 1287 0032 054A     		ldr	r2, .L75
+ 1288 0034 2943     		orrs	r1, r1, r5
+ 1289 0036 1180     		strh	r1, [r2]	@ movhi
+ 560:Src/stmpe1600.c **** }
+ 1290              		.loc 1 560 3 is_stmt 1 view .LVU252
+ 1291 0038 0223     		movs	r3, #2
+ 1292 003a 0821     		movs	r1, #8
+ 1293 003c 2046     		mov	r0, r4
+ 1294 003e FFF7FEFF 		bl	IOE_WriteMultiple
+ 1295              	.LVL100:
+ 561:Src/stmpe1600.c **** 
+ 1296              		.loc 1 561 1 is_stmt 0 view .LVU253
+ 1297 0042 03B0     		add	sp, sp, #12
+ 1298              	.LCFI48:
+ 1299              		.cfi_def_cfa_offset 12
+ 1300              		@ sp needed
+ 1301 0044 30BD     		pop	{r4, r5, pc}
+ 1302              	.L76:
+ 1303 0046 00BF     		.align	2
+ 1304              	.L75:
+ 1305 0048 00000000 		.word	.LANCHOR1
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 39
+
+
+ 1306              		.cfi_endproc
+ 1307              	.LFE150:
+ 1309              		.section	.text.stmpe1600_IO_DisablePinIT,"ax",%progbits
+ 1310              		.align	1
+ 1311              		.global	stmpe1600_IO_DisablePinIT
+ 1312              		.syntax unified
+ 1313              		.thumb
+ 1314              		.thumb_func
+ 1315              		.fpu fpv4-sp-d16
+ 1317              	stmpe1600_IO_DisablePinIT:
+ 1318              	.LVL101:
+ 1319              	.LFB151:
+ 572:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1320              		.loc 1 572 1 is_stmt 1 view -0
+ 1321              		.cfi_startproc
+ 1322              		@ args = 0, pretend = 0, frame = 8
+ 1323              		@ frame_needed = 0, uses_anonymous_args = 0
+ 572:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1324              		.loc 1 572 1 is_stmt 0 view .LVU255
+ 1325 0000 30B5     		push	{r4, r5, lr}
+ 1326              	.LCFI49:
+ 1327              		.cfi_def_cfa_offset 12
+ 1328              		.cfi_offset 4, -12
+ 1329              		.cfi_offset 5, -8
+ 1330              		.cfi_offset 14, -4
+ 1331 0002 83B0     		sub	sp, sp, #12
+ 1332              	.LCFI50:
+ 1333              		.cfi_def_cfa_offset 24
+ 1334 0004 0D46     		mov	r5, r1
+ 573:Src/stmpe1600.c ****   
+ 1335              		.loc 1 573 3 is_stmt 1 view .LVU256
+ 573:Src/stmpe1600.c ****   
+ 1336              		.loc 1 573 11 is_stmt 0 view .LVU257
+ 1337 0006 0023     		movs	r3, #0
+ 1338 0008 8DF80430 		strb	r3, [sp, #4]
+ 1339 000c 8DF80530 		strb	r3, [sp, #5]
+ 576:Src/stmpe1600.c ****   
+ 1340              		.loc 1 576 3 is_stmt 1 view .LVU258
+ 1341 0010 C4B2     		uxtb	r4, r0
+ 1342 0012 0223     		movs	r3, #2
+ 1343 0014 01AA     		add	r2, sp, #4
+ 1344 0016 0821     		movs	r1, #8
+ 1345              	.LVL102:
+ 576:Src/stmpe1600.c ****   
+ 1346              		.loc 1 576 3 is_stmt 0 view .LVU259
+ 1347 0018 2046     		mov	r0, r4
+ 1348              	.LVL103:
+ 576:Src/stmpe1600.c ****   
+ 1349              		.loc 1 576 3 view .LVU260
+ 1350 001a FFF7FEFF 		bl	IOE_ReadMultiple
+ 1351              	.LVL104:
+ 578:Src/stmpe1600.c ****   
+ 1352              		.loc 1 578 3 is_stmt 1 view .LVU261
+ 578:Src/stmpe1600.c ****   
+ 1353              		.loc 1 578 27 is_stmt 0 view .LVU262
+ 1354 001e 9DF80410 		ldrb	r1, [sp, #4]	@ zero_extendqisi2
+ 578:Src/stmpe1600.c ****   
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 40
+
+
+ 1355              		.loc 1 578 52 view .LVU263
+ 1356 0022 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 578:Src/stmpe1600.c ****   
+ 1357              		.loc 1 578 31 view .LVU264
+ 1358 0026 41EA0321 		orr	r1, r1, r3, lsl #8
+ 1359 002a 09B2     		sxth	r1, r1
+ 581:Src/stmpe1600.c ****     
+ 1360              		.loc 1 581 3 is_stmt 1 view .LVU265
+ 581:Src/stmpe1600.c ****     
+ 1361              		.loc 1 581 7 is_stmt 0 view .LVU266
+ 1362 002c 054A     		ldr	r2, .L79
+ 1363 002e 21EA0501 		bic	r1, r1, r5
+ 1364 0032 1180     		strh	r1, [r2]	@ movhi
+ 584:Src/stmpe1600.c **** }
+ 1365              		.loc 1 584 3 is_stmt 1 view .LVU267
+ 1366 0034 0223     		movs	r3, #2
+ 1367 0036 0821     		movs	r1, #8
+ 1368 0038 2046     		mov	r0, r4
+ 1369 003a FFF7FEFF 		bl	IOE_WriteMultiple
+ 1370              	.LVL105:
+ 585:Src/stmpe1600.c **** 
+ 1371              		.loc 1 585 1 is_stmt 0 view .LVU268
+ 1372 003e 03B0     		add	sp, sp, #12
+ 1373              	.LCFI51:
+ 1374              		.cfi_def_cfa_offset 12
+ 1375              		@ sp needed
+ 1376 0040 30BD     		pop	{r4, r5, pc}
+ 1377              	.LVL106:
+ 1378              	.L80:
+ 585:Src/stmpe1600.c **** 
+ 1379              		.loc 1 585 1 view .LVU269
+ 1380 0042 00BF     		.align	2
+ 1381              	.L79:
+ 1382 0044 00000000 		.word	.LANCHOR1
+ 1383              		.cfi_endproc
+ 1384              	.LFE151:
+ 1386              		.section	.text.stmpe1600_IO_Config,"ax",%progbits
+ 1387              		.align	1
+ 1388              		.global	stmpe1600_IO_Config
+ 1389              		.syntax unified
+ 1390              		.thumb
+ 1391              		.thumb_func
+ 1392              		.fpu fpv4-sp-d16
+ 1394              	stmpe1600_IO_Config:
+ 1395              	.LVL107:
+ 1396              	.LFB145:
+ 388:Src/stmpe1600.c ****   uint8_t error_code = 0;
+ 1397              		.loc 1 388 1 is_stmt 1 view -0
+ 1398              		.cfi_startproc
+ 1399              		@ args = 0, pretend = 0, frame = 8
+ 1400              		@ frame_needed = 0, uses_anonymous_args = 0
+ 388:Src/stmpe1600.c ****   uint8_t error_code = 0;
+ 1401              		.loc 1 388 1 is_stmt 0 view .LVU271
+ 1402 0000 30B5     		push	{r4, r5, lr}
+ 1403              	.LCFI52:
+ 1404              		.cfi_def_cfa_offset 12
+ 1405              		.cfi_offset 4, -12
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 41
+
+
+ 1406              		.cfi_offset 5, -8
+ 1407              		.cfi_offset 14, -4
+ 1408 0002 83B0     		sub	sp, sp, #12
+ 1409              	.LCFI53:
+ 1410              		.cfi_def_cfa_offset 24
+ 1411 0004 0446     		mov	r4, r0
+ 1412 0006 0D46     		mov	r5, r1
+ 389:Src/stmpe1600.c ****     uint8_t buffer[2] = {0,0};  
+ 1413              		.loc 1 389 3 is_stmt 1 view .LVU272
+ 1414              	.LVL108:
+ 390:Src/stmpe1600.c ****     
+ 1415              		.loc 1 390 5 view .LVU273
+ 390:Src/stmpe1600.c ****     
+ 1416              		.loc 1 390 13 is_stmt 0 view .LVU274
+ 1417 0008 0023     		movs	r3, #0
+ 1418 000a 8DF80430 		strb	r3, [sp, #4]
+ 1419 000e 8DF80530 		strb	r3, [sp, #5]
+ 393:Src/stmpe1600.c ****   {
+ 1420              		.loc 1 393 3 is_stmt 1 view .LVU275
+ 1421 0012 032A     		cmp	r2, #3
+ 1422 0014 46D8     		bhi	.L88
+ 1423 0016 DFE802F0 		tbb	[pc, r2]
+ 1424              	.L84:
+ 1425 001a 02       		.byte	(.L87-.L84)/2
+ 1426 001b 0C       		.byte	(.L86-.L84)/2
+ 1427 001c 15       		.byte	(.L85-.L84)/2
+ 1428 001d 2D       		.byte	(.L83-.L84)/2
+ 1429              		.p2align 1
+ 1430              	.L87:
+ 396:Src/stmpe1600.c ****     stmpe1600_IO_InitPin(DeviceAddr, IO_Pin, STMPE1600_DIRECTION_IN);
+ 1431              		.loc 1 396 5 view .LVU276
+ 1432 001e FFF7FEFF 		bl	stmpe1600_IO_DisablePinIT
+ 1433              	.LVL109:
+ 397:Src/stmpe1600.c ****     break;
+ 1434              		.loc 1 397 5 view .LVU277
+ 1435 0022 0022     		movs	r2, #0
+ 1436 0024 2946     		mov	r1, r5
+ 1437 0026 2046     		mov	r0, r4
+ 1438 0028 FFF7FEFF 		bl	stmpe1600_IO_InitPin
+ 1439              	.LVL110:
+ 398:Src/stmpe1600.c ****     
+ 1440              		.loc 1 398 5 view .LVU278
+ 389:Src/stmpe1600.c ****     uint8_t buffer[2] = {0,0};  
+ 1441              		.loc 1 389 11 is_stmt 0 view .LVU279
+ 1442 002c 0020     		movs	r0, #0
+ 1443              	.L82:
+ 1444              	.LVL111:
+ 432:Src/stmpe1600.c **** }
+ 1445              		.loc 1 432 3 is_stmt 1 view .LVU280
+ 433:Src/stmpe1600.c **** 
+ 1446              		.loc 1 433 1 is_stmt 0 view .LVU281
+ 1447 002e 03B0     		add	sp, sp, #12
+ 1448              	.LCFI54:
+ 1449              		.cfi_remember_state
+ 1450              		.cfi_def_cfa_offset 12
+ 1451              		@ sp needed
+ 1452 0030 30BD     		pop	{r4, r5, pc}
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 42
+
+
+ 1453              	.LVL112:
+ 1454              	.L86:
+ 1455              	.LCFI55:
+ 1456              		.cfi_restore_state
+ 401:Src/stmpe1600.c ****     stmpe1600_IO_InitPin(DeviceAddr, IO_Pin, STMPE1600_DIRECTION_OUT);
+ 1457              		.loc 1 401 5 is_stmt 1 view .LVU282
+ 1458 0032 FFF7FEFF 		bl	stmpe1600_IO_DisablePinIT
+ 1459              	.LVL113:
+ 402:Src/stmpe1600.c ****     break;
+ 1460              		.loc 1 402 5 view .LVU283
+ 1461 0036 0122     		movs	r2, #1
+ 1462 0038 2946     		mov	r1, r5
+ 1463 003a 2046     		mov	r0, r4
+ 1464 003c FFF7FEFF 		bl	stmpe1600_IO_InitPin
+ 1465              	.LVL114:
+ 403:Src/stmpe1600.c ****   
+ 1466              		.loc 1 403 5 view .LVU284
+ 389:Src/stmpe1600.c ****     uint8_t buffer[2] = {0,0};  
+ 1467              		.loc 1 389 11 is_stmt 0 view .LVU285
+ 1468 0040 0020     		movs	r0, #0
+ 403:Src/stmpe1600.c ****   
+ 1469              		.loc 1 403 5 view .LVU286
+ 1470 0042 F4E7     		b	.L82
+ 1471              	.LVL115:
+ 1472              	.L85:
+ 406:Src/stmpe1600.c ****     stmpe1600_IO_EnablePinIT(DeviceAddr, IO_Pin);
+ 1473              		.loc 1 406 5 is_stmt 1 view .LVU287
+ 1474 0044 0121     		movs	r1, #1
+ 1475              	.LVL116:
+ 406:Src/stmpe1600.c ****     stmpe1600_IO_EnablePinIT(DeviceAddr, IO_Pin);
+ 1476              		.loc 1 406 5 is_stmt 0 view .LVU288
+ 1477 0046 FFF7FEFF 		bl	stmpe1600_SetITPolarity
+ 1478              	.LVL117:
+ 407:Src/stmpe1600.c ****     stmpe1600_IO_InitPin(DeviceAddr, IO_Pin, STMPE1600_DIRECTION_IN); 
+ 1479              		.loc 1 407 5 is_stmt 1 view .LVU289
+ 1480 004a 2946     		mov	r1, r5
+ 1481 004c 2046     		mov	r0, r4
+ 1482 004e FFF7FEFF 		bl	stmpe1600_IO_EnablePinIT
+ 1483              	.LVL118:
+ 408:Src/stmpe1600.c ****     /* Clear all IO IT pending bits if any */
+ 1484              		.loc 1 408 5 view .LVU290
+ 1485 0052 0022     		movs	r2, #0
+ 1486 0054 2946     		mov	r1, r5
+ 1487 0056 2046     		mov	r0, r4
+ 1488 0058 FFF7FEFF 		bl	stmpe1600_IO_InitPin
+ 1489              	.LVL119:
+ 410:Src/stmpe1600.c ****     
+ 1490              		.loc 1 410 5 view .LVU291
+ 1491 005c 2946     		mov	r1, r5
+ 1492 005e 2046     		mov	r0, r4
+ 1493 0060 FFF7FEFF 		bl	stmpe1600_IO_ClearIT
+ 1494              	.LVL120:
+ 413:Src/stmpe1600.c ****     break; 
+ 1495              		.loc 1 413 5 view .LVU292
+ 1496 0064 0223     		movs	r3, #2
+ 1497 0066 01AA     		add	r2, sp, #4
+ 1498 0068 1021     		movs	r1, #16
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 43
+
+
+ 1499 006a E0B2     		uxtb	r0, r4
+ 1500 006c FFF7FEFF 		bl	IOE_ReadMultiple
+ 1501              	.LVL121:
+ 414:Src/stmpe1600.c ****     
+ 1502              		.loc 1 414 5 view .LVU293
+ 389:Src/stmpe1600.c ****     uint8_t buffer[2] = {0,0};  
+ 1503              		.loc 1 389 11 is_stmt 0 view .LVU294
+ 1504 0070 0020     		movs	r0, #0
+ 414:Src/stmpe1600.c ****     
+ 1505              		.loc 1 414 5 view .LVU295
+ 1506 0072 DCE7     		b	.L82
+ 1507              	.LVL122:
+ 1508              	.L83:
+ 417:Src/stmpe1600.c ****     stmpe1600_IO_EnablePinIT(DeviceAddr, IO_Pin);
+ 1509              		.loc 1 417 5 is_stmt 1 view .LVU296
+ 1510 0074 0021     		movs	r1, #0
+ 1511              	.LVL123:
+ 417:Src/stmpe1600.c ****     stmpe1600_IO_EnablePinIT(DeviceAddr, IO_Pin);
+ 1512              		.loc 1 417 5 is_stmt 0 view .LVU297
+ 1513 0076 FFF7FEFF 		bl	stmpe1600_SetITPolarity
+ 1514              	.LVL124:
+ 418:Src/stmpe1600.c ****     stmpe1600_IO_InitPin(DeviceAddr, IO_Pin, STMPE1600_DIRECTION_IN); 
+ 1515              		.loc 1 418 5 is_stmt 1 view .LVU298
+ 1516 007a 2946     		mov	r1, r5
+ 1517 007c 2046     		mov	r0, r4
+ 1518 007e FFF7FEFF 		bl	stmpe1600_IO_EnablePinIT
+ 1519              	.LVL125:
+ 419:Src/stmpe1600.c ****     
+ 1520              		.loc 1 419 5 view .LVU299
+ 1521 0082 0022     		movs	r2, #0
+ 1522 0084 2946     		mov	r1, r5
+ 1523 0086 2046     		mov	r0, r4
+ 1524 0088 FFF7FEFF 		bl	stmpe1600_IO_InitPin
+ 1525              	.LVL126:
+ 422:Src/stmpe1600.c ****     
+ 1526              		.loc 1 422 5 view .LVU300
+ 1527 008c 2946     		mov	r1, r5
+ 1528 008e 2046     		mov	r0, r4
+ 1529 0090 FFF7FEFF 		bl	stmpe1600_IO_ClearIT
+ 1530              	.LVL127:
+ 425:Src/stmpe1600.c ****     break;
+ 1531              		.loc 1 425 5 view .LVU301
+ 1532 0094 0223     		movs	r3, #2
+ 1533 0096 01AA     		add	r2, sp, #4
+ 1534 0098 1021     		movs	r1, #16
+ 1535 009a E0B2     		uxtb	r0, r4
+ 1536 009c FFF7FEFF 		bl	IOE_ReadMultiple
+ 1537              	.LVL128:
+ 426:Src/stmpe1600.c **** 
+ 1538              		.loc 1 426 5 view .LVU302
+ 389:Src/stmpe1600.c ****     uint8_t buffer[2] = {0,0};  
+ 1539              		.loc 1 389 11 is_stmt 0 view .LVU303
+ 1540 00a0 0020     		movs	r0, #0
+ 426:Src/stmpe1600.c **** 
+ 1541              		.loc 1 426 5 view .LVU304
+ 1542 00a2 C4E7     		b	.L82
+ 1543              	.LVL129:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 44
+
+
+ 1544              	.L88:
+ 429:Src/stmpe1600.c **** 	break;
+ 1545              		.loc 1 429 16 view .LVU305
+ 1546 00a4 1046     		mov	r0, r2
+ 1547              	.LVL130:
+ 429:Src/stmpe1600.c **** 	break;
+ 1548              		.loc 1 429 16 view .LVU306
+ 1549 00a6 C2E7     		b	.L82
+ 1550              		.cfi_endproc
+ 1551              	.LFE145:
+ 1553              		.section	.text.stmpe1600_IO_ReadIT,"ax",%progbits
+ 1554              		.align	1
+ 1555              		.global	stmpe1600_IO_ReadIT
+ 1556              		.syntax unified
+ 1557              		.thumb
+ 1558              		.thumb_func
+ 1559              		.fpu fpv4-sp-d16
+ 1561              	stmpe1600_IO_ReadIT:
+ 1562              	.LVL131:
+ 1563              	.LFB153:
+ 619:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1564              		.loc 1 619 1 is_stmt 1 view -0
+ 1565              		.cfi_startproc
+ 1566              		@ args = 0, pretend = 0, frame = 8
+ 1567              		@ frame_needed = 0, uses_anonymous_args = 0
+ 619:Src/stmpe1600.c ****   uint8_t tmpData[2] = {0 , 0};
+ 1568              		.loc 1 619 1 is_stmt 0 view .LVU308
+ 1569 0000 10B5     		push	{r4, lr}
+ 1570              	.LCFI56:
+ 1571              		.cfi_def_cfa_offset 8
+ 1572              		.cfi_offset 4, -8
+ 1573              		.cfi_offset 14, -4
+ 1574 0002 82B0     		sub	sp, sp, #8
+ 1575              	.LCFI57:
+ 1576              		.cfi_def_cfa_offset 16
+ 1577 0004 0C46     		mov	r4, r1
+ 620:Src/stmpe1600.c ****   
+ 1578              		.loc 1 620 3 is_stmt 1 view .LVU309
+ 620:Src/stmpe1600.c ****   
+ 1579              		.loc 1 620 11 is_stmt 0 view .LVU310
+ 1580 0006 0023     		movs	r3, #0
+ 1581 0008 8DF80430 		strb	r3, [sp, #4]
+ 1582 000c 8DF80530 		strb	r3, [sp, #5]
+ 623:Src/stmpe1600.c ****   
+ 1583              		.loc 1 623 3 is_stmt 1 view .LVU311
+ 1584 0010 0223     		movs	r3, #2
+ 1585 0012 01AA     		add	r2, sp, #4
+ 1586 0014 0A21     		movs	r1, #10
+ 1587              	.LVL132:
+ 623:Src/stmpe1600.c ****   
+ 1588              		.loc 1 623 3 is_stmt 0 view .LVU312
+ 1589 0016 C0B2     		uxtb	r0, r0
+ 1590              	.LVL133:
+ 623:Src/stmpe1600.c ****   
+ 1591              		.loc 1 623 3 view .LVU313
+ 1592 0018 FFF7FEFF 		bl	IOE_ReadMultiple
+ 1593              	.LVL134:
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 45
+
+
+ 625:Src/stmpe1600.c ****   
+ 1594              		.loc 1 625 3 is_stmt 1 view .LVU314
+ 625:Src/stmpe1600.c ****   
+ 1595              		.loc 1 625 27 is_stmt 0 view .LVU315
+ 1596 001c 9DF80400 		ldrb	r0, [sp, #4]	@ zero_extendqisi2
+ 625:Src/stmpe1600.c ****   
+ 1597              		.loc 1 625 52 view .LVU316
+ 1598 0020 9DF80530 		ldrb	r3, [sp, #5]	@ zero_extendqisi2
+ 625:Src/stmpe1600.c ****   
+ 1599              		.loc 1 625 31 view .LVU317
+ 1600 0024 40EA0320 		orr	r0, r0, r3, lsl #8
+ 625:Src/stmpe1600.c ****   
+ 1601              		.loc 1 625 7 view .LVU318
+ 1602 0028 024B     		ldr	r3, .L92
+ 1603 002a 1880     		strh	r0, [r3]	@ movhi
+ 628:Src/stmpe1600.c **** }
+ 1604              		.loc 1 628 3 is_stmt 1 view .LVU319
+ 628:Src/stmpe1600.c **** }
+ 1605              		.loc 1 628 14 is_stmt 0 view .LVU320
+ 1606 002c 2040     		ands	r0, r0, r4
+ 629:Src/stmpe1600.c **** 
+ 1607              		.loc 1 629 1 view .LVU321
+ 1608 002e C0B2     		uxtb	r0, r0
+ 1609 0030 02B0     		add	sp, sp, #8
+ 1610              	.LCFI58:
+ 1611              		.cfi_def_cfa_offset 8
+ 1612              		@ sp needed
+ 1613 0032 10BD     		pop	{r4, pc}
+ 1614              	.LVL135:
+ 1615              	.L93:
+ 629:Src/stmpe1600.c **** 
+ 1616              		.loc 1 629 1 view .LVU322
+ 1617              		.align	2
+ 1618              	.L92:
+ 1619 0034 00000000 		.word	.LANCHOR1
+ 1620              		.cfi_endproc
+ 1621              	.LFE153:
+ 1623              		.global	stmpe1600
+ 1624              		.global	stmpe1600_io_drv
+ 1625              		.section	.bss.stmpe1600,"aw",%nobits
+ 1626              		.align	2
+ 1627              		.set	.LANCHOR0,. + 0
+ 1630              	stmpe1600:
+ 1631 0000 0000     		.space	2
+ 1632              		.section	.bss.tmp,"aw",%nobits
+ 1633              		.align	1
+ 1634              		.set	.LANCHOR1,. + 0
+ 1637              	tmp:
+ 1638 0000 0000     		.space	2
+ 1639              		.section	.data.stmpe1600_io_drv,"aw"
+ 1640              		.align	2
+ 1643              	stmpe1600_io_drv:
+ 1644 0000 00000000 		.word	stmpe1600_Init
+ 1645 0004 00000000 		.word	stmpe1600_ReadID
+ 1646 0008 00000000 		.word	stmpe1600_Reset
+ 1647 000c 00000000 		.word	stmpe1600_Start
+ 1648 0010 00000000 		.word	stmpe1600_IO_Config
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 46
+
+
+ 1649 0014 00000000 		.word	stmpe1600_IO_WritePin
+ 1650 0018 00000000 		.word	stmpe1600_IO_ReadPin
+ 1651 001c 00000000 		.word	0
+ 1652 0020 00000000 		.word	0
+ 1653 0024 00000000 		.word	stmpe1600_IO_ITStatus
+ 1654 0028 00000000 		.word	stmpe1600_IO_ClearIT
+ 1655              		.text
+ 1656              	.Letext0:
+ 1657              		.file 2 "c:\\users\\hungv\\appdata\\roaming\\xpacks\\@gnu-mcu-eclipse\\arm-none-eabi-gcc\\8.2.1-1.
+ 1658              		.file 3 "c:\\users\\hungv\\appdata\\roaming\\xpacks\\@gnu-mcu-eclipse\\arm-none-eabi-gcc\\8.2.1-1.
+ 1659              		.file 4 "Inc/io.h"
+ 1660              		.file 5 "Inc/stmpe1600.h"
+ 1661              		.file 6 "Drivers/CMSIS/Include/core_cm4.h"
+ 1662              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 1663              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 1664              		.file 9 "Inc/i2c_driver.h"
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 47
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stmpe1600.c
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:18     .text.stmpe1600_Start:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:26     .text.stmpe1600_Start:0000000000000000 stmpe1600_Start
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:41     .text.stmpe1600_GetInstance:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:47     .text.stmpe1600_GetInstance:0000000000000000 stmpe1600_GetInstance
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:92     .text.stmpe1600_GetInstance:000000000000001c $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:97     .text.IOE_Init:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:104    .text.IOE_Init:0000000000000000 IOE_Init
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:124    .text.IOE_ITConfig:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:131    .text.IOE_ITConfig:0000000000000000 IOE_ITConfig
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:151    .text.IOE_Write:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:158    .text.IOE_Write:0000000000000000 IOE_Write
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:180    .text.IOE_Read:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:187    .text.IOE_Read:0000000000000000 IOE_Read
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:210    .text.IOE_ReadMultiple:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:217    .text.IOE_ReadMultiple:0000000000000000 IOE_ReadMultiple
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:253    .text.stmpe1600_ReadID:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:260    .text.stmpe1600_ReadID:0000000000000000 stmpe1600_ReadID
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:309    .text.stmpe1600_IO_ReadPin:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:316    .text.stmpe1600_IO_ReadPin:0000000000000000 stmpe1600_IO_ReadPin
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:372    .text.stmpe1600_IO_ReadPin:0000000000000034 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:377    .text.stmpe1600_IO_ITStatus:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:384    .text.stmpe1600_IO_ITStatus:0000000000000000 stmpe1600_IO_ITStatus
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:444    .text.stmpe1600_IO_ITStatus:000000000000003c $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:449    .text.stmpe1600_IO_ClearIT:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:456    .text.stmpe1600_IO_ClearIT:0000000000000000 stmpe1600_IO_ClearIT
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:497    .text.IOE_WriteMultiple:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:504    .text.IOE_WriteMultiple:0000000000000000 IOE_WriteMultiple
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:539    .text.stmpe1600_IO_WritePin:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:546    .text.stmpe1600_IO_WritePin:0000000000000000 stmpe1600_IO_WritePin
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:632    .text.stmpe1600_IO_WritePin:0000000000000054 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:637    .text.IOE_Delay:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:644    .text.IOE_Delay:0000000000000000 IOE_Delay
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:666    .text.stmpe1600_Reset:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:673    .text.stmpe1600_Reset:0000000000000000 stmpe1600_Reset
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:715    .text.stmpe1600_Init:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:722    .text.stmpe1600_Init:0000000000000000 stmpe1600_Init
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:779    .text.stmpe1600_Init:0000000000000028 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:784    .text.stmpe1600_SetITPolarity:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:791    .text.stmpe1600_SetITPolarity:0000000000000000 stmpe1600_SetITPolarity
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:839    .text.stmpe1600_EnableGlobalIT:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:846    .text.stmpe1600_EnableGlobalIT:0000000000000000 stmpe1600_EnableGlobalIT
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:906    .text.stmpe1600_EnableGlobalIT:0000000000000044 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:911    .text.stmpe1600_DisableGlobalIT:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:918    .text.stmpe1600_DisableGlobalIT:0000000000000000 stmpe1600_DisableGlobalIT
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:976    .text.stmpe1600_DisableGlobalIT:0000000000000040 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:981    .text.stmpe1600_IO_InitPin:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:988    .text.stmpe1600_IO_InitPin:0000000000000000 stmpe1600_IO_InitPin
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1074   .text.stmpe1600_IO_InitPin:0000000000000054 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1079   .text.stmpe1600_IO_PolarityInv_Enable:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1086   .text.stmpe1600_IO_PolarityInv_Enable:0000000000000000 stmpe1600_IO_PolarityInv_Enable
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1151   .text.stmpe1600_IO_PolarityInv_Enable:0000000000000040 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1156   .text.stmpe1600_IO_PolarityInv_Disable:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1163   .text.stmpe1600_IO_PolarityInv_Disable:0000000000000000 stmpe1600_IO_PolarityInv_Disable
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1228   .text.stmpe1600_IO_PolarityInv_Disable:0000000000000044 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1233   .text.stmpe1600_IO_EnablePinIT:0000000000000000 $t
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s 			page 48
+
+
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1240   .text.stmpe1600_IO_EnablePinIT:0000000000000000 stmpe1600_IO_EnablePinIT
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1305   .text.stmpe1600_IO_EnablePinIT:0000000000000048 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1310   .text.stmpe1600_IO_DisablePinIT:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1317   .text.stmpe1600_IO_DisablePinIT:0000000000000000 stmpe1600_IO_DisablePinIT
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1382   .text.stmpe1600_IO_DisablePinIT:0000000000000044 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1387   .text.stmpe1600_IO_Config:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1394   .text.stmpe1600_IO_Config:0000000000000000 stmpe1600_IO_Config
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1425   .text.stmpe1600_IO_Config:000000000000001a $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1429   .text.stmpe1600_IO_Config:000000000000001e $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1554   .text.stmpe1600_IO_ReadIT:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1561   .text.stmpe1600_IO_ReadIT:0000000000000000 stmpe1600_IO_ReadIT
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1619   .text.stmpe1600_IO_ReadIT:0000000000000034 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1630   .bss.stmpe1600:0000000000000000 stmpe1600
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1643   .data.stmpe1600_io_drv:0000000000000000 stmpe1600_io_drv
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1626   .bss.stmpe1600:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1633   .bss.tmp:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1637   .bss.tmp:0000000000000000 tmp
+C:\Users\hungv\AppData\Local\Temp\ccdNDzz3.s:1640   .data.stmpe1600_io_drv:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+I2Cx_Init
+I2Cx_ITConfig
+I2Cx_Write
+I2Cx_Read
+I2Cx_ReadMultiple
+I2Cx_WriteMultiple
+HAL_Delay

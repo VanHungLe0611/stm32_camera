@@ -15,8 +15,10 @@
 DCMI_HandleTypeDef hdcmi;
 CAMERA_DrvTypeDef *camera;
 
+
 uint32_t current_resolution;
 uint32_t GetSize(uint32_t resolution);
+void BSP_CAMERA_MsInit(void);
 
 /**
   * @brief  Initializes the camera.
@@ -25,11 +27,9 @@ uint32_t GetSize(uint32_t resolution);
   */
 uint8_t BSP_CAMERA_Init(uint32_t Resolution)
 {
-  DCMI_HandleTypeDef *phdcmi;
-
   uint8_t ret = CAMERA_ERROR;
 
-  hdcmi.Instance = DCMI;
+    hdcmi.Instance = DCMI;
   	hdcmi.Init.SynchroMode = DCMI_SYNCHRO_HARDWARE;
   	hdcmi.Init.PCKPolarity = DCMI_PCKPOLARITY_FALLING;
   	hdcmi.Init.VSPolarity = DCMI_VSPOLARITY_LOW;
@@ -37,9 +37,7 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution)
   	hdcmi.Init.CaptureRate = DCMI_CR_ALL_FRAME;
   	hdcmi.Init.ExtendedDataMode = DCMI_EXTEND_DATA_8B;
   	hdcmi.Init.JPEGMode = DCMI_JPEG_DISABLE;
-  	if (HAL_DCMI_Init(&hdcmi) != HAL_OK) {
-  		Error_Handler();
-  	}
+
   /* Configure IO functionalities for camera detect pin */
   BSP_IO_Init();
 
@@ -55,7 +53,7 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution)
 
   /* DCMI Initialization */
   BSP_CAMERA_MsInit();
-  HAL_DCMI_Init(phdcmi);
+  HAL_DCMI_Init(&hdcmi);
 
   if(ov2640_ReadID(CAMERA_I2C_ADDRESS) == OV2640_ID)
   {
@@ -73,6 +71,7 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution)
 
   return ret;
 }
+
 void BSP_CAMERA_MsInit(void) {
 
 	GPIO_InitTypeDef GPIO_InitStruct = { 0 };

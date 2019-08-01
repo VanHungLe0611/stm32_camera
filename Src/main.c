@@ -94,7 +94,8 @@ int main(void) {
 	MX_DCMI_Init();
 	MX_I2C1_Init();
 	/* USER CODE BEGIN 2 */
-//	CAMERA_Init(CAMERA_R160x120);
+	BSP_CAMERA_Init(CAMERA_R160x120);
+	BSP_CAMERA_Resume();
 
 
 	/* USER CODE END 2 */

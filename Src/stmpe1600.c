@@ -38,6 +38,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stmpe1600.h"
+#include "stm32f4xx_hal.h"
+#include "i2c_driver.h"
 
 /** @addtogroup BSP
   * @{
@@ -105,6 +107,81 @@ uint8_t stmpe1600[STMPE1600_MAX_INSTANCE] = {0};
 static uint8_t stmpe1600_GetInstance(uint16_t DeviceAddr);
 
 /* Private functions ---------------------------------------------------------*/
+
+/********************************* LINK IOE ***********************************/
+
+/**
+  * @brief  Initializes IOE low level.
+  */
+void IOE_Init(void)
+{
+  I2Cx_Init();
+}
+
+/**
+  * @brief  Configures IOE low level interrupt.
+  */
+void IOE_ITConfig(void)
+{
+  I2Cx_ITConfig();
+}
+
+/**
+  * @brief  IOE writes single data.
+  * @param  Addr: I2C address
+  * @param  Reg: Register address
+  * @param  Value: Data to be written
+  */
+void IOE_Write(uint8_t Addr, uint8_t Reg, uint8_t Value)
+{
+  I2Cx_Write(Addr, Reg, Value);
+}
+
+/**
+  * @brief  IOE reads single data.
+  * @param  Addr: I2C address
+  * @param  Reg: Register address
+  * @retval Read data
+  */
+uint8_t IOE_Read(uint8_t Addr, uint8_t Reg)
+{
+  return I2Cx_Read(Addr, Reg);
+}
+
+/**
+  * @brief  IOE reads multiple data.
+  * @param  Addr: I2C address
+  * @param  Reg: Register address
+  * @param  Buffer: Pointer to data buffer
+  * @param  Length: Length of the data
+  * @retval Number of read data
+  */
+uint16_t IOE_ReadMultiple(uint8_t Addr, uint8_t Reg, uint8_t *Buffer, uint16_t Length)
+{
+ return I2Cx_ReadMultiple(Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, Buffer, Length);
+}
+
+/**
+  * @brief  IOE writes multiple data.
+  * @param  Addr: I2C address
+  * @param  Reg: Register address
+  * @param  Buffer: Pointer to data buffer
+  * @param  Length: Length of the data
+  */
+void IOE_WriteMultiple(uint8_t Addr, uint8_t Reg, uint8_t *Buffer, uint16_t Length)
+{
+  I2Cx_WriteMultiple(Addr, (uint16_t)Reg, I2C_MEMADD_SIZE_8BIT, Buffer, Length);
+}
+
+/**
+  * @brief  IOE delay
+  * @param  Delay: Delay in ms
+  */
+void IOE_Delay(uint32_t Delay)
+{
+  HAL_Delay(Delay);
+}
+
 
 /** @defgroup STMPE1600_Private_Functions
   * @{
@@ -238,6 +315,7 @@ void stmpe1600_EnableGlobalIT(uint16_t DeviceAddr)
   
   /* Write Back the Interrupt Control register */
   IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_SYS_CTRL, (uint8_t *)&tmp, 2); 
+
 }
 
 /**
@@ -585,6 +663,8 @@ static uint8_t stmpe1600_GetInstance(uint16_t DeviceAddr)
   
   return 0xFF;
 }
+
+
 
 /**
   * @}
