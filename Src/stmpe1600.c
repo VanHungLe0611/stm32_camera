@@ -235,29 +235,6 @@ void stmpe1600_SetITPolarity(uint16_t DeviceAddr, uint8_t Polarity) {
 }
 
 /**
-<<<<<<< HEAD
-  * @brief  Enable the Global interrupt.
-  * @param  DeviceAddr: Device address on communication Bus.        
-  * @retval None
-  */
-void stmpe1600_EnableGlobalIT(uint16_t DeviceAddr)
-{
-  uint8_t tmpData[2] = {0 , 0};
-
-  /* Configure NVIC IT for IOE */
-  IOE_ITConfig();
-  
-  /* Get the current register value */
-  IOE_ReadMultiple(DeviceAddr, STMPE1600_REG_SYS_CTRL, tmpData, 2);
-  
-  tmp = ((uint16_t)tmpData[0] | (((uint16_t)tmpData[1]) << 8));
-  
-  /* Set the global interrupts to be Enabled */    
-  tmp |= (uint16_t)STMPE1600_IT_ENABLE;
-  
-  /* Write Back the Interrupt Control register */
-  IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_SYS_CTRL, (uint8_t *)&tmp, 2); 
-=======
  * @brief  Enable the Global interrupt.
  * @param  DeviceAddr: Device address on communication Bus.
  * @retval None
@@ -278,7 +255,6 @@ void stmpe1600_EnableGlobalIT(uint16_t DeviceAddr) {
 
 	/* Write Back the Interrupt Control register */
 	IOE_WriteMultiple(DeviceAddr, STMPE1600_REG_SYS_CTRL, (uint8_t*) &tmp, 2);
->>>>>>> neu
 
 }
 
