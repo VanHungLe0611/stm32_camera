@@ -1,4 +1,3 @@
-
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STMPE1600_H
 #define __STMPE1600_H
