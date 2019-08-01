@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "user_main.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -70,6 +70,7 @@ static void MX_I2C1_Init(void);
  */
 int main(void) {
 	/* USER CODE BEGIN 1 */
+	user_code1();
 
 	/* USER CODE END 1 */
 
@@ -94,7 +95,7 @@ int main(void) {
 	MX_DCMI_Init();
 	MX_I2C1_Init();
 	/* USER CODE BEGIN 2 */
-	BSP_CAMERA_Stop();
+	user_code2();
 
 
 	/* USER CODE END 2 */
@@ -103,14 +104,11 @@ int main(void) {
 	/* USER CODE BEGIN WHILE */
 	while (1) {
 		/* USER CODE END WHILE */
-//		while (!(ov2640_ReadID(CAMERA_I2C_ADDRESS) & 0x26))
-//			;
-		uint16_t a = ov2640_ReadID(CAMERA_I2C_ADDRESS);
-		HAL_Delay(300);
-//		printf("%d\n", a);
 
+		user_code_inf_while();
 		/* USER CODE BEGIN 3 */
 	}
+	user_code3();
 	/* USER CODE END 3 */
 }
 

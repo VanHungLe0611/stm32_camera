@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Src/main.c \
+Src/user_main.c \
 Src/i2c_driver.c \
 Src/ov2640.c \
 Src/io_pin_driver.c \
