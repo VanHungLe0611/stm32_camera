@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
   28:Src/ov2640.c  **** 
   29:Src/ov2640.c  **** /** @defgroup OV2640_Private_TypesDefinitions
   30:Src/ov2640.c  ****   * @{
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 2
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 2
 
 
   31:Src/ov2640.c  ****   */ 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
   85:Src/ov2640.c  ****   {0x2c, 0x0c},  /* Reserved                              */
   86:Src/ov2640.c  ****   {0x33, 0x78},  /* Reserved                              */
   87:Src/ov2640.c  ****   {0x3a, 0x33},  /* Reserved                              */
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 3
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 3
 
 
   88:Src/ov2640.c  ****   {0x3b, 0xfB},  /* Reserved                              */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  142:Src/ov2640.c  ****   {0xf9, 0xc0},
  143:Src/ov2640.c  ****   {0x41, 0x24},
  144:Src/ov2640.c  ****   {0xe0, 0x14},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 4
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 4
 
 
  145:Src/ov2640.c  ****   {0x76, 0xff},
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  199:Src/ov2640.c  ****   {0x97, 0x19},
  200:Src/ov2640.c  ****   {0x97, 0x02},
  201:Src/ov2640.c  ****   {0x97, 0x0c},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 5
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 5
 
 
  202:Src/ov2640.c  ****   {0x97, 0x24},
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  256:Src/ov2640.c  ****   {0x52, 0x2c},
  257:Src/ov2640.c  ****   {0x53, 0x00},
  258:Src/ov2640.c  ****   {0x54, 0x00},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 6
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 6
 
 
  259:Src/ov2640.c  ****   {0x55, 0x88},
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  313:Src/ov2640.c  **** 
  314:Src/ov2640.c  **** /* Initialization sequence for VGA resolution (640x480)*/
  315:Src/ov2640.c  **** const unsigned char OV2640_VGA[][2]=
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 7
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 7
 
 
  316:Src/ov2640.c  **** {
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  370:Src/ov2640.c  ****   {0x39, 0x02},
  371:Src/ov2640.c  ****   {0x35, 0x88},
  372:Src/ov2640.c  ****   {0x22, 0x0a},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 8
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 8
 
 
  373:Src/ov2640.c  ****   {0x37, 0x40},
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  427:Src/ov2640.c  ****   {0x93, 0x02},
  428:Src/ov2640.c  ****   {0x93, 0x00},
  429:Src/ov2640.c  ****   {0x93, 0x04},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 9
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 9
 
 
  430:Src/ov2640.c  ****   {0x93, 0x00},
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  484:Src/ov2640.c  ****   {0xa7, 0x00},
  485:Src/ov2640.c  ****   {0xa7, 0x23},
  486:Src/ov2640.c  ****   {0xa7, 0x1b},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 10
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 10
 
 
  487:Src/ov2640.c  ****   {0xa7, 0x74},
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  541:Src/ov2640.c  ****   {0x86, 0x3d},
  542:Src/ov2640.c  ****   {0x50, 0x89},
  543:Src/ov2640.c  ****   {0x51, 0x90},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 11
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 11
 
 
  544:Src/ov2640.c  ****   {0x52, 0x2c},
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  598:Src/ov2640.c  ****   {0x12, 0x00},
  599:Src/ov2640.c  ****   {0x11, 0x00},
  600:Src/ov2640.c  ****   {0x17, 0x11},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 12
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 12
 
 
  601:Src/ov2640.c  ****   {0x18, 0x75},
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  655:Src/ov2640.c  ****   {0x91, 0x7e},
  656:Src/ov2640.c  ****   {0x91, 0x88},
  657:Src/ov2640.c  ****   {0x91, 0x8f},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 13
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 13
 
 
  658:Src/ov2640.c  ****   {0x91, 0x96},
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  712:Src/ov2640.c  ****   {0xc4, 0x9c},
  713:Src/ov2640.c  ****   {0xbf, 0x00},
  714:Src/ov2640.c  ****   {0xbc, 0x64},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 14
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 14
 
 
  715:Src/ov2640.c  ****   {0xa6, 0x00},
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  769:Src/ov2640.c  ****   {0x5c, 0x00},
  770:Src/ov2640.c  ****   {0xd3, 0x08},
  771:Src/ov2640.c  ****   {0xe0, 0x00},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 15
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 15
 
 
  772:Src/ov2640.c  ****   {0xFF, 0x00},
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  826:Src/ov2640.c  ****   {0x18, 0x75},
  827:Src/ov2640.c  ****   {0x19, 0x01},
  828:Src/ov2640.c  ****   {0x1a, 0x97},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 16
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 16
 
 
  829:Src/ov2640.c  ****   {0x32, 0x36},
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  883:Src/ov2640.c  ****   {0x91, 0x96},
  884:Src/ov2640.c  ****   {0x91, 0xa3},
  885:Src/ov2640.c  ****   {0x91, 0xaf},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 17
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 17
 
 
  886:Src/ov2640.c  ****   {0x91, 0xc4},
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  940:Src/ov2640.c  ****   {0xa6, 0x00},
  941:Src/ov2640.c  ****   {0xa7, 0x1e},
  942:Src/ov2640.c  ****   {0xa7, 0x6b},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 18
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 18
 
 
  943:Src/ov2640.c  ****   {0xa7, 0x47},
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  997:Src/ov2640.c  ****   {0xFF, 0x00},
  998:Src/ov2640.c  ****   {0x05, 0x00},
  999:Src/ov2640.c  ****   {0xDA, 0x08},
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 19
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 19
 
 
 1000:Src/ov2640.c  ****   {0xda, 0x09},
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
 1054:Src/ov2640.c  ****     {
 1055:Src/ov2640.c  ****       for(index=0; index<(sizeof(OV2640_480x272)/2); index++)
 1056:Src/ov2640.c  ****       {
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 20
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 20
 
 
 1057:Src/ov2640.c  ****         CAMERA_IO_Write(DeviceAddr, OV2640_480x272[index][0], OV2640_480x272[index][1]);
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
 1111:Src/ov2640.c  ****       value2 = (uint8_t)(value_tmp >> 8);
 1112:Src/ov2640.c  ****       CAMERA_IO_Write(DeviceAddr, 0xff, 0x00);     
 1113:Src/ov2640.c  ****       CAMERA_IO_Write(DeviceAddr, 0x7c, 0x00);
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 21
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 21
 
 
 1114:Src/ov2640.c  ****       CAMERA_IO_Write(DeviceAddr, 0x7d, 0x04);
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
 1168:Src/ov2640.c  **** {
   29              		.loc 1 1168 1 view -0
   30              		.cfi_startproc
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 22
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 22
 
 
   31              		@ args = 0, pretend = 0, frame = 0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
 1213:Src/ov2640.c  ****         }
 1214:Src/ov2640.c  ****       case CAMERA_BRIGHTNESS_LEVEL1:
 1215:Src/ov2640.c  ****         {
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 23
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 23
 
 
 1216:Src/ov2640.c  ****           ret =  OV2640_BRIGHTNESS_LEVEL1;
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
 1270:Src/ov2640.c  ****       {
 1271:Src/ov2640.c  ****       case CAMERA_COLOR_EFFECT_ANTIQUE:
 1272:Src/ov2640.c  ****         {
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 24
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 24
 
 
 1273:Src/ov2640.c  ****           ret =  OV2640_COLOR_EFFECT_ANTIQUE;
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
   64              	.LVL4:
   65              	.L9:
 1189:Src/ov2640.c  ****           break;
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 25
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 25
 
 
   66              		.loc 1 1189 11 is_stmt 1 view .LVU8
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  108              		.p2align 1
  109              	.L21:
 1211:Src/ov2640.c  ****           break;
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 26
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 26
 
 
  110              		.loc 1 1211 15 is_stmt 0 view .LVU21
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  148              	.LVL19:
 1242:Src/ov2640.c  ****         }
  149              		.loc 1 1242 11 view .LVU38
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 27
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 27
 
 
  150 0052 7047     		bx	lr
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  188              	.L4:
 1269:Src/ov2640.c  ****       {
  189              		.loc 1 1269 7 is_stmt 1 view .LVU55
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 28
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 28
 
 
  190 006c 0139     		subs	r1, r1, #1
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  230              		.loc 1 1293 15 is_stmt 0 view .LVU69
  231 008c 4CF24000 		movw	r0, #49216
  232              	.LVL36:
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 29
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 29
 
 
 1294:Src/ov2640.c  ****         }
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
 1313:Src/ov2640.c  **** {
  271              		.loc 1 1313 1 is_stmt 1 view -0
  272              		.cfi_startproc
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 30
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 30
 
 
  273              		@ args = 0, pretend = 0, frame = 0
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  317              		.section	.text.ov2640_Config,"ax",%progbits
  318              		.align	1
  319              		.global	ov2640_Config
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 31
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 31
 
 
  320              		.syntax unified
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  363 0014 3946     		mov	r1, r7
  364 0016 0020     		movs	r0, #0
  365              	.LVL51:
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 32
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 32
 
 
 1094:Src/ov2640.c  ****     
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
 1104:Src/ov2640.c  ****       CAMERA_IO_Write(DeviceAddr, 0x7d, 0x80);
  411              		.loc 1 1104 7 view .LVU106
  412 0056 8022     		movs	r2, #128
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 33
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 33
 
 
  413 0058 7D21     		movs	r1, #125
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  456              		.loc 1 1115 7 view .LVU117
  457 0094 0722     		movs	r2, #7
  458 0096 7C21     		movs	r1, #124
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 34
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 34
 
 
  459 0098 3046     		mov	r0, r6
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  503              	.LVL78:
 1126:Src/ov2640.c  ****       CAMERA_IO_Write(DeviceAddr, 0x7c, 0x00);
  504              		.loc 1 1126 7 is_stmt 0 view .LVU128
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 35
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 35
 
 
  505 00d6 FFF7FEFF 		bl	CAMERA_IO_Write
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
 1327:Src/ov2640.c  **** 
 1328:Src/ov2640.c  **** /**
 1329:Src/ov2640.c  ****   * @brief  Camera reads single data.
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 36
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 36
 
 
 1330:Src/ov2640.c  ****   * @param  Addr: I2C address
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  598              		.loc 1 1152 3 view .LVU144
  599 0008 E4B2     		uxtb	r4, r4
  600 000a 0122     		movs	r2, #1
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 37
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 37
 
 
  601 000c FF21     		movs	r1, #255
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  646              		.align	1
  647              		.global	ov2640_Init
  648              		.syntax unified
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 38
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 38
 
 
  649              		.thumb
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  696 002e 02       		.byte	(.L52-.L49)/2
  697 002f 12       		.byte	(.L57-.L49)/2
  698 0030 23       		.byte	(.L58-.L49)/2
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 39
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 39
 
 
  699 0031 34       		.byte	(.L59-.L49)/2
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  742              	.LVL104:
 1049:Src/ov2640.c  ****       } 
  743              		.loc 1 1049 9 discriminator 3 view .LVU171
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 40
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 40
 
 
  744 006a 0120     		movs	r0, #1
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  787              		.loc 1 1066 9 is_stmt 1 discriminator 3 view .LVU182
  788 009c 0A4B     		ldr	r3, .L61+12
  789 009e 03EB4402 		add	r2, r3, r4, lsl #1
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 41
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 41
 
 
  790 00a2 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  845 0008 3C       		.byte	60
  846 0009 32       		.byte	50
  847 000a 11       		.byte	17
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 42
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 42
 
 
  848 000b 00       		.byte	0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  902 0041 80       		.byte	-128
  903 0042 6E       		.byte	110
  904 0043 00       		.byte	0
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 43
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 43
 
 
  905 0044 70       		.byte	112
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  959 007a 07       		.byte	7
  960 007b C0       		.byte	-64
  961 007c 0D       		.byte	13
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 44
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 44
 
 
  962 007d B7       		.byte	-73
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1016 00b3 00       		.byte	0
  1017 00b4 91       		.byte	-111
  1018 00b5 0E       		.byte	14
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 45
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 45
 
 
  1019 00b6 91       		.byte	-111
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1073 00ec 93       		.byte	-109
  1074 00ed 00       		.byte	0
  1075 00ee 93       		.byte	-109
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 46
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 46
 
 
  1076 00ef 00       		.byte	0
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1130 0125 43       		.byte	67
  1131 0126 B0       		.byte	-80
  1132 0127 5C       		.byte	92
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 47
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 47
 
 
  1133 0128 B1       		.byte	-79
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1187 015e C0       		.byte	-64
  1188 015f C8       		.byte	-56
  1189 0160 C1       		.byte	-63
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 48
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 48
 
 
  1190 0161 96       		.byte	-106
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1244 0197 2C       		.byte	44
  1245 0198 53       		.byte	83
  1246 0199 00       		.byte	0
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 49
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 49
 
 
  1247 019a 54       		.byte	84
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1301 01d0 5A       		.byte	90
  1302 01d1 78       		.byte	120
  1303 01d2 5B       		.byte	91
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 50
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 50
 
 
  1304 01d3 44       		.byte	68
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1360 002b 82       		.byte	-126
  1361 002c 5C       		.byte	92
  1362 002d 00       		.byte	0
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 51
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 51
 
 
  1363 002e 63       		.byte	99
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1417 0064 5A       		.byte	90
  1418 0065 57       		.byte	87
  1419 0066 6D       		.byte	109
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 52
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 52
 
 
  1420 0067 80       		.byte	-128
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1474 009d 10       		.byte	16
  1475 009e D3       		.byte	-45
  1476 009f 82       		.byte	-126
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 53
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 53
 
 
  1477 00a0 C8       		.byte	-56
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1531 00d6 93       		.byte	-109
  1532 00d7 06       		.byte	6
  1533 00d8 93       		.byte	-109
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 54
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 54
 
 
  1534 00d9 E3       		.byte	-29
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1588 010f 00       		.byte	0
  1589 0110 C3       		.byte	-61
  1590 0111 EF       		.byte	-17
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 55
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 55
 
 
  1591 0112 FF       		.byte	-1
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1645 0148 A7       		.byte	-89
  1646 0149 85       		.byte	-123
  1647 014a A7       		.byte	-89
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 56
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 56
 
 
  1648 014b 42       		.byte	66
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1702 0181 67       		.byte	103
  1703 0182 E0       		.byte	-32
  1704 0183 00       		.byte	0
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 57
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 57
 
 
  1705 0184 DD       		.byte	-35
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1759              		.set	.LANCHOR1,. + 0
  1762              	OV2640_QVGA:
  1763 0000 FF       		.byte	-1
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 58
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 58
 
 
  1764 0001 00       		.byte	0
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1818 0037 80       		.byte	-128
  1819 0038 7C       		.byte	124
  1820 0039 05       		.byte	5
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 59
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 59
 
 
  1821 003a 20       		.byte	32
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1875 0070 37       		.byte	55
  1876 0071 40       		.byte	64
  1877 0072 23       		.byte	35
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 60
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 60
 
 
  1878 0073 00       		.byte	0
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1932 00a9 48       		.byte	72
  1933 00aa 7C       		.byte	124
  1934 00ab 08       		.byte	8
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 61
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 61
 
 
  1935 00ac 7D       		.byte	125
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  1989 00e2 93       		.byte	-109
  1990 00e3 00       		.byte	0
  1991 00e4 93       		.byte	-109
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 62
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 62
 
 
  1992 00e5 03       		.byte	3
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2046 011b 33       		.byte	51
  2047 011c B7       		.byte	-73
  2048 011d 20       		.byte	32
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 63
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 63
 
 
  2049 011e B9       		.byte	-71
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2103 0154 A7       		.byte	-89
  2104 0155 74       		.byte	116
  2105 0156 A7       		.byte	-89
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 64
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 64
 
 
  2106 0157 42       		.byte	66
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2160 018d C8       		.byte	-56
  2161 018e C1       		.byte	-63
  2162 018f 96       		.byte	-106
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 65
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 65
 
 
  2163 0190 86       		.byte	-122
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2219 000a 11       		.byte	17
  2220 000b 00       		.byte	0
  2221 000c 09       		.byte	9
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 66
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 66
 
 
  2222 000d 02       		.byte	2
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2276 0043 00       		.byte	0
  2277 0044 70       		.byte	112
  2278 0045 02       		.byte	2
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 67
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 67
 
 
  2279 0046 71       		.byte	113
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2333 007c 0D       		.byte	13
  2334 007d B7       		.byte	-73
  2335 007e 0E       		.byte	14
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 68
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 68
 
 
  2336 007f 01       		.byte	1
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2390 00b5 0E       		.byte	14
  2391 00b6 91       		.byte	-111
  2392 00b7 1A       		.byte	26
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 69
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 69
 
 
  2393 00b8 91       		.byte	-111
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2447 00ee 93       		.byte	-109
  2448 00ef 00       		.byte	0
  2449 00f0 93       		.byte	-109
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 70
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 70
 
 
  2450 00f1 00       		.byte	0
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2504 0127 5C       		.byte	92
  2505 0128 B1       		.byte	-79
  2506 0129 4F       		.byte	79
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 71
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 71
 
 
  2507 012a B2       		.byte	-78
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2561 0160 C1       		.byte	-63
  2562 0161 96       		.byte	-106
  2563 0162 8C       		.byte	-116
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 72
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 72
 
 
  2564 0163 00       		.byte	0
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2618 0199 00       		.byte	0
  2619 019a 54       		.byte	84
  2620 019b 00       		.byte	0
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 73
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 73
 
 
  2621 019c 55       		.byte	85
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2675 01d2 5B       		.byte	91
  2676 01d3 78       		.byte	120
  2677 01d4 5C       		.byte	92
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 74
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 74
 
 
  2678 01d5 00       		.byte	0
@@ -4395,46 +4395,46 @@ ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 1
  2689              		.file 6 "Inc/camera.h"
  2690              		.file 7 "Inc/ov2640.h"
  2691              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s 			page 75
+ARM GAS  C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s 			page 75
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 ov2640.c
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:18     .text.ov2640_ConvertValue:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:25     .text.ov2640_ConvertValue:0000000000000000 ov2640_ConvertValue
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:53     .text.ov2640_ConvertValue:0000000000000016 $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:57     .text.ov2640_ConvertValue:000000000000001a $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:98     .text.ov2640_ConvertValue:0000000000000032 $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:108    .text.ov2640_ConvertValue:000000000000003c $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:197    .text.ov2640_ConvertValue:0000000000000076 $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:201    .text.ov2640_ConvertValue:000000000000007a $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:262    .text.CAMERA_IO_Init:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:269    .text.CAMERA_IO_Init:0000000000000000 CAMERA_IO_Init
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:289    .text.CAMERA_IO_Write:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:296    .text.CAMERA_IO_Write:0000000000000000 CAMERA_IO_Write
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:318    .text.ov2640_Config:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:325    .text.ov2640_Config:0000000000000000 ov2640_Config
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:544    .text.CAMERA_IO_Read:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:551    .text.CAMERA_IO_Read:0000000000000000 CAMERA_IO_Read
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:574    .text.ov2640_ReadID:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:581    .text.ov2640_ReadID:0000000000000000 ov2640_ReadID
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:617    .text.CAMERA_Delay:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:624    .text.CAMERA_Delay:0000000000000000 CAMERA_Delay
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:646    .text.ov2640_Init:0000000000000000 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:653    .text.ov2640_Init:0000000000000000 ov2640_Init
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:696    .text.ov2640_Init:000000000000002e $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:701    .text.ov2640_Init:0000000000000032 $t
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:811    .text.ov2640_Init:00000000000000bc $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:1316   .rodata.OV2640_QQVGA:0000000000000000 OV2640_QQVGA
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:1762   .rodata.OV2640_QVGA:0000000000000000 OV2640_QVGA
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:2208   .rodata.OV2640_VGA:0000000000000000 OV2640_VGA
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:836    .rodata.OV2640_480x272:0000000000000000 OV2640_480x272
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:827    .data.ov2640_drv:0000000000000000 ov2640_drv
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:824    .data.ov2640_drv:0000000000000000 $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:832    .rodata.OV2640_480x272:0000000000000000 $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:1312   .rodata.OV2640_QQVGA:0000000000000000 $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:1758   .rodata.OV2640_QVGA:0000000000000000 $d
-C:\Users\hungv\AppData\Local\Temp\cclBDtdc.s:2204   .rodata.OV2640_VGA:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:18     .text.ov2640_ConvertValue:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:25     .text.ov2640_ConvertValue:0000000000000000 ov2640_ConvertValue
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:53     .text.ov2640_ConvertValue:0000000000000016 $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:57     .text.ov2640_ConvertValue:000000000000001a $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:98     .text.ov2640_ConvertValue:0000000000000032 $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:108    .text.ov2640_ConvertValue:000000000000003c $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:197    .text.ov2640_ConvertValue:0000000000000076 $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:201    .text.ov2640_ConvertValue:000000000000007a $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:262    .text.CAMERA_IO_Init:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:269    .text.CAMERA_IO_Init:0000000000000000 CAMERA_IO_Init
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:289    .text.CAMERA_IO_Write:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:296    .text.CAMERA_IO_Write:0000000000000000 CAMERA_IO_Write
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:318    .text.ov2640_Config:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:325    .text.ov2640_Config:0000000000000000 ov2640_Config
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:544    .text.CAMERA_IO_Read:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:551    .text.CAMERA_IO_Read:0000000000000000 CAMERA_IO_Read
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:574    .text.ov2640_ReadID:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:581    .text.ov2640_ReadID:0000000000000000 ov2640_ReadID
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:617    .text.CAMERA_Delay:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:624    .text.CAMERA_Delay:0000000000000000 CAMERA_Delay
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:646    .text.ov2640_Init:0000000000000000 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:653    .text.ov2640_Init:0000000000000000 ov2640_Init
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:696    .text.ov2640_Init:000000000000002e $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:701    .text.ov2640_Init:0000000000000032 $t
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:811    .text.ov2640_Init:00000000000000bc $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:1316   .rodata.OV2640_QQVGA:0000000000000000 OV2640_QQVGA
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:1762   .rodata.OV2640_QVGA:0000000000000000 OV2640_QVGA
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:2208   .rodata.OV2640_VGA:0000000000000000 OV2640_VGA
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:836    .rodata.OV2640_480x272:0000000000000000 OV2640_480x272
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:827    .data.ov2640_drv:0000000000000000 ov2640_drv
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:824    .data.ov2640_drv:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:832    .rodata.OV2640_480x272:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:1312   .rodata.OV2640_QQVGA:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:1758   .rodata.OV2640_QVGA:0000000000000000 $d
+C:\Users\hungv\AppData\Local\Temp\cc7eNkiq.s:2204   .rodata.OV2640_VGA:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 I2Cx_Init

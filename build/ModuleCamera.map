@@ -102,9 +102,11 @@ __lock___env_recursive_mutex
                     0x1               c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-lock.o)
 __lock___sinit_recursive_mutex
                     0x1               c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-lock.o)
+camera              0x4               build/hdmi_driver.o
 __lock___malloc_recursive_mutex
                     0x1               c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-lock.o)
 hdcmi               0x40              build/main.o
+io_driver           0x4               build/io_pin_driver.o
 __lock___at_quick_exit_mutex
                     0x1               c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-lock.o)
 __lock___dd_hash_mutex
@@ -112,6 +114,7 @@ __lock___dd_hash_mutex
 __lock___tz_mutex   0x1               c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-lock.o)
 __lock___sfp_recursive_mutex
                     0x1               c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-lock.o)
+current_resolution  0x4               build/hdmi_driver.o
 
 Discarded input sections
 
@@ -169,6 +172,66 @@ Discarded input sections
                 0x0000000000000000      0x1b8 build/ov2640.o
  .rodata.OV2640_VGA
                 0x0000000000000000      0x1da build/ov2640.o
+ .text          0x0000000000000000        0x0 build/io_pin_driver.o
+ .data          0x0000000000000000        0x0 build/io_pin_driver.o
+ .bss           0x0000000000000000        0x0 build/io_pin_driver.o
+ .text.BSP_IO_Init
+                0x0000000000000000       0x38 build/io_pin_driver.o
+ .text.BSP_IO_ITGetStatus
+                0x0000000000000000       0x18 build/io_pin_driver.o
+ .text.BSP_IO_ITClear
+                0x0000000000000000       0x18 build/io_pin_driver.o
+ .text.BSP_IO_ConfigPin
+                0x0000000000000000       0x18 build/io_pin_driver.o
+ .text.BSP_IO_WritePin
+                0x0000000000000000       0x18 build/io_pin_driver.o
+ .text.BSP_IO_ReadPin
+                0x0000000000000000       0x18 build/io_pin_driver.o
+ .text.BSP_IO_TogglePin
+                0x0000000000000000       0x38 build/io_pin_driver.o
+ .debug_info    0x0000000000000000      0x595 build/io_pin_driver.o
+ .debug_abbrev  0x0000000000000000      0x192 build/io_pin_driver.o
+ .debug_loc     0x0000000000000000      0x215 build/io_pin_driver.o
+ .debug_aranges
+                0x0000000000000000       0x50 build/io_pin_driver.o
+ .debug_ranges  0x0000000000000000       0x40 build/io_pin_driver.o
+ .debug_line    0x0000000000000000      0x308 build/io_pin_driver.o
+ .debug_str     0x0000000000000000      0x50b build/io_pin_driver.o
+ .comment       0x0000000000000000       0x69 build/io_pin_driver.o
+ .debug_frame   0x0000000000000000       0xd4 build/io_pin_driver.o
+ .ARM.attributes
+                0x0000000000000000       0x34 build/io_pin_driver.o
+ COMMON         0x0000000000000000        0x4 build/io_pin_driver.o
+ .text          0x0000000000000000        0x0 build/hdmi_driver.o
+ .data          0x0000000000000000        0x0 build/hdmi_driver.o
+ .bss           0x0000000000000000        0x0 build/hdmi_driver.o
+ .text.BSP_CAMERA_MsInit
+                0x0000000000000000       0xdc build/hdmi_driver.o
+ .text.BSP_CAMERA_Init
+                0x0000000000000000       0x88 build/hdmi_driver.o
+ .text.BSP_CAMERA_ContinuousStart
+                0x0000000000000000       0x24 build/hdmi_driver.o
+ .text.BSP_CAMERA_SnapshotStart
+                0x0000000000000000       0x24 build/hdmi_driver.o
+ .text.BSP_CAMERA_Suspend
+                0x0000000000000000       0x10 build/hdmi_driver.o
+ .text.BSP_CAMERA_Resume
+                0x0000000000000000       0x10 build/hdmi_driver.o
+ .text.BSP_CAMERA_Stop
+                0x0000000000000000       0x2c build/hdmi_driver.o
+ .debug_info    0x0000000000000000     0x1077 build/hdmi_driver.o
+ .debug_abbrev  0x0000000000000000      0x26d build/hdmi_driver.o
+ .debug_loc     0x0000000000000000      0x1fc build/hdmi_driver.o
+ .debug_aranges
+                0x0000000000000000       0x50 build/hdmi_driver.o
+ .debug_ranges  0x0000000000000000       0x40 build/hdmi_driver.o
+ .debug_line    0x0000000000000000      0x4db build/hdmi_driver.o
+ .debug_str     0x0000000000000000      0xb92 build/hdmi_driver.o
+ .comment       0x0000000000000000       0x69 build/hdmi_driver.o
+ .debug_frame   0x0000000000000000       0xe0 build/hdmi_driver.o
+ .ARM.attributes
+                0x0000000000000000       0x34 build/hdmi_driver.o
+ COMMON         0x0000000000000000        0x8 build/hdmi_driver.o
  .text          0x0000000000000000        0x0 build/stm32f4xx_it.o
  .data          0x0000000000000000        0x0 build/stm32f4xx_it.o
  .bss           0x0000000000000000        0x0 build/stm32f4xx_it.o
@@ -1067,6 +1130,8 @@ LOAD c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.
 LOAD build/main.o
 LOAD build/i2c_driver.o
 LOAD build/ov2640.o
+LOAD build/io_pin_driver.o
+LOAD build/hdmi_driver.o
 LOAD build/stm32f4xx_it.o
 LOAD build/stm32f4xx_hal_msp.o
 LOAD build/stm32f4xx_hal_dcmi.o
@@ -2042,6 +2107,24 @@ AHBPrescTable                                     build/system_stm32f4xx.o
                                                   build/stm32f4xx_hal_rcc.o
 APBPrescTable                                     build/system_stm32f4xx.o
                                                   build/stm32f4xx_hal_rcc.o
+BSP_CAMERA_ContinuousStart                        build/hdmi_driver.o
+BSP_CAMERA_Init                                   build/hdmi_driver.o
+BSP_CAMERA_MsInit                                 build/hdmi_driver.o
+BSP_CAMERA_Resume                                 build/hdmi_driver.o
+BSP_CAMERA_SnapshotStart                          build/hdmi_driver.o
+BSP_CAMERA_Stop                                   build/hdmi_driver.o
+BSP_CAMERA_Suspend                                build/hdmi_driver.o
+BSP_IO_ConfigPin                                  build/io_pin_driver.o
+                                                  build/hdmi_driver.o
+BSP_IO_ITClear                                    build/io_pin_driver.o
+BSP_IO_ITGetStatus                                build/io_pin_driver.o
+BSP_IO_Init                                       build/io_pin_driver.o
+                                                  build/hdmi_driver.o
+BSP_IO_ReadPin                                    build/io_pin_driver.o
+                                                  build/hdmi_driver.o
+BSP_IO_TogglePin                                  build/io_pin_driver.o
+BSP_IO_WritePin                                   build/io_pin_driver.o
+                                                  build/hdmi_driver.o
 BusFault_Handler                                  build/stm32f4xx_it.o
 CAMERA_Delay                                      build/ov2640.o
 CAMERA_IO_Init                                    build/ov2640.o
@@ -2084,6 +2167,7 @@ EXTI3_IRQHandler                                  build/startup_stm32f407xx.o
 EXTI4_IRQHandler                                  build/startup_stm32f407xx.o
 EXTI9_5_IRQHandler                                build/startup_stm32f407xx.o
 Error_Handler                                     build/main.o
+                                                  build/hdmi_driver.o
 FLASH_Erase_Sector                                build/stm32f4xx_hal_flash_ex.o
                                                   build/stm32f4xx_hal_flash.o
 FLASH_FlushCaches                                 build/stm32f4xx_hal_flash_ex.o
@@ -2093,6 +2177,7 @@ FLASH_WaitForLastOperation                        build/stm32f4xx_hal_flash.o
                                                   build/stm32f4xx_hal_flash_ex.o
 FPU_IRQHandler                                    build/startup_stm32f407xx.o
 FSMC_IRQHandler                                   build/startup_stm32f407xx.o
+GetSize                                           build/hdmi_driver.o
 HAL_DBGMCU_DisableDBGSleepMode                    build/stm32f4xx_hal.o
 HAL_DBGMCU_DisableDBGStandbyMode                  build/stm32f4xx_hal.o
 HAL_DBGMCU_DisableDBGStopMode                     build/stm32f4xx_hal.o
@@ -2110,15 +2195,20 @@ HAL_DCMI_GetState                                 build/stm32f4xx_hal_dcmi.o
 HAL_DCMI_IRQHandler                               build/stm32f4xx_hal_dcmi.o
 HAL_DCMI_Init                                     build/stm32f4xx_hal_dcmi_ex.o
                                                   build/stm32f4xx_hal_dcmi.o
+                                                  build/hdmi_driver.o
                                                   build/main.o
 HAL_DCMI_LineEventCallback                        build/stm32f4xx_hal_dcmi.o
 HAL_DCMI_MspDeInit                                build/stm32f4xx_hal_msp.o
 HAL_DCMI_MspInit                                  build/stm32f4xx_hal_msp.o
                                                   build/stm32f4xx_hal_dcmi_ex.o
 HAL_DCMI_Resume                                   build/stm32f4xx_hal_dcmi.o
+                                                  build/hdmi_driver.o
 HAL_DCMI_Start_DMA                                build/stm32f4xx_hal_dcmi.o
+                                                  build/hdmi_driver.o
 HAL_DCMI_Stop                                     build/stm32f4xx_hal_dcmi.o
+                                                  build/hdmi_driver.o
 HAL_DCMI_Suspend                                  build/stm32f4xx_hal_dcmi.o
+                                                  build/hdmi_driver.o
 HAL_DCMI_VsyncEventCallback                       build/stm32f4xx_hal_dcmi.o
 HAL_DMAEx_ChangeMemory                            build/stm32f4xx_hal_dma_ex.o
                                                   build/stm32f4xx_hal_dcmi.o
@@ -2180,6 +2270,7 @@ HAL_GPIO_EXTI_IRQHandler                          build/stm32f4xx_hal_gpio.o
 HAL_GPIO_Init                                     build/stm32f4xx_hal_gpio.o
                                                   build/stm32f4xx_hal_rcc.o
                                                   build/stm32f4xx_hal_msp.o
+                                                  build/hdmi_driver.o
                                                   build/i2c_driver.o
 HAL_GPIO_LockPin                                  build/stm32f4xx_hal_gpio.o
 HAL_GPIO_ReadPin                                  build/stm32f4xx_hal_gpio.o
@@ -2629,7 +2720,9 @@ _write                                            c:/users/hungv/appdata/roaming
 _write_r                                          c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-writer.o)
                                                   c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-stdio.o)
 atexit                                            c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+camera                                            build/hdmi_driver.o
 cleanup_glue                                      c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-reent.o)
+current_resolution                                build/hdmi_driver.o
 end                                               c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libnosys.a(sbrk.o)
 errno                                             c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-reent.o)
                                                   c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libnosys.a(write.o)
@@ -2650,8 +2743,10 @@ exit                                              c:/users/hungv/appdata/roaming
 fflush                                            c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-fflush.o)
 g_pfnVectors                                      build/startup_stm32f407xx.o
 hardware_init_hook                                c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
-hdcmi                                             build/main.o
+hdcmi                                             build/hdmi_driver.o
+                                                  build/main.o
 hi2c1                                             build/main.o
+io_driver                                         build/io_pin_driver.o
 iprintf                                           c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-printf.o)
 main                                              build/main.o
                                                   build/startup_stm32f407xx.o
@@ -2672,13 +2767,16 @@ memset                                            c:/users/hungv/appdata/roaming
 ov2640_Config                                     build/ov2640.o
 ov2640_Init                                       build/ov2640.o
 ov2640_ReadID                                     build/ov2640.o
+                                                  build/hdmi_driver.o
                                                   build/main.o
 ov2640_drv                                        build/ov2640.o
+                                                  build/hdmi_driver.o
 pFlash                                            build/stm32f4xx_hal_flash.o
                                                   build/stm32f4xx_hal_flash_ex.o
 printf                                            c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(lib_a-printf.o)
                                                   build/main.o
 software_init_hook                                c:/users/hungv/appdata/roaming/xpacks/@gnu-mcu-eclipse/arm-none-eabi-gcc/8.2.1-1.7.1/.content/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
+stmpe1600_io_drv                                  build/io_pin_driver.o
 uwTick                                            build/stm32f4xx_hal.o
 uwTickFreq                                        build/stm32f4xx_hal.o
 uwTickPrio                                        build/stm32f4xx_hal.o

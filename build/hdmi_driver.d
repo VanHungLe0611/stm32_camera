@@ -1,4 +1,4 @@
-build/main.o: Src/main.c Inc/main.h \
+build/hdmi_driver.o: Src/hdmi_driver.c Inc/hdmi_driver.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Inc/stm32f4xx_hal_conf.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -27,10 +27,11 @@ build/main.o: Src/main.c Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h Inc/ov2640.h \
- Inc/i2c_driver.h Inc/camera.h Inc/hdmi_driver.h
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h Inc/i2c_driver.h \
+ Inc/camera.h Inc/io.h Inc/ov2640.h Inc/i2c_driver.h Inc/io_pin_driver.h \
+ Inc/io.h
 
-Inc/main.h:
+Inc/hdmi_driver.h:
 
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -94,10 +95,16 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc.h:
 
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rtc_ex.h:
 
-Inc/ov2640.h:
-
 Inc/i2c_driver.h:
 
 Inc/camera.h:
 
-Inc/hdmi_driver.h:
+Inc/io.h:
+
+Inc/ov2640.h:
+
+Inc/i2c_driver.h:
+
+Inc/io_pin_driver.h:
+
+Inc/io.h:
