@@ -21,55 +21,52 @@ uint32_t GetSize(uint32_t resolution);
 void BSP_CAMERA_MsInit(void);
 
 /**
-  * @brief  Initializes the camera.
-  * @param  Resolution: Camera Resolution
-  * @retval Camera status
-  */
-uint8_t BSP_CAMERA_Init(uint32_t Resolution)
-{
-  uint8_t ret = CAMERA_ERROR;
+ * @brief  Initializes the camera.
+ * @param  Resolution: Camera Resolution
+ * @retval Camera status
+ */
+uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
+	uint8_t ret = CAMERA_ERROR;
 
-    hdcmi.Instance = DCMI;
-  	hdcmi.Init.SynchroMode = DCMI_SYNCHRO_HARDWARE;
-  	hdcmi.Init.PCKPolarity = DCMI_PCKPOLARITY_FALLING;
-  	hdcmi.Init.VSPolarity = DCMI_VSPOLARITY_LOW;
-  	hdcmi.Init.HSPolarity = DCMI_HSPOLARITY_LOW;
-  	hdcmi.Init.CaptureRate = DCMI_CR_ALL_FRAME;
-  	hdcmi.Init.ExtendedDataMode = DCMI_EXTEND_DATA_8B;
-  	hdcmi.Init.JPEGMode = DCMI_JPEG_DISABLE;
+	hdcmi.Instance = DCMI;
+	hdcmi.Init.SynchroMode = DCMI_SYNCHRO_HARDWARE;
+	hdcmi.Init.PCKPolarity = DCMI_PCKPOLARITY_FALLING;
+	hdcmi.Init.VSPolarity = DCMI_VSPOLARITY_LOW;
+	hdcmi.Init.HSPolarity = DCMI_HSPOLARITY_LOW;
+	hdcmi.Init.CaptureRate = DCMI_CR_ALL_FRAME;
+	hdcmi.Init.ExtendedDataMode = DCMI_EXTEND_DATA_8B;
+	hdcmi.Init.JPEGMode = DCMI_JPEG_DISABLE;
 
-  /* Configure IO functionalities for camera detect pin */
-  BSP_IO_Init();
+	/* Configure IO functionalities for camera detect pin */
+	BSP_IO_Init();
 
-  /* Set the camera STANDBY pin */
-  BSP_IO_ConfigPin(GPIO_PIN_0, IO_MODE_OUTPUT);
-  BSP_IO_WritePin(GPIO_PIN_0, SET);
+	/* Set the camera STANDBY pin */
+	BSP_IO_ConfigPin(GPIO_PIN_0, IO_MODE_OUTPUT);
+	BSP_IO_WritePin(GPIO_PIN_0, SET);
 
-  /* Check if the camera is plugged */
-  if(BSP_IO_ReadPin(GPIO_PIN_3))
-  {
-    return CAMERA_ERROR;
-  }
+	/* Check if the camera is plugged */
+	if (BSP_IO_ReadPin(GPIO_PIN_3)) {
+		return CAMERA_ERROR;
+	}
 
-  /* DCMI Initialization */
-  BSP_CAMERA_MsInit();
-  HAL_DCMI_Init(&hdcmi);
+	/* DCMI Initialization */
+	BSP_CAMERA_MsInit();
+	HAL_DCMI_Init(&hdcmi);
 
-  if(ov2640_ReadID(CAMERA_I2C_ADDRESS) == OV2640_ID)
-  {
-    /* Initialize the camera driver structure */
-    camera = &ov2640_drv;
+	if (ov2640_ReadID(CAMERA_I2C_ADDRESS) == OV2640_ID) {
+		/* Initialize the camera driver structure */
+		camera = &ov2640_drv;
 
-    /* Camera Init */
-    camera->Init(CAMERA_I2C_ADDRESS, Resolution);
+		/* Camera Init */
+		camera->Init(CAMERA_I2C_ADDRESS, Resolution);
 
-    /* Return CAMERA_OK status */
-    ret = CAMERA_OK;
-  }
+		/* Return CAMERA_OK status */
+		ret = CAMERA_OK;
+	}
 
-  current_resolution = Resolution;
+	current_resolution = Resolution;
 
-  return ret;
+	return ret;
 }
 
 void BSP_CAMERA_MsInit(void) {

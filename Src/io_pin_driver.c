@@ -10,7 +10,7 @@
 #include "stmpe1600.h"
 #include "io.h"
 
-#define IO_I2C_ADDRESS                   0x84
+#define IO_I2C_ADDRESS  0x84
 
 IO_DrvTypeDef *io_driver;
 
