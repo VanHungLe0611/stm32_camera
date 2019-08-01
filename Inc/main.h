@@ -33,6 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 //#include "ov2640.h"
+#include "var_interface.h"
 //#include "hdmi_driver.h"
 
 /* USER CODE END Includes */

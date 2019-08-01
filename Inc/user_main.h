@@ -1,8 +1,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "var_interface.h"
 #include "ov2640.h"
-#include "hdmi_driver.h"
-
 
 /* USER CODE END Includes */
 
