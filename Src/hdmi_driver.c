@@ -9,12 +9,13 @@
 #include "stm32f4xx_hal.h"
 #include "i2c_driver.h"
 #include "ov2640.h"
+#include "var_interface.h"
+#include "main.h"
 
-DCMI_HandleTypeDef hdcmi;
 CAMERA_DrvTypeDef *camera;
 
 
-uint32_t current_resolution;
+static uint32_t current_resolution;
 uint32_t GetSize(uint32_t resolution);
 void BSP_CAMERA_MsInit(void);
 
@@ -25,15 +26,15 @@ void BSP_CAMERA_MsInit(void);
  */
 uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
 	uint8_t ret = CAMERA_ERROR;
-
-	hdcmi.Instance = DCMI;
-	hdcmi.Init.SynchroMode = DCMI_SYNCHRO_HARDWARE;
-	hdcmi.Init.PCKPolarity = DCMI_PCKPOLARITY_FALLING;
-	hdcmi.Init.VSPolarity = DCMI_VSPOLARITY_LOW;
-	hdcmi.Init.HSPolarity = DCMI_HSPOLARITY_LOW;
-	hdcmi.Init.CaptureRate = DCMI_CR_ALL_FRAME;
-	hdcmi.Init.ExtendedDataMode = DCMI_EXTEND_DATA_8B;
-	hdcmi.Init.JPEGMode = DCMI_JPEG_DISABLE;
+//
+//	hdcmi.Instance = DCMI;
+//	hdcmi.Init.SynchroMode = DCMI_SYNCHRO_HARDWARE;
+//	hdcmi.Init.PCKPolarity = DCMI_PCKPOLARITY_FALLING;
+//	hdcmi.Init.VSPolarity = DCMI_VSPOLARITY_LOW;
+//	hdcmi.Init.HSPolarity = DCMI_HSPOLARITY_LOW;
+//	hdcmi.Init.CaptureRate = DCMI_CR_ALL_FRAME;
+//	hdcmi.Init.ExtendedDataMode = DCMI_EXTEND_DATA_8B;
+//	hdcmi.Init.JPEGMode = DCMI_JPEG_DISABLE;
 
 	/* DCMI Initialization */
 	BSP_CAMERA_MsInit();
@@ -104,7 +105,7 @@ void BSP_CAMERA_MsInit(void) {
  * @brief  Starts the camera capture in continuous mode.
  * @param  buff: pointer to the camera output buffer
  */
-void BSP_CAMERA_ContinuousStart(uint8_t *buff) {
+void BSP_CAMERA_ContinuousStart(uint32_t *buff) {
 	/* Start the camera capture */
 	HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_CONTINUOUS, (uint32_t) buff,
 			GetSize(current_resolution));
@@ -114,7 +115,7 @@ void BSP_CAMERA_ContinuousStart(uint8_t *buff) {
  * @brief  Starts the camera capture in snapshot mode.
  * @param  buff: pointer to the camera output buffer
  */
-void BSP_CAMERA_SnapshotStart(uint8_t *buff) {
+void BSP_CAMERA_SnapshotStart(uint32_t *buff) {
 	/* Start the camera capture */
 	HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t) buff,
 			GetSize(current_resolution));
