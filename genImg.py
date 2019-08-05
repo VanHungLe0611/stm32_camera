@@ -1,6 +1,17 @@
 import serial
+import os
 
-ser = serial.Serial('/dev/ttyUSB0')
+if os.name=='posix':
+    ser = serial.Serial('/dev/ttyUSB0')
+elif os.name=='nt':
+    print("choose device index:")
+    comlist = serial.tools.list_ports.comports()
+    for i, elem in enumerate(comlist):
+        print(str(i) + ":" + elem.device)
+        sys.stdout.flush()
+    idx = int(input())
+    ser_port = serial.Serial(comlist[idx].device, 115200)
+
 ser.baudrate=115200
 ser.bytesize=8
 ser.parity='N'
