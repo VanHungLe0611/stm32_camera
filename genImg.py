@@ -1,5 +1,7 @@
 import serial
 import os
+import serial.tools.list_ports
+import sys
 
 #####################################################
 # connect to serial port
@@ -28,7 +30,7 @@ print("open " + ser.name + "\nbaud: " + str(ser.baudrate) + "\ndata format:" + s
 # pic format config
 #####################################################
 fileRaw=open("image.raw","wb+")
-picSize160x120=38400
+picSize160x120=19200
 picSize = picSize160x120
 
 print("reading data...")
