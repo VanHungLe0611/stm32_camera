@@ -2,6 +2,7 @@
 #include "stm32f4xx_hal_sram.h"
 #include "stm32f4xx_ll_fmc.h"
 #include "stm32f407xx.h"
+#include "../SEGGER/RTT/SEGGER_RTT.h"
 
 SRAM_HandleTypeDef hsram;
 FMC_NORSRAM_TimingTypeDef Timing;
@@ -15,7 +16,7 @@ void user_code2() {
 	BSP_CAMERA_Init(CAMERA_R160x120);
 //	ov2640_Config(0x60, CAMERA_BLACK_WHITE, CAMERA_BLACK_WHITE_BW_NEGATIVE, CAMERA_BRIGHTNESS_LEVEL0);
 	uint8_t i = CAMERA_IO_Read(0x60, OV2640_DSP_IMAGE_MODE);
-
+	SEGGER_RTT_printf(0,"HELLO\n");
 
 }
 
