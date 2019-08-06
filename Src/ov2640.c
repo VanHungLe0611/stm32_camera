@@ -72,16 +72,16 @@ CAMERA_DrvTypeDef   ov2640_drv =
 /* Initialization sequence for 480x272 resolution */
 const unsigned char OV2640_480x272[][2]=
 {
-  {0xff, 0x00},  /* Device control register list Table 12 */
+  {OV2640_DSP_RA_DLMT, OV2640_RDSP_RA_DLMT_SEL_DSP},  /* Device control register list Table 12 */
   {0x2c, 0xff},  /* Reserved                              */
   {0x2e, 0xdf},  /* Reserved                              */
-  {0xff, 0x01},  /* Device control register list Table 13 */
+  {OV2640_DSP_RA_DLMT, OV2640_RDSP_RA_DLMT_SEL_SENSOR},  /* Device control register list Table 13 */
   {0x3c, 0x32},  /* Reserved                              */
-  {0x11, 0x00},  /* Clock Rate Control                    */
-  {0x09, 0x02},  /* Common control 2                      */
-  {0x04, 0xA8},  /* Mirror                                */
-  {0x13, 0xe5},  /* Common control 8                      */
-  {0x14, 0x48},  /* Common control 9                      */
+  {OV2640_SENSOR_CLKRC, 0x00},  /* Clock Rate Control                    */
+  {OV2640_SENSOR_COM2, 0x02},  /* Common control 2                      */
+  {OV2640_SENSOR_REG04, 0xA8},  /* Mirror                                */
+  {OV2640_SENSOR_COM8, 0xe5},  /* Common control 8 - auto AGC, auto AEC, banding filter on                  */
+  {OV2640_SENSOR_COM9, 0x48},  /* Common control 9 AGC gain 8x                    */
   {0x2c, 0x0c},  /* Reserved                              */
   {0x33, 0x78},  /* Reserved                              */
   {0x3a, 0x33},  /* Reserved                              */
@@ -91,15 +91,15 @@ const unsigned char OV2640_480x272[][2]=
   {0x16, 0x10},  /* Reserved                              */
   {0x4a, 0x81},  /* Reserved                              */
   {0x21, 0x99},  /* Reserved                              */
-  {0x24, 0x40},  /* Luminance signal High range           */
-  {0x25, 0x38},  /* Luminance signal low range            */
-  {0x26, 0x82},  /*                                       */
+  {OV2640_SENSOR_AEW, 0x40},  /* Luminance signal High range           */
+  {OV2640_SENSOR_AEB, 0x38},  /* Luminance signal low range            */
+  {OV2640_SENSOR_AEW, 0x82},  /*                                       */
   {0x5c, 0x00},  /* Reserved                              */
   {0x63, 0x00},  /* Reserved                              */
-  {0x46, 0x3f},  /* Frame length adjustment               */
-  {0x0c, 0x3c},  /* Common control 3                      */
-  {0x61, 0x70},  /* Histogram algo low level              */
-  {0x62, 0x80},  /* Histogram algo high level             */
+  {OV2640_SENSOR_FLL, 0x3f},  /* Frame length adjustment               */
+  {OV2640_SENSOR_COM3, 0x3c},  /* Common control 3 - banding 50Hz manual, video after snapshot                     */
+  {OV2640_SENSOR_HISTO_LOW, 0x70},  /* Histogram algo low level              */
+  {OV2640_SENSOR_HISTO_HIGH, 0x80},  /* Histogram algo high level             */
   {0x7c, 0x05},  /* Reserved                              */
   {0x20, 0x80},  /* Reserved                              */
   {0x28, 0x30},  /* Reserved                              */
@@ -111,26 +111,26 @@ const unsigned char OV2640_480x272[][2]=
   {0x73, 0xc1},  /* Reserved                              */
   {0x3d, 0x34},  /* Reserved                              */
   {0x5a, 0x57},  /* Reserved                              */
-  {0x12, 0x00},  /* Common control 7                      */
-  {0x11, 0x00},  /* Clock Rate Control                   2*/
-  {0x17, 0x11},  /* Horiz window start MSB 8bits          */
-  {0x18, 0x75},  /* Horiz window end MSB 8bits            */
-  {0x19, 0x01},  /* Vert window line start MSB 8bits      */
-  {0x1a, 0x97},  /* Vert window line end MSB 8bits        */
-  {0x32, 0x36},
-  {0x03, 0x0f},
-  {0x37, 0x40},
-  {0x4f, 0xbb},
-  {0x50, 0x9c},
-  {0x5a, 0x57},
-  {0x6d, 0x80},
-  {0x6d, 0x38},
-  {0x39, 0x02},
-  {0x35, 0x88},
-  {0x22, 0x0a},
-  {0x37, 0x40},
-  {0x23, 0x00},
-  {0x34, 0xa0},
+  {OV2640_SENSOR_COM7, 0x00},  /* Common control 7 - Resolution UXGA, no zoom, no test pattern                   */
+  {OV2640_SENSOR_CLKRC, 0x00},  /* Clock Rate Control                   2*/
+  {OV2640_SENSOR_HREFST, 0x11},  /* Horiz window start MSB 8bits          */
+  {OV2640_SENSOR_HREFEND, 0x75},  /* Horiz window end MSB 8bits            */
+  {OV2640_SENSOR_VSTART, 0x01},  /* Vert window line start MSB 8bits      */
+  {OV2640_SENSOR_VEND, 0x97},  /* Vert window line end MSB 8bits        */
+  {OV2640_SENSOR_REG32, 0x36}, /* Horiz window start/end LSB bits*/
+  {OV2640_SENSOR_COM1, 0x0f},  /* common control- UXGA mode */
+  {0x37, 0x40}, /* Reserved  */
+  {OV2640_SENSOR_BD50, 0xbb}, /* AEC 50 Hz banding 2 MSBs*/
+  {OV2640_SENSOR_BD60, 0x9c}, /* AEC 60 Hz banding 2 MSBS*/
+  {0x5a, 0x57}, /* Reserved */
+  {0x6d, 0x80}, /* Reserved */
+  {0x6d, 0x38}, /* Reserved */
+  {0x39, 0x02}, /* Reserved */
+  {0x35, 0x88}, /* Reserver */
+  {0x22, 0x0a}, /* Reserver */
+  {0x37, 0x40}, /* Reserver */
+  {0x23, 0x00}, /* Reserver */
+  {OV2640_SENSOR_ARCOM2, 0xa0}, /* Zoom start point */
   {0x36, 0x1a},
   {0x06, 0x02},
   {0x07, 0xc0},
