@@ -31,6 +31,7 @@ fileRaw=open("image.raw","wb+")
 picSize160x120=38400
 picSize = picSize160x120
 
+print("reading data...")
 for pixel in range(picSize):
     test = ser.read()
     fileRaw.write(test)
