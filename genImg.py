@@ -1,6 +1,9 @@
 import serial
 import os
 
+#####################################################
+# connect to serial port
+#####################################################
 if os.name=='posix':
     ser = serial.Serial('/dev/ttyUSB0')
 elif os.name=='nt':
@@ -12,19 +15,25 @@ elif os.name=='nt':
     idx = int(input())
     ser_port = serial.Serial(comlist[idx].device, 115200)
 
+#####################################################
+# port config
+#####################################################
 ser.baudrate=115200
 ser.bytesize=8
 ser.parity='N'
 print("open " + ser.name + "\nbaud: " + str(ser.baudrate) + "\ndata format:" + str(ser.bytesize) + str(ser.parity) + str(ser.stopbits))
 
-fileRaw=open("file.raw","wb+")
 
+#####################################################
+# pic format config
+#####################################################
+fileRaw=open("image.raw","wb+")
 picSize160x120=38400
 picSize = picSize160x120
+
 for pixel in range(picSize):
     test = ser.read()
-    print(test)
     fileRaw.write(test)
-    #print('\n')
 
+fileRaw.close()
 print('\n'+'total'+str(picSize))
