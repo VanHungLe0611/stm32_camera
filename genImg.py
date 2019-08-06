@@ -15,7 +15,7 @@ elif os.name=='nt':
         print(str(i) + ":" + elem.device)
         sys.stdout.flush()
     idx = int(input())
-    ser_port = serial.Serial(comlist[idx].device, 115200)
+    ser = serial.Serial(comlist[idx].device, 115200)
 
 #####################################################
 # port config
@@ -30,7 +30,7 @@ print("open " + ser.name + "\nbaud: " + str(ser.baudrate) + "\ndata format:" + s
 # pic format config
 #####################################################
 fileRaw=open("image.raw","wb+")
-picSize160x120=19200
+picSize160x120=38400
 picSize = picSize160x120
 
 print("reading data...")
@@ -39,4 +39,4 @@ for pixel in range(picSize):
     fileRaw.write(test)
 
 fileRaw.close()
-print('\n'+'total'+str(picSize))
+print('\n'+'total'+str(pixel))
