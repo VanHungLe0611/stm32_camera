@@ -80,40 +80,96 @@
   * @brief  OV2640 Registers
   */
 /* OV2640 Registers definition when DSP bank selected (0xFF = 0x00) */
-#define OV2640_DSP_R_BYPASS             0x05
-#define OV2640_DSP_Qs                   0x44
-#define OV2640_DSP_CTRL                 0x50
-#define OV2640_DSP_HSIZE1               0x51
-#define OV2640_DSP_VSIZE1               0x52
-#define OV2640_DSP_XOFFL                0x53
-#define OV2640_DSP_YOFFL                0x54
-#define OV2640_DSP_VHYX                 0x55
-#define OV2640_DSP_DPRP                 0x56
-#define OV2640_DSP_TEST                 0x57
-#define OV2640_DSP_ZMOW                 0x5A
-#define OV2640_DSP_ZMOH                 0x5B
-#define OV2640_DSP_ZMHH                 0x5C
-#define OV2640_DSP_BPADDR               0x7C
-#define OV2640_DSP_BPDATA               0x7D
+#define OV2640_DSP_R_BYPASS             0x05 /* Bypass DSP */
+#define OV2640_DSP_Qs                   0x44 /* Quantization Scale Factor */
+#define OV2640_DSP_CTRL                 0x50 /* DSP Control register*/
+#define OV2640_DSP_HSIZE1               0x51 /* H_SIZE (real/4) */
+#define OV2640_DSP_VSIZE1               0x52 /* V_SIZE (real/4) */
+#define OV2640_DSP_XOFFL                0x53 /* OFFXET_X */
+#define OV2640_DSP_YOFFL                0x54 /* OFFSET_Y */
+#define OV2640_DSP_VHYX                 0x55 /* V_SIZE, H_SIZE, OFFSET_X/Y extension bit*/
+#define OV2640_DSP_DPRP                 0x56 /* */
+#define OV2640_DSP_TEST                 0x57 /* */
+#define OV2640_DSP_ZMOW                 0x5A /* */
+#define OV2640_DSP_ZMOH                 0x5B /* */
+#define OV2640_DSP_ZMHH                 0x5C /* */
+#define OV2640_DSP_BPADDR               0x7C /* SDE Indirect Register Access: Address */
+#define OV2640_DSP_BPDATA               0x7D /* SDE Indirect Register Access: Data */
+/* CTRL2 - Module Enable:
+ * [5]-DCW
+ * [4]-SDE
+ * [3]-UV_ADJ
+ * [2]-UV_AVG
+ * [0]_CMX */
 #define OV2640_DSP_CTRL2                0x86
+/* CTRL3 - Module Enable
+ * [7]-BPC
+ * [6]-WPC */
 #define OV2640_DSP_CTRL3                0x87
-#define OV2640_DSP_SIZEL                0x8C
-#define OV2640_DSP_HSIZE2               0xC0
-#define OV2640_DSP_VSIZE2               0xC1
+#define OV2640_DSP_SIZEL                0x8C /* */
+#define OV2640_DSP_HSIZE2               0xC0 /* */
+#define OV2640_DSP_VSIZE2               0xC1 /* */
+/* CTRL0-Module Enable
+ * [7]-AEC_SEL
+ * [6]-AEC_SEL
+ * [5]-STAT_SEL-
+ * [4]-VFIRST
+ * [3]-YUV422
+ * [2]-YUV_EN
+ * [1]-RGB_EN
+ * [0]-RAW_EN */
 #define OV2640_DSP_CTRL0                0xC2
+/* CTRL1-Module Enable
+ * [7]-CIP
+ * [6]-DMY
+ * [5]-RWA_GMA
+ * [4]-DG
+ * [3]-AWB
+ * [2]-AWB_GAIN
+ * [1]-LENC
+ * [0]-PRE */
 #define OV2640_DSP_CTRL1                0xC3
+/* R_DSP_SP
+ * [7] Automode
+ * [6:0] DVP Output Speed control
+ * DVP PCLK =sysclk(48)/[6:0] (YUV0)
+ * DVP PCLK =sysclk(48)/(2*[6:0]) (RAW) */
 #define OV2640_DSP_R_DVP_SP             0xD3
+/* IAME MODE
+ * [6] Y8 enable for DVP
+ * [4] JPEG compressed output enable
+ * [3:2] DVP output format
+ * 		 00-YUV422 01-RAW10 10-RGB565
+ * [1] HREF timing select in DVP JPEG output mode
+ *     0: HREF same as sensor
+ *     1: HREF= VSYNC
+ * [0] Byte swap enable*/
 #define OV2640_DSP_IMAGE_MODE           0xDA
+/* RESET
+ * [6] Microcontroller
+ * [5] SCCB
+ * [4] JPEG
+ * [2] DVP
+ * [1] IPU
+ * [0] CIF
+ * */
 #define OV2640_DSP_RESET                0xE0
+/* SCCB master speed */
 #define OV2640_DSP_MS_SP                0xF0
-#define OV2640_DSP_SS_ID                0x7F
+/* SCCB master ID */
+#define OV2640_DSP_SS_ID                0xF7
+/* SCCB slave control */
 #define OV2640_DSP_SS_CTRL              0xF8
+/* BIST */
 #define OV2640_DSP_MC_BIST              0xF9
-#define OV2640_DSP_MC_AL                0xFA
-#define OV2640_DSP_MC_AH                0xFB
-#define OV2640_DSP_MC_D                 0xFC
-#define OV2640_DSP_P_STATUS             0xFE
+#define OV2640_DSP_MC_AL                0xFA /* */
+#define OV2640_DSP_MC_AH                0xFB /* */
+#define OV2640_DSP_MC_D                 0xFC /* SCCB protocol command register*/
+#define OV2640_DSP_P_STATUS             0xFE /* SCCB protocol status register */
+/* OV2640 Register Bank Select*/
 #define OV2640_DSP_RA_DLMT              0xFF
+#define OV2640_RDSP_RA_DLMT_SEL_DSP 0x00 /* Digital signal processor control register bank*/
+#define OOV2640_RDSP_RA_DLMT_SEL_DSP 0x01 /* Sensor control register bank */
 
 /* OV2640 Registers definition when sensor bank selected (0xFF = 0x01) */
 #define OV2640_SENSOR_GAIN              0x00
