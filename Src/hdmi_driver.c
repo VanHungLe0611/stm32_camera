@@ -35,12 +35,12 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
 	BSP_CAMERA_MsInit();
 	HAL_DCMI_Init(&hdcmi);
 
-	if (ov2640_ReadID(CAMERA_I2C_ADDRESS) == OV2640_ID) {
+	if (ov2640_ReadID(CAMERA_OV2640_I2C_ADDRESS) == OV2640_ID) {
 		/* Initialize the camera driver structure */
 		camera = &ov2640_drv;
 
 		/* Camera Init */
-		camera->Init(CAMERA_I2C_ADDRESS, Resolution);
+		camera->Init(CAMERA_OV2640_I2C_ADDRESS, Resolution);
 
 		/* Return CAMERA_OK status */
 		ret = CAMERA_OK;
@@ -104,7 +104,7 @@ void BSP_CAMERA_MsInit(void) {
  */
 void BSP_CAMERA_ContinuousStart(uint8_t *buff) {
 	/* Start the camera capture */
-	HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_CONTINUOUS, buff,
+	HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_CONTINUOUS, (uint32_t)buff,
 			GetSize(current_resolution));
 }
 
@@ -114,7 +114,7 @@ void BSP_CAMERA_ContinuousStart(uint8_t *buff) {
  */
 void BSP_CAMERA_SnapshotStart(uint8_t *buff) {
 	/* Start the camera capture */
-	HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_SNAPSHOT, buff,
+	HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)buff,
 			GetSize(current_resolution));
 }
 
@@ -190,3 +190,66 @@ uint32_t GetSize(uint32_t resolution)
 
   return size;
 }
+
+/**
+  * @brief  Configures the camera contrast and brightness.
+  * @param  contrast_level: Contrast level
+  *          This parameter can be one of the following values:
+  *            @arg  CAMERA_CONTRAST_LEVEL4: for contrast +2
+  *            @arg  CAMERA_CONTRAST_LEVEL3: for contrast +1
+  *            @arg  CAMERA_CONTRAST_LEVEL2: for contrast  0
+  *            @arg  CAMERA_CONTRAST_LEVEL1: for contrast -1
+  *            @arg  CAMERA_CONTRAST_LEVEL0: for contrast -2
+  * @param  brightness_level: Contrast level
+  *          This parameter can be one of the following values:
+  *            @arg  CAMERA_BRIGHTNESS_LEVEL4: for brightness +2
+  *            @arg  CAMERA_BRIGHTNESS_LEVEL3: for brightness +1
+  *            @arg  CAMERA_BRIGHTNESS_LEVEL2: for brightness  0
+  *            @arg  CAMERA_BRIGHTNESS_LEVEL1: for brightness -1
+  *            @arg  CAMERA_BRIGHTNESS_LEVEL0: for brightness -2
+  */
+void BSP_CAMERA_ContrastBrightnessConfig(uint32_t contrast_level, uint32_t brightness_level)
+{
+  if(camera->Config != NULL)
+  {
+    camera->Config(CAMERA_OV2640_I2C_ADDRESS, CAMERA_CONTRAST_BRIGHTNESS, contrast_level, brightness_level);
+  }
+}
+
+/**
+  * @brief  Configures the camera white balance.
+  * @param  Mode: black_white mode
+  *          This parameter can be one of the following values:
+  *            @arg  CAMERA_BLACK_WHITE_BW
+  *            @arg  CAMERA_BLACK_WHITE_NEGATIVE
+  *            @arg  CAMERA_BLACK_WHITE_BW_NEGATIVE
+  *            @arg  CAMERA_BLACK_WHITE_NORMAL
+  */
+void BSP_CAMERA_BlackWhiteConfig(uint32_t Mode)
+{
+  if(camera->Config != NULL)
+  {
+    camera->Config(CAMERA_OV2640_I2C_ADDRESS, CAMERA_BLACK_WHITE, Mode, 0);
+  }
+}
+
+/**
+  * @brief  Configures the camera color effect.
+  * @param  Effect: Color effect
+  *          This parameter can be one of the following values:
+  *            @arg  CAMERA_COLOR_EFFECT_ANTIQUE
+  *            @arg  CAMERA_COLOR_EFFECT_BLUE
+  *            @arg  CAMERA_COLOR_EFFECT_GREEN
+  *            @arg  CAMERA_COLOR_EFFECT_RED
+  */
+void BSP_CAMERA_ColorEffectConfig(uint32_t Effect)
+{
+  if(camera->Config != NULL)
+  {
+    camera->Config(CAMERA_OV2640_I2C_ADDRESS, CAMERA_COLOR_EFFECT, Effect, 0);
+  }
+}
+
+/**
+  * @brief  Handles DCMI interrupt request.
+  */

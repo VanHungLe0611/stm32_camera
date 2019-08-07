@@ -20,7 +20,7 @@ extern "C" {
 #define TS_I2C_ADDRESS                   0x82
 #define TS3510_I2C_ADDRESS               0x80
 #define EXC7200_I2C_ADDRESS              0x08
-#define CAMERA_I2C_ADDRESS               0x60
+#define CAMERA_OV2640_I2C_ADDRESS        0x60
 #define AUDIO_I2C_ADDRESS                0x34
 #define EEPROM_I2C_ADDRESS_A01           0xA0
 #define EEPROM_I2C_ADDRESS_A02           0xA6

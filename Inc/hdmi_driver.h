@@ -24,6 +24,10 @@ void BSP_CAMERA_SnapshotStart(uint8_t *buff);
 void BSP_CAMERA_Suspend(void);
 void BSP_CAMERA_Resume(void);
 uint8_t BSP_CAMERA_Stop(void);
+/* Camera features functions prototype */
+void    BSP_CAMERA_ContrastBrightnessConfig(uint32_t contrast_level, uint32_t brightness_level);
+void    BSP_CAMERA_BlackWhiteConfig(uint32_t Mode);
+void    BSP_CAMERA_ColorEffectConfig(uint32_t Effect);
 
 #ifdef __cplusplus
 }
