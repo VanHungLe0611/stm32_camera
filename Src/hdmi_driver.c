@@ -251,5 +251,94 @@ void BSP_CAMERA_ColorEffectConfig(uint32_t Effect)
 }
 
 /**
+  * @brief  Line event callback
+  * @param  hdcmi: pointer to the DCMI handle
+  */
+void HAL_DCMI_LineEventCallback(DCMI_HandleTypeDef *hdcmi)
+{
+  BSP_CAMERA_LineEventCallback();
+}
+
+/**
+  * @brief  Line Event callback.
+  */
+__weak void BSP_CAMERA_LineEventCallback(void)
+{
+  /* NOTE : This function Should not be modified, when the callback is needed,
+            the HAL_DCMI_LineEventCallback could be implemented in the user file
+   */
+}
+
+/**
+  * @brief  VSYNC event callback
+  * @param  hdcmi: pointer to the DCMI handle
+  */
+void HAL_DCMI_VsyncEventCallback(DCMI_HandleTypeDef *hdcmi)
+{
+  BSP_CAMERA_VsyncEventCallback();
+}
+
+/**
+  * @brief  VSYNC Event callback.
+  */
+__weak void BSP_CAMERA_VsyncEventCallback(void)
+{
+  /* NOTE : This function Should not be modified, when the callback is needed,
+            the HAL_DCMI_VsyncEventCallback could be implemented in the user file
+   */
+}
+
+/**
+  * @brief  Frame event callback
+  * @param  hdcmi: pointer to the DCMI handle
+  */
+void HAL_DCMI_FrameEventCallback(DCMI_HandleTypeDef *hdcmi)
+{
+  BSP_CAMERA_FrameEventCallback();
+}
+
+/**
+  * @brief  Frame Event callback.
+  */
+__weak void BSP_CAMERA_FrameEventCallback(void)
+{
+  /* NOTE : This function Should not be modified, when the callback is needed,
+            the HAL_DCMI_FrameEventCallback could be implemented in the user file
+   */
+}
+
+/**
+  * @brief  Error callback
+  * @param  hdcmi: pointer to the DCMI handle
+  */
+void HAL_DCMI_ErrorCallback(DCMI_HandleTypeDef *hdcmi)
+{
+  BSP_CAMERA_ErrorCallback();
+}
+
+/**
+  * @brief  Error callback.
+  */
+__weak void BSP_CAMERA_ErrorCallback(void)
+{
+  /* NOTE : This function Should not be modified, when the callback is needed,
+            the HAL_DCMI_ErrorCallback could be implemented in the user file
+   */
+}
+
+/**
   * @brief  Handles DCMI interrupt request.
   */
+void BSP_CAMERA_IRQHandler(void)
+{
+  HAL_DCMI_IRQHandler(&hdcmi);
+}
+
+/**
+  * @brief  Handles DMA interrupt request.
+  */
+void BSP_CAMERA_DMA_IRQHandler(void)
+{
+  HAL_DMA_IRQHandler(hdcmi.DMA_Handle);
+}
+

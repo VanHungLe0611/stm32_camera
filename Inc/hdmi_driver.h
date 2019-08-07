@@ -28,6 +28,16 @@ uint8_t BSP_CAMERA_Stop(void);
 void    BSP_CAMERA_ContrastBrightnessConfig(uint32_t contrast_level, uint32_t brightness_level);
 void    BSP_CAMERA_BlackWhiteConfig(uint32_t Mode);
 void    BSP_CAMERA_ColorEffectConfig(uint32_t Effect);
+/* Camera interrupts and callbacks functions */
+void    BSP_CAMERA_LineEventCallback(void);
+void    BSP_CAMERA_VsyncEventCallback(void);
+void    BSP_CAMERA_FrameEventCallback(void);
+void    BSP_CAMERA_ErrorCallback(void);
+
+/* To be called in DCMI_IRQHandler function */
+void    BSP_CAMERA_IRQHandler(void);
+/* To be called in DMA2_Stream1_IRQHandler function */
+void    BSP_CAMERA_DMA_IRQHandler(void);
 
 #ifdef __cplusplus
 }

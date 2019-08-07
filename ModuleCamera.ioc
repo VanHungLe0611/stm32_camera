@@ -61,6 +61,7 @@ Mcu.UserName=STM32F407VGTx
 MxCube.Version=5.3.0
 MxDb.Version=DB.5.0.30
 NVIC.BusFault_IRQn=true\:0\:0\:false\:false\:true\:false\:false
+NVIC.DCMI_IRQn=true\:0\:0\:false\:false\:true\:true\:true
 NVIC.DMA1_Stream4_IRQn=true\:0\:0\:false\:false\:true\:false\:true
 NVIC.DMA2_Stream1_IRQn=true\:0\:0\:false\:false\:true\:false\:true
 NVIC.DebugMonitor_IRQn=true\:0\:0\:false\:false\:true\:false\:false
