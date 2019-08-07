@@ -14,6 +14,9 @@ extern "C" {
 
 #include "stm32f4xx_hal.h"
 
+#define DSP_CTRL_REG 0x00
+#define SENSOR_CTRL_REG 0x01
+
 typedef enum {
 	CAMERA_OK = 0x00, CAMERA_ERROR = 0x01, CAMERA_TIMEOUT = 0x02
 } Camera_StatusTypeDef;
@@ -38,6 +41,10 @@ void    BSP_CAMERA_ErrorCallback(void);
 void    BSP_CAMERA_IRQHandler(void);
 /* To be called in DMA2_Stream1_IRQHandler function */
 void    BSP_CAMERA_DMA_IRQHandler(void);
+
+/* utilities function */
+uint8_t CAMERA_readRegValue(uint8_t REG_ADDRESS);
+void CAMERA_writeRegValue(_Bool REG_BANK_SEL, uint8_t REG_ADDRESS, uint8_t VALUE);
 
 #ifdef __cplusplus
 }

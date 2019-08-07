@@ -76,6 +76,7 @@
   * @brief  OV2640 ID
   */
 #define  OV2640_ID    0x26
+#define OV2640_I2C_ADDRESS 0x60
 /** 
   * @brief  OV2640 Registers
   */

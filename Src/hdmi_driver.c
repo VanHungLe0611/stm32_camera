@@ -342,3 +342,25 @@ void BSP_CAMERA_DMA_IRQHandler(void)
   HAL_DMA_IRQHandler(hdcmi.DMA_Handle);
 }
 
+/**
+ * @brief  Read Register value
+ * @param  REG_ADDRESS: register address
+ */
+uint8_t CAMERA_readRegValue(uint8_t REG_ADDRESS){
+	return CAMERA_IO_Read(OV2640_I2C_ADDRESS,REG_ADDRESS);
+}
+
+/**
+ * @brief write control signal to camera module
+ * @param REG_BANK_SEL true when choosing sensor registers, false when choosing DSP register
+ * @param REG_ADDRESS
+ * @param VALUE
+ */
+void CAMERA_writeRegValue(_Bool REG_BANK_SEL, uint8_t REG_ADDRESS, uint8_t VALUE){
+	if(REG_BANK_SEL==SENSOR_CTRL_REG && CAMERA_readRegValue(OV2640_DSP_RA_DLMT)==0x00){
+		CAMERA_IO_Write(OV2640_I2C_ADDRESS, OV2640_DSP_RA_DLMT, OV2640_RDSP_RA_DLMT_SEL_SENSOR);
+	} else if(REG_BANK_SEL==DSP_CTRL_REG && CAMERA_readRegValue(OV2640_DSP_RA_DLMT)==0x01) {
+		CAMERA_IO_Write(OV2640_I2C_ADDRESS, OV2640_DSP_RA_DLMT, OV2640_RDSP_RA_DLMT_SEL_DSP);
+	}
+	CAMERA_IO_Write(OV2640_I2C_ADDRESS, REG_ADDRESS, VALUE);
+}
