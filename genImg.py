@@ -27,16 +27,38 @@ print("open " + ser.name + "\nbaud: " + str(ser.baudrate) + "\ndata format:" + s
 
 
 #####################################################
-# pic format config
+# prepare file
 #####################################################
-fileRaw=open("image.raw","wb+")
+fileName="image.raw"
+fileRaw=open(fileName,"wb+")
+
+#####################################################
+# pic format config 
+#####################################################
 picSize160x120=38400
 picSize = picSize160x120
 
+
+#####################################################
+# get data from uart-usb
+#####################################################
 print("reading data...")
 for pixel in range(picSize):
     test = ser.read()
     fileRaw.write(test)
 
 fileRaw.close()
-print('\n'+'total'+str(pixel))
+print('\n'+'total size'+str(pixel))
+
+
+#####################################################
+# convert raw data
+#####################################################
+# require: installed imagemagick
+command = "convert"
+flags = ["-size 160x120", "-sampling-factor 4:2:2", "-depth 8"]
+inputFormat = "yuv:" + fileName
+outputFile = "image_out.bmp"
+
+os.system(command + " " + ' '.join(flags)+ " " + inputFormat + " " + outputFile)
+
