@@ -3,6 +3,8 @@
 #include "var_interface.h"
 #include "ov2640.h"
 #include "hdmi_driver.h"
+#include "camera_irq_handler.h"
+#include "../SEGGER/RTT/SEGGER_RTT.h"
 
 /* USER CODE END Includes */
 
