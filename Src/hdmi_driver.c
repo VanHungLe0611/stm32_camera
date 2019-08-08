@@ -114,6 +114,7 @@ void BSP_CAMERA_ContinuousStart(uint8_t *buff) {
  */
 void BSP_CAMERA_SnapshotStart(uint8_t *buff) {
 	/* Start the camera capture */
+	lineNum = 0;
 	HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)buff,
 			GetSize(current_resolution));
 }

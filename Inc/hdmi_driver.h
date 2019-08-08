@@ -21,6 +21,8 @@ typedef enum {
 	CAMERA_OK = 0x00, CAMERA_ERROR = 0x01, CAMERA_TIMEOUT = 0x02
 } Camera_StatusTypeDef;
 
+static uint32_t lineNum = 0;
+
 uint8_t BSP_CAMERA_Init(uint32_t Resolution);
 void BSP_CAMERA_ContinuousStart(uint8_t *buff);
 void BSP_CAMERA_SnapshotStart(uint8_t *buff);

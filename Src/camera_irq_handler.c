@@ -1,19 +1,23 @@
 #include "camera_irq_handler.h"
 
-static uint32_t a = 0;
 
 void BSP_CAMERA_LineEventCallback(void) {
-	a++;
+	DCMI_ClearFlag(DCMI_IT_LINE);
+	lineNum++;
+//	SEGGER_RTT_printf(0, "line %d event \n", lineNum);
 
 }
 void BSP_CAMERA_VsyncEventCallback(void) {
-	SEGGER_RTT_printf(0, "Vsync event\n");
-
+	DCMI_ClearFlag(DCMI_IT_VSYNC);
+//	SEGGER_RTT_printf(0, "Vsync event\n");
+	SEGGER_RTT_printf(0, "current num of line: %d\n", lineNum);
+	lineNum = 0;
 }
 void BSP_CAMERA_FrameEventCallback(void) {
-	SEGGER_RTT_printf(0, "Frame event\n");
-	SEGGER_RTT_printf(0, "%d\n", a);
-	a = 0;
+	DCMI_ClearFlag(DCMI_IT_FRAME);
+//	SEGGER_RTT_printf(0, "Frame event\n");
+//	SEGGER_RTT_printf(0, "total line: %d\n", lineNum);
+	lineNum = 0;
 
 }
 void BSP_CAMERA_ErrorCallback(void) {
