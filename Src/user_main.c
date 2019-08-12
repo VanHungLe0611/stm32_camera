@@ -15,8 +15,6 @@ void user_code1() {
 void user_code2() {
 	// init camera
 	BSP_CAMERA_Init(CAMERA_R160x120);
-	DCMI_ITConfig(DCMI_IT_LINE, ENABLE);
-	DCMI_ITConfig(DCMI_IT_VSYNC, ENABLE);
 
 //	ov2640_Config(0x60, CAMERA_COLOR_EFFECT, 0x00, CAMERA_BRIGHTNESS_LEVEL0);
 //	uint8_t i = CAMERA_IO_Read(0x60, OV2640_DSP_IMAGE_MODE);
@@ -28,6 +26,8 @@ void user_code2() {
 	CAMERA_writeRegValue(DSP_CTRL_REG, OV2640_DSP_IMAGE_MODE, 0x01); // enable YCBCR-format
 
 //	SEGGER_RTT_printf(0,"REG: 0x%x VAL: 0x%x\n", OV2640_DSP_IMAGE_MODE, CAMERA_readRegValue(OV2640_DSP_IMAGE_MODE));
+//	DCMI_ITConfig(DCMI_IT_LINE, ENABLE);
+//	DCMI_ITConfig(DCMI_IT_VSYNC, ENABLE);
 }
 
 void user_code3() {

@@ -111,6 +111,7 @@ int main(void) {
 	/* USER CODE BEGIN WHILE */
 	while (1) {
 		//user_code_inf_while();
+
 		BSP_CAMERA_SnapshotStart(data);
 
 		/* delay */
