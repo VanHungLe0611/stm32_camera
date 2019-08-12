@@ -4,21 +4,19 @@
 void BSP_CAMERA_LineEventCallback(void) {
 	DCMI_ClearFlag(DCMI_IT_LINE);
 	lineNum++;
-//	SEGGER_RTT_printf(0, "line %d event \n", lineNum);
+	SEGGER_RTT_printf(0, "line %d event \n", lineNum);
 
 }
 void BSP_CAMERA_VsyncEventCallback(void) {
 	DCMI_ClearFlag(DCMI_IT_VSYNC);
-//	SEGGER_RTT_printf(0, "Vsync event\n");
+	SEGGER_RTT_printf(0, "Vsync event\n");
 	SEGGER_RTT_printf(0, "current num of line: %d\n", lineNum);
 	lineNum = 0;
+	//TODO: send image over UART for preview in pc
 }
 void BSP_CAMERA_FrameEventCallback(void) {
 	DCMI_ClearFlag(DCMI_IT_FRAME);
-//	SEGGER_RTT_printf(0, "Frame event\n");
-//	SEGGER_RTT_printf(0, "total line: %d\n", lineNum);
-	lineNum = 0;
-
+	SEGGER_RTT_printf(0, "Frame event\n");
 }
 void BSP_CAMERA_ErrorCallback(void) {
 	SEGGER_RTT_printf(0, "Error event\n");

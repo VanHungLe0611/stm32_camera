@@ -7,6 +7,8 @@ extern "C" {
 
 #include "stm32f4xx_hal.h"
 #include "camera.h"
+#include "var_interface.h"
+
 
 /**
  * @brief  Define for STM324x9I_EVAL board

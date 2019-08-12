@@ -6,13 +6,7 @@
  */
 
 #include "hdmi_driver.h"
-#include "stm32f4xx_hal.h"
-#include "i2c_driver.h"
-#include "ov2640.h"
-#include "var_interface.h"
 
-
-//DCMI_HandleTypeDef hdcmi; // temperary not need deed because it is already defined
 CAMERA_DrvTypeDef *camera;
 
 
@@ -27,9 +21,6 @@ void BSP_CAMERA_MsInit(void);
  */
 uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
 	uint8_t ret = CAMERA_ERROR;
-
-	/* our code */
-	//hdcmi_x = &hdcmi;
 
 	/* DCMI Initialization */
 	BSP_CAMERA_MsInit();
@@ -52,49 +43,6 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
 }
 
 void BSP_CAMERA_MsInit(void) {
-/* example code */
-//	GPIO_InitTypeDef GPIO_InitStruct = { 0 };
-//
-//	/*** Enable peripherals and GPIO clocks ***/
-//	/* Enable DCMI clock */
-//	__HAL_RCC_DCMI_CLK_ENABLE();
-//
-//	/* GPIO Ports Clock Enable */
-//	__HAL_RCC_GPIOE_CLK_ENABLE();
-//	__HAL_RCC_GPIOA_CLK_ENABLE();
-//	__HAL_RCC_GPIOC_CLK_ENABLE();
-//	__HAL_RCC_GPIOB_CLK_ENABLE();
-//
-//	/* Configure DCMI GPIO as alternate function */
-//	GPIO_InitStruct.Pin = GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6;
-//	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-//	GPIO_InitStruct.Pull = GPIO_NOPULL;
-//	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//	GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
-//	HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-//
-//	GPIO_InitStruct.Pin = GPIO_PIN_4 | GPIO_PIN_6;
-//	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-//	GPIO_InitStruct.Pull = GPIO_NOPULL;
-//	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//	GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
-//	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-//
-//	GPIO_InitStruct.Pin = GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9;
-//	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-//	GPIO_InitStruct.Pull = GPIO_NOPULL;
-//	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//	GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
-//	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-//
-//	GPIO_InitStruct.Pin = GPIO_PIN_6 | GPIO_PIN_7;
-//	GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-//	GPIO_InitStruct.Pull = GPIO_NOPULL;
-//	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-//	GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
-//	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-	/*our code*/
 	HAL_DCMI_MspInit(&hdcmi);
 }
 

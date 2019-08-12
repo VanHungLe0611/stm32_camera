@@ -112,8 +112,6 @@ int main(void) {
 	while (1) {
 		//user_code_inf_while();
 		BSP_CAMERA_SnapshotStart(data);
-		DCMI_ITConfig(DCMI_IT_LINE, ENABLE);
-		DCMI_ITConfig(DCMI_IT_VSYNC, ENABLE);
 
 		/* delay */
 		HAL_Delay(300);

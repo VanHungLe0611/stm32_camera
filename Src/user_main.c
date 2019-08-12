@@ -13,8 +13,10 @@ void user_code1() {
 }
 
 void user_code2() {
-	//HAL_DMA_Init(&hdma_dcmi);
+	// init camera
 	BSP_CAMERA_Init(CAMERA_R160x120);
+	DCMI_ITConfig(DCMI_IT_LINE, ENABLE);
+	DCMI_ITConfig(DCMI_IT_VSYNC, ENABLE);
 
 //	ov2640_Config(0x60, CAMERA_COLOR_EFFECT, 0x00, CAMERA_BRIGHTNESS_LEVEL0);
 //	uint8_t i = CAMERA_IO_Read(0x60, OV2640_DSP_IMAGE_MODE);
