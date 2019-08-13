@@ -72,17 +72,17 @@
 /** @defgroup OV2640_Exported_Constants
   * @{
   */
-/** 
+/**
   * @brief  OV2640 ID
   */
 #define  OV2640_ID    0x26
 #define OV2640_I2C_ADDRESS 0x60
-/** 
+/**
   * @brief  OV2640 Registers
   */
 
 /* OV2640 Register Bank Select*/
-#define OV2640_DSP_RA_DLMT              0xFF
+#define OV2640_DSP_RA_DLMT              0xFF /* Select register bank */
 #define OV2640_RDSP_RA_DLMT_SEL_DSP     0x00 /* Digital signal processor control register bank*/
 #define OV2640_RDSP_RA_DLMT_SEL_SENSOR    0x01 /* Sensor control register bank */
 
@@ -425,10 +425,10 @@
 /* Histogram Algorithm Low Level */
 #define OV2640_SENSOR_HISTO_LOW         0x61
 /* Histogram Algorithm High Level */
-#define OV2640_SENSOR_HISTO_HIGH        0x62 
+#define OV2640_SENSOR_HISTO_HIGH        0x62
 
-/** 
- * @brief  OV2640 Features Parameters  
+/**
+ * @brief  OV2640 Features Parameters
  */
 #define OV2640_BRIGHTNESS_LEVEL0        0x40   /* Brightness level -2         */
 #define OV2640_BRIGHTNESS_LEVEL1        0x30   /* Brightness level -1         */
@@ -450,7 +450,7 @@
 #define OV2640_COLOR_EFFECT_ANTIQUE     0xA640 /* Antique effect              */
 #define OV2640_COLOR_EFFECT_BLUE        0x40A0 /* Blue effect                 */
 #define OV2640_COLOR_EFFECT_GREEN       0x4040 /* Green effect                */
-#define OV2640_COLOR_EFFECT_RED         0xC040 /* Red effect                  */   
+#define OV2640_COLOR_EFFECT_RED         0xC040 /* Red effect                  */
 /**
   * @}
   */

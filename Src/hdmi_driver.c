@@ -11,10 +11,9 @@ CAMERA_DrvTypeDef *camera;
 
 static uint32_t current_resolution;
 uint32_t GetSize(uint32_t resolution);
-void BSP_CAMERA_MsInit(void);
 
 /**
- * @brief  Initializes the camera.
+ * @brief  Initializes the camera with defauft configurations.
  * @param  Resolution: Camera Resolution
  * @retval Camera status
  */
@@ -24,6 +23,8 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
   /* DCMI Initialization */
   BSP_CAMERA_MsInit();
   HAL_DCMI_Init(&hdcmi);
+
+  CAMERA_factoryReset();
 
   if (ov2640_ReadID(CAMERA_OV2640_I2C_ADDRESS) == OV2640_ID) {
     /* Initialize the camera driver structure */
@@ -35,6 +36,11 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
     /* Return CAMERA_OK status */
     ret = CAMERA_OK;
   }
+
+  /* specific default settings */
+  CAMERA_writeRegValue(DSP_CTRL_REG, 0x13, 0xc5);  // remove band filter
+  CAMERA_setOutputFormat(CAMERA_OUTPUT_FORMAT_YUV422);
+  BSP_CAMERA_BlackWhiteConfig(CAMERA_BLACK_WHITE_NORMAL);
 
   current_resolution = Resolution;
 
@@ -290,3 +296,34 @@ void CAMERA_writeRegValue(_Bool REG_BANK_SEL, uint8_t REG_ADDRESS,
   }
   CAMERA_IO_Write(OV2640_I2C_ADDRESS, REG_ADDRESS, VALUE);
 }
+
+/**
+ * @brief factory reset all camera register
+ */
+void CAMERA_factoryReset(void) {
+  CAMERA_writeRegValue(SENSOR_CTRL_REG, OV2640_SENSOR_COM7,
+                       0x88);  // reset all registers
+  CAMERA_IO_Write(0xff, OV2640_DSP_RA_DLMT, OV2640_RDSP_RA_DLMT_SEL_DSP);
+}
+
+void CAMERA_setOutputFormat(uint8_t format) {
+  switch (format) {
+    case CAMERA_OUTPUT_FORMAT_JPEG:
+      // TODO: JPEG
+      break;
+    case CAMERA_OUTPUT_FORMAT_RAW10:
+      CAMERA_writeRegValue(DSP_CTRL_REG, OV2640_DSP_IMAGE_MODE,
+                           0x04);  // enable RAW10-format
+      break;
+    case CAMERA_OUTPUT_FORMAT_RBG565:
+      CAMERA_writeRegValue(DSP_CTRL_REG, OV2640_DSP_IMAGE_MODE,
+                           0x08);  // enable RGB565-format
+      break;
+    case CAMERA_OUTPUT_FORMAT_YUV422:
+      CAMERA_writeRegValue(DSP_CTRL_REG, OV2640_DSP_IMAGE_MODE,
+                           0x01);  // enable YCBCR-format
+      break;
+    default:
+      break;
+  }
+};
