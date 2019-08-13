@@ -111,13 +111,7 @@ int main(void) {
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
-    // user_code_inf_while();
-    //    BSP_CAMERA_SnapshotStart(image_data);
-
-    /* delay */
-    HAL_Delay(1000);
-    //    HAL_UART_Transmit_DMA(&huart4, image_data, 38400);
-    //	BSP_CAMERA_ContinuousStart(data);
+    user_code_inf_while();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
