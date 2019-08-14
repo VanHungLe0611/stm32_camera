@@ -4,4 +4,8 @@
 build/
 Inc/user_main.h
 Src/user_main.c
-Drivers
+Drivers/CMSIS
+Drivers/STM32*
+*.o
+*.s
+*.dblite

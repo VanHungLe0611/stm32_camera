@@ -2,11 +2,6 @@
 #include "../SEGGER/RTT/SEGGER_RTT.h"
 #include "camera_irq_handler.h"
 #include "stm32f407xx.h"
-#include "stm32f4xx_hal_sram.h"
-#include "stm32f4xx_ll_fmc.h"
-
-SRAM_HandleTypeDef hsram;
-FMC_NORSRAM_TimingTypeDef Timing;
 
 void user_code1() {}
 

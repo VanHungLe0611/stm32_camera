@@ -6,6 +6,9 @@
 #include "ov2640.h"
 #include "var_interface.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
