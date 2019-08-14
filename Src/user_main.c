@@ -12,11 +12,11 @@ void user_code1() {}
 
 void user_code2() {
   // init camera
-  BSP_CAMERA_Init(CAMERA_R160x120);
+  BSP_CAMERA_Init(IMAGE_RESOLUTION);
 
   BSP_CAMERA_SnapshotStart(image_data);
 }
 
 void user_code3() {}
 
-void user_code_inf_while() { HAL_Delay(1000); }
+void loop() { HAL_Delay(1000); }

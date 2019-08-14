@@ -20,9 +20,7 @@ extern "C" {
 #define DSP_CTRL_REG 0x00
 #define SENSOR_CTRL_REG 0x01
 
-#define CAMERA_CTL_MODE_AUTO 0x01
-#define CAMERA_CTL_MODE_MANUAL 0x00
-
+/* Macro for CAMERA_read-/writeRegVal functions */
 #define CAMERA_OUTPUT_FORMAT_YUV422 0x00
 #define CAMERA_OUTPUT_FORMAT_RAW10 0x01
 #define CAMERA_OUTPUT_FORMAT_RBG565 0x02
@@ -62,6 +60,7 @@ void BSP_CAMERA_IRQHandler(void);
 void BSP_CAMERA_DMA_IRQHandler(void);
 
 /* utilities function */
+uint32_t GetSize(uint32_t resolution);
 uint8_t CAMERA_readRegValue(uint8_t REG_ADDRESS);
 void CAMERA_writeRegValue(_Bool REG_BANK_SEL, uint8_t REG_ADDRESS,
                           uint8_t VALUE);

@@ -14,7 +14,7 @@ void BSP_CAMERA_VsyncEventCallback(void) {
 }
 void BSP_CAMERA_FrameEventCallback(void) {
   __HAL_DCMI_CLEAR_FLAG(&hdcmi, DCMI_IT_FRAME);
-  HAL_UART_Transmit_DMA(&huart4, image_data, 38400);
+  HAL_UART_Transmit_DMA(&huart4, image_data, IMAGE_SIZE);
   SEGGER_RTT_printf(0, "Frame captured event\n");
 }
 void BSP_CAMERA_ErrorCallback(void) {

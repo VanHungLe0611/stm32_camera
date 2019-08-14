@@ -10,7 +10,6 @@
 CAMERA_DrvTypeDef *camera;
 
 static uint32_t current_resolution;
-uint32_t GetSize(uint32_t resolution);
 
 /**
  * @brief  Initializes the camera with defauft configurations.
@@ -38,7 +37,8 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
   }
 
   /* specific default settings */
-  CAMERA_writeRegValue(DSP_CTRL_REG, 0x13, 0xc5);  // remove band filter
+  CAMERA_writeRegValue(DSP_CTRL_REG, 0x13, 0xc5);  // activate band filter
+  //  CAMERA_writeRegValue(DSP_CTRL_REG, 0x13, 0xe5);  // deactivate band filter
   CAMERA_setOutputFormat(CAMERA_OUTPUT_FORMAT_YUV422);
   BSP_CAMERA_BlackWhiteConfig(CAMERA_BLACK_WHITE_NORMAL);
 
@@ -108,6 +108,15 @@ uint8_t BSP_CAMERA_Stop(void) {
   return ret;
 }
 
+/**
+ * @brief Get capture size (in words)
+ * @param Resolution
+ * 		   Posible Value
+ * 		     @arg CAMERA_R160x120
+ * 		     @arg CAMERA_R320x240
+ * 		     @arg CAMERA_R480x272
+ * 		     @arg CAMERA_R640x480
+ */
 uint32_t GetSize(uint32_t resolution) {
   uint32_t size = 0;
 

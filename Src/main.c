@@ -51,7 +51,8 @@ UART_HandleTypeDef huart4;
 DMA_HandleTypeDef hdma_uart4_tx;
 
 /* USER CODE BEGIN PV */
-uint8_t image_data[38400] = {0};
+
+uint8_t image_data[IMAGE_SIZE] = {0};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -111,7 +112,7 @@ int main(void) {
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
-    user_code_inf_while();
+    loop();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

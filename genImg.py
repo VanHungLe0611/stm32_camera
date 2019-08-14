@@ -48,7 +48,7 @@ for pixel in range(picSize):
     fileRaw.write(test)
 
 fileRaw.close()
-print('\n'+'total size'+str(pixel))
+print('\n'+'total size'+str(pixel+1))
 
 
 #####################################################
