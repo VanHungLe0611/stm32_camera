@@ -522,7 +522,7 @@ void ov2640_Init(uint16_t DeviceAddr, uint32_t resolution) {
   /* Prepare the camera to be configured */
   CAMERA_IO_Write(DeviceAddr, OV2640_DSP_RA_DLMT, 0x01);
   CAMERA_IO_Write(DeviceAddr, OV2640_SENSOR_COM7, 0x80);
-  CAMERA_Delay(200);
+  CAMERA_Delay(500);
 
   /* Initialize OV2640 */
   switch (resolution) {

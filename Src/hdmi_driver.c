@@ -20,7 +20,6 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
   uint8_t ret = CAMERA_ERROR;
 
   /* DCMI Initialization */
-  BSP_CAMERA_MsInit();
   HAL_DCMI_Init(&hdcmi);
 
   CAMERA_factoryReset();
@@ -34,6 +33,10 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
 
     /* Return CAMERA_OK status */
     ret = CAMERA_OK;
+  } else {
+    SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN,
+                      "Error: Can't read sensor ID (check sensor ID or I2c "
+                      "connection again)\n");
   }
 
   /* specific default settings */
@@ -44,6 +47,9 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
 
   current_resolution = Resolution;
 
+  if (ret == CAMERA_ERROR) {
+    SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "Error: CAMERA cannot initialized\n");
+  }
   return ret;
 }
 
