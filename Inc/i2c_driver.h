@@ -5,7 +5,6 @@
 extern "C" {
 #endif
 
-#include "camera.h"
 #include "stm32f4xx_hal.h"
 #include "var_interface.h"
 

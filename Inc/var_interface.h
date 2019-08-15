@@ -1,5 +1,5 @@
-#include "hdmi_driver.h"
-#include "stm32f4xx_hal.h"
+#ifndef INC_VAR_INTERFACE_H_
+#define INC_VAR_INTERFACE_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,6 +21,7 @@ extern DCMI_HandleTypeDef hdcmi;
 extern UART_HandleTypeDef huart4;
 
 extern uint8_t image_data[];
+static uint32_t lineNum;
 
 /* CAMERA GLOBAL SETTING */
 #define IMAGE_RESOLUTION CAMERA_R160x120
@@ -32,3 +33,5 @@ extern uint8_t image_data[];
 #ifdef __cplusplus
 }
 #endif
+
+#endif /* INC_VAR_INTERFACE_H_ */

@@ -1,11 +1,12 @@
 /*
- * hdmi_driver.c
+ * dcmi_driver.cpp
  *
- *  Created on: 01.08.2019
- *      Author: hungv
+ *  Created on: Aug 15, 2019
+ *      Author: duyanhpham
  */
 
-#include "hdmi_driver.h"
+#include "dcmi_driver.h"
+#include "../SEGGER/RTT/SEGGER_RTT.h"
 
 CAMERA_DrvTypeDef *camera;
 
@@ -16,7 +17,7 @@ static uint32_t current_resolution;
  * @param  Resolution: Camera Resolution
  * @retval Camera status
  */
-uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
+uint8_t DCMI_Driver::CAMERA_Init(uint32_t Resolution) {
   uint8_t ret = CAMERA_ERROR;
 
   /* DCMI Initialization */
@@ -43,23 +44,24 @@ uint8_t BSP_CAMERA_Init(uint32_t Resolution) {
   CAMERA_writeRegValue(DSP_CTRL_REG, 0x13, 0xc5);  // activate band filter
   //  CAMERA_writeRegValue(DSP_CTRL_REG, 0x13, 0xe5);  // deactivate band filter
   CAMERA_setOutputFormat(CAMERA_OUTPUT_FORMAT_YUV422);
-  BSP_CAMERA_BlackWhiteConfig(CAMERA_BLACK_WHITE_NORMAL);
+  CAMERA_BlackWhiteConfig(CAMERA_BLACK_WHITE_NORMAL);
 
   current_resolution = Resolution;
 
   if (ret == CAMERA_ERROR) {
-    SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "Error: CAMERA cannot initialized\n");
+    SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN,
+                      "Error: CAMERA cannot initialized\n");
   }
   return ret;
 }
 
-void BSP_CAMERA_MsInit(void) { HAL_DCMI_MspInit(&hdcmi); }
+void DCMI_Driver::CAMERA_MsInit(void) { HAL_DCMI_MspInit(&hdcmi); }
 
 /**
  * @brief  Starts the camera capture in continuous mode.
  * @param  buff: pointer to the camera output buffer
  */
-void BSP_CAMERA_ContinuousStart(uint8_t *buff) {
+void DCMI_Driver::CAMERA_ContinuousStart(uint8_t *buff) {
   /* Start the camera capture */
   HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_CONTINUOUS, (uint32_t)buff,
                      GetSize(current_resolution));
@@ -69,7 +71,7 @@ void BSP_CAMERA_ContinuousStart(uint8_t *buff) {
  * @brief  Starts the camera capture in snapshot mode.
  * @param  buff: pointer to the camera output buffer
  */
-void BSP_CAMERA_SnapshotStart(uint8_t *buff) {
+void DCMI_Driver::CAMERA_SnapshotStart(uint8_t *buff) {
   /* Start the camera capture */
   lineNum = 0;
   __HAL_DCMI_ENABLE_IT(&hdcmi, DCMI_IT_FRAME | DCMI_IT_LINE | DCMI_IT_VSYNC);
@@ -80,7 +82,7 @@ void BSP_CAMERA_SnapshotStart(uint8_t *buff) {
 /**
  * @brief Suspend the CAMERA capture
  */
-void BSP_CAMERA_Suspend(void) {
+void DCMI_Driver::CAMERA_Suspend(void) {
   /* Suspend the Camera Capture */
   HAL_DCMI_Suspend(&hdcmi);
 }
@@ -88,7 +90,7 @@ void BSP_CAMERA_Suspend(void) {
 /**
  * @brief Resume the CAMERA capture
  */
-void BSP_CAMERA_Resume(void) {
+void DCMI_Driver::CAMERA_Resume(void) {
   /* Start the Camera Capture */
   HAL_DCMI_Resume(&hdcmi);
 }
@@ -97,7 +99,7 @@ void BSP_CAMERA_Resume(void) {
  * @brief  Stop the CAMERA capture
  * @retval Camera status
  */
-uint8_t BSP_CAMERA_Stop(void) {
+uint8_t DCMI_Driver::CAMERA_Stop(void) {
   DCMI_HandleTypeDef *phdcmi;
 
   uint8_t ret = CAMERA_ERROR;
@@ -123,7 +125,7 @@ uint8_t BSP_CAMERA_Stop(void) {
  * 		     @arg CAMERA_R480x272
  * 		     @arg CAMERA_R640x480
  */
-uint32_t GetSize(uint32_t resolution) {
+uint32_t DCMI_Driver::GetSize(uint32_t resolution) {
   uint32_t size = 0;
 
   /* Get capture size */
@@ -165,8 +167,8 @@ uint32_t GetSize(uint32_t resolution) {
  *            @arg  CAMERA_BRIGHTNESS_LEVEL1: for brightness -1
  *            @arg  CAMERA_BRIGHTNESS_LEVEL0: for brightness -2
  */
-void BSP_CAMERA_ContrastBrightnessConfig(uint32_t contrast_level,
-                                         uint32_t brightness_level) {
+void DCMI_Driver::CAMERA_ContrastBrightnessConfig(
+    uint32_t contrast_level, uint32_t brightness_level) {
   if (camera->Config != NULL) {
     camera->Config(CAMERA_OV2640_I2C_ADDRESS, CAMERA_CONTRAST_BRIGHTNESS,
                    contrast_level, brightness_level);
@@ -182,7 +184,7 @@ void BSP_CAMERA_ContrastBrightnessConfig(uint32_t contrast_level,
  *            @arg  CAMERA_BLACK_WHITE_BW_NEGATIVE
  *            @arg  CAMERA_BLACK_WHITE_NORMAL
  */
-void BSP_CAMERA_BlackWhiteConfig(uint32_t Mode) {
+void DCMI_Driver::CAMERA_BlackWhiteConfig(uint32_t Mode) {
   if (camera->Config != NULL) {
     camera->Config(CAMERA_OV2640_I2C_ADDRESS, CAMERA_BLACK_WHITE, Mode, 0);
   }
@@ -197,7 +199,7 @@ void BSP_CAMERA_BlackWhiteConfig(uint32_t Mode) {
  *            @arg  CAMERA_COLOR_EFFECT_GREEN
  *            @arg  CAMERA_COLOR_EFFECT_RED
  */
-void BSP_CAMERA_ColorEffectConfig(uint32_t Effect) {
+void DCMI_Driver::CAMERA_ColorEffectConfig(uint32_t Effect) {
   if (camera->Config != NULL) {
     camera->Config(CAMERA_OV2640_I2C_ADDRESS, CAMERA_COLOR_EFFECT, Effect, 0);
   }
@@ -208,16 +210,7 @@ void BSP_CAMERA_ColorEffectConfig(uint32_t Effect) {
  * @param  hdcmi: pointer to the DCMI handle
  */
 void HAL_DCMI_LineEventCallback(DCMI_HandleTypeDef *hdcmi) {
-  BSP_CAMERA_LineEventCallback();
-}
-
-/**
- * @brief  Line Event callback.
- */
-__weak void BSP_CAMERA_LineEventCallback(void) {
-  /* NOTE : This function Should not be modified, when the callback is needed,
-            the HAL_DCMI_LineEventCallback could be implemented in the user file
-   */
+  DCMI_Driver::instance().CAMERA_LineEventCallback();
 }
 
 /**
@@ -225,17 +218,7 @@ __weak void BSP_CAMERA_LineEventCallback(void) {
  * @param  hdcmi: pointer to the DCMI handle
  */
 void HAL_DCMI_VsyncEventCallback(DCMI_HandleTypeDef *hdcmi) {
-  BSP_CAMERA_VsyncEventCallback();
-}
-
-/**
- * @brief  VSYNC Event callback.
- */
-__weak void BSP_CAMERA_VsyncEventCallback(void) {
-  /* NOTE : This function Should not be modified, when the callback is needed,
-            the HAL_DCMI_VsyncEventCallback could be implemented in the user
-     file
-   */
+  DCMI_Driver::instance().CAMERA_VsyncEventCallback();
 }
 
 /**
@@ -243,17 +226,7 @@ __weak void BSP_CAMERA_VsyncEventCallback(void) {
  * @param  hdcmi: pointer to the DCMI handle
  */
 void HAL_DCMI_FrameEventCallback(DCMI_HandleTypeDef *hdcmi) {
-  BSP_CAMERA_FrameEventCallback();
-}
-
-/**
- * @brief  Frame Event callback.
- */
-__weak void BSP_CAMERA_FrameEventCallback(void) {
-  /* NOTE : This function Should not be modified, when the callback is needed,
-            the HAL_DCMI_FrameEventCallback could be implemented in the user
-     file
-   */
+  DCMI_Driver::instance().CAMERA_FrameEventCallback();
 }
 
 /**
@@ -261,33 +234,26 @@ __weak void BSP_CAMERA_FrameEventCallback(void) {
  * @param  hdcmi: pointer to the DCMI handle
  */
 void HAL_DCMI_ErrorCallback(DCMI_HandleTypeDef *hdcmi) {
-  BSP_CAMERA_ErrorCallback();
-}
-
-/**
- * @brief  Error callback.
- */
-__weak void BSP_CAMERA_ErrorCallback(void) {
-  /* NOTE : This function Should not be modified, when the callback is needed,
-            the HAL_DCMI_ErrorCallback could be implemented in the user file
-   */
+  DCMI_Driver::instance().CAMERA_ErrorCallback();
 }
 
 /**
  * @brief  Handles DCMI interrupt request.
  */
-void BSP_CAMERA_IRQHandler(void) { HAL_DCMI_IRQHandler(&hdcmi); }
+void DCMI_Driver::CAMERA_IRQHandler(void) { HAL_DCMI_IRQHandler(&hdcmi); }
 
 /**
  * @brief  Handles DMA interrupt request.
  */
-void BSP_CAMERA_DMA_IRQHandler(void) { HAL_DMA_IRQHandler(hdcmi.DMA_Handle); }
+void DCMI_Driver::CAMERA_DMA_IRQHandler(void) {
+  HAL_DMA_IRQHandler(hdcmi.DMA_Handle);
+}
 
 /**
  * @brief  Read Register value
  * @param  REG_ADDRESS: register address
  */
-uint8_t CAMERA_readRegValue(uint8_t REG_ADDRESS) {
+uint8_t DCMI_Driver::CAMERA_readRegValue(uint8_t REG_ADDRESS) {
   return CAMERA_IO_Read(OV2640_I2C_ADDRESS, REG_ADDRESS);
 }
 
@@ -298,8 +264,8 @@ uint8_t CAMERA_readRegValue(uint8_t REG_ADDRESS) {
  * @param REG_ADDRESS
  * @param VALUE
  */
-void CAMERA_writeRegValue(_Bool REG_BANK_SEL, uint8_t REG_ADDRESS,
-                          uint8_t VALUE) {
+void DCMI_Driver::CAMERA_writeRegValue(bool REG_BANK_SEL, uint8_t REG_ADDRESS,
+                                       uint8_t VALUE) {
   if (REG_BANK_SEL == SENSOR_CTRL_REG &&
       CAMERA_readRegValue(OV2640_DSP_RA_DLMT) == 0x00) {
     CAMERA_IO_Write(OV2640_I2C_ADDRESS, OV2640_DSP_RA_DLMT,
@@ -315,13 +281,13 @@ void CAMERA_writeRegValue(_Bool REG_BANK_SEL, uint8_t REG_ADDRESS,
 /**
  * @brief factory reset all camera register
  */
-void CAMERA_factoryReset(void) {
+void DCMI_Driver::CAMERA_factoryReset(void) {
   CAMERA_writeRegValue(SENSOR_CTRL_REG, OV2640_SENSOR_COM7,
                        0x88);  // reset all registers
   CAMERA_IO_Write(0xff, OV2640_DSP_RA_DLMT, OV2640_RDSP_RA_DLMT_SEL_DSP);
 }
 
-void CAMERA_setOutputFormat(uint8_t format) {
+void DCMI_Driver::CAMERA_setOutputFormat(uint8_t format) {
   switch (format) {
     case CAMERA_OUTPUT_FORMAT_JPEG:
       // TODO: JPEG
@@ -342,3 +308,26 @@ void CAMERA_setOutputFormat(uint8_t format) {
       break;
   }
 };
+
+void DCMI_Driver::CAMERA_LineEventCallback(void) {
+  __HAL_DCMI_CLEAR_FLAG(&hdcmi, DCMI_IT_LINE);
+  lineNum++;
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "End of line %d event \n", lineNum);
+}
+void DCMI_Driver::CAMERA_VsyncEventCallback(void) {
+  __HAL_DCMI_CLEAR_FLAG(&hdcmi, DCMI_IT_VSYNC);
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN,
+                    "Vsync event - sychronization frame\n");
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "--current num of line: %d\n",
+                    lineNum);
+  lineNum = CAMERA_DEBUG_RTT_EN;
+  // TODO: send image over UART for preview in pc
+}
+void DCMI_Driver::CAMERA_FrameEventCallback(void) {
+  __HAL_DCMI_CLEAR_FLAG(&hdcmi, DCMI_IT_FRAME);
+  HAL_UART_Transmit_DMA(&huart4, image_data, IMAGE_SIZE);
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "Frame captured event\n");
+}
+void DCMI_Driver::CAMERA_ErrorCallback(void) {
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "Frame synchonization error event\n");
+}

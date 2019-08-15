@@ -1,10 +1,5 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "../SEGGER/RTT/SEGGER_RTT.h"
-#include "camera_irq_handler.h"
-#include "hdmi_driver.h"
-#include "ov2640.h"
-#include "var_interface.h"
 
 #ifdef __cplusplus
 extern "C" {

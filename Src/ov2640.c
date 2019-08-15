@@ -10,7 +10,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "ov2640.h"
-#include "i2c_driver.h"
 
 /** @addtogroup BSP
  * @{
