@@ -28,3 +28,7 @@ extern uint8_t image_data[];
 
 /*RTT debug activation*/
 #define CAMERA_DEBUG_RTT_EN 1
+
+#ifdef __cplusplus
+}
+#endif

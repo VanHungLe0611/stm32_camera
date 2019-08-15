@@ -10,3 +10,7 @@ void BSP_CAMERA_VsyncEventCallback(void);
 void BSP_CAMERA_FrameEventCallback(void);
 void BSP_CAMERA_ErrorCallback(void);
 void DCMI_ITConfig(uint16_t DCMI_IT, FunctionalState NewState);
+
+#ifdef __cplusplus
+}
+#endif

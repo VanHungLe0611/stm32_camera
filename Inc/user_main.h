@@ -103,3 +103,7 @@ void user_code3();
 /* User can add his own implementation to report the file name and line number,
    tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 /* USER CODE END 6 */
+
+#ifdef __cplusplus
+}
+#endif
