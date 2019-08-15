@@ -2,6 +2,7 @@ import serial
 import os
 import serial.tools.list_ports
 import sys
+from PIL import Image
 
 #####################################################
 # connect to serial port
@@ -61,4 +62,10 @@ inputFormat = "yuv:" + fileName
 outputFile = "image_out.bmp"
 
 os.system(command + " " + ' '.join(flags)+ " " + inputFormat + " " + outputFile)
+
+#####################################################
+# Image open
+#####################################################
+img = Image.open('image_out.bmp')
+img.show()
 
