@@ -24,11 +24,12 @@ extern uint8_t image_data[];
 static uint32_t lineNum;
 
 /* CAMERA GLOBAL SETTING */
+#define CAMERA_DELAY_INTERVAL 500  // ms
 #define IMAGE_RESOLUTION CAMERA_R160x120
 #define IMAGE_SIZE CAMERA_R160x120_COLOR_MEMSIZE
 
 /*RTT debug activation*/
-#define CAMERA_DEBUG_RTT_EN 1
+#define CAMERA_DEBUG_RTT_DISABLE 0
 
 #ifdef __cplusplus
 }

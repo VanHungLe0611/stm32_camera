@@ -35,7 +35,7 @@ uint8_t DCMI_Driver::CAMERA_Init(uint32_t Resolution) {
     /* Return CAMERA_OK status */
     ret = CAMERA_OK;
   } else {
-    SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN,
+    SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE,
                       "Error: Can't read sensor ID (check sensor ID or I2c "
                       "connection again)\n");
   }
@@ -49,7 +49,7 @@ uint8_t DCMI_Driver::CAMERA_Init(uint32_t Resolution) {
   current_resolution = Resolution;
 
   if (ret == CAMERA_ERROR) {
-    SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN,
+    SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE,
                       "Error: CAMERA cannot initialized\n");
   }
   return ret;
@@ -75,6 +75,12 @@ void DCMI_Driver::CAMERA_SnapshotStart(uint8_t *buff) {
   /* Start the camera capture */
   lineNum = 0;
   __HAL_DCMI_ENABLE_IT(&hdcmi, DCMI_IT_FRAME | DCMI_IT_LINE | DCMI_IT_VSYNC);
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE,
+                    "Start ting camera... (delay for %d ms)\n",
+                    CAMERA_DELAY_INTERVAL);
+  CAMERA_Delay(CAMERA_DELAY_INTERVAL);
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE,
+                    "Start taking a snapshot image\n");
   HAL_DCMI_Start_DMA(&hdcmi, DCMI_MODE_SNAPSHOT, (uint32_t)buff,
                      GetSize(current_resolution));
 }
@@ -167,8 +173,8 @@ uint32_t DCMI_Driver::GetSize(uint32_t resolution) {
  *            @arg  CAMERA_BRIGHTNESS_LEVEL1: for brightness -1
  *            @arg  CAMERA_BRIGHTNESS_LEVEL0: for brightness -2
  */
-void DCMI_Driver::CAMERA_ContrastBrightnessConfig(
-    uint32_t contrast_level, uint32_t brightness_level) {
+void DCMI_Driver::CAMERA_ContrastBrightnessConfig(uint32_t contrast_level,
+                                                  uint32_t brightness_level) {
   if (camera->Config != NULL) {
     camera->Config(CAMERA_OV2640_I2C_ADDRESS, CAMERA_CONTRAST_BRIGHTNESS,
                    contrast_level, brightness_level);
@@ -312,22 +318,24 @@ void DCMI_Driver::CAMERA_setOutputFormat(uint8_t format) {
 void DCMI_Driver::CAMERA_LineEventCallback(void) {
   __HAL_DCMI_CLEAR_FLAG(&hdcmi, DCMI_IT_LINE);
   lineNum++;
-  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "End of line %d event \n", lineNum);
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE, "End of line %d event \n",
+                    lineNum);
 }
 void DCMI_Driver::CAMERA_VsyncEventCallback(void) {
   __HAL_DCMI_CLEAR_FLAG(&hdcmi, DCMI_IT_VSYNC);
-  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN,
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE,
                     "Vsync event - sychronization frame\n");
-  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "--current num of line: %d\n",
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE, "--current num of line: %d\n",
                     lineNum);
-  lineNum = CAMERA_DEBUG_RTT_EN;
+  lineNum = CAMERA_DEBUG_RTT_DISABLE;
   // TODO: send image over UART for preview in pc
 }
 void DCMI_Driver::CAMERA_FrameEventCallback(void) {
   __HAL_DCMI_CLEAR_FLAG(&hdcmi, DCMI_IT_FRAME);
   HAL_UART_Transmit_DMA(&huart4, image_data, IMAGE_SIZE);
-  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "Frame captured event\n");
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE, "Frame captured event\n");
 }
 void DCMI_Driver::CAMERA_ErrorCallback(void) {
-  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_EN, "Frame synchonization error event\n");
+  SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE,
+                    "Frame synchonization error event\n");
 }
