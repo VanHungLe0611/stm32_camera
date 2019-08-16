@@ -14,7 +14,7 @@ extern "C" {
 
 #include "i2c_driver.h"
 #include "ov2640.h"
-#include "stm32f4xx_hal.h"
+#include "stm32l4xx_hal.h"
 
 #define DSP_CTRL_REG 0x00
 #define SENSOR_CTRL_REG 0x01
