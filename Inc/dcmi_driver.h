@@ -58,11 +58,11 @@ class DCMI_Driver {
   void CAMERA_factoryReset(void);
   void CAMERA_setOutputFormat(uint8_t format);
   /* Camera interrupts and callbacks functions */
-  void CAMERA_LineEventCallback(void);
-  void CAMERA_VsyncEventCallback(void);
-  void CAMERA_FrameEventCallback(void);
-  void CAMERA_ErrorCallback(void);
-  void DCMI_ITConfig(uint16_t DCMI_IT, FunctionalState NewState);
+  static void CAMERA_LineEventCallback(void);
+  static void CAMERA_VsyncEventCallback(void);
+  static void CAMERA_FrameEventCallback(void);
+  static void CAMERA_ErrorCallback(void);
+  static void DCMI_ITConfig(uint16_t DCMI_IT, FunctionalState NewState);
 
   /* To be called in DCMI_IRQHandler function */
   void CAMERA_IRQHandler(void);

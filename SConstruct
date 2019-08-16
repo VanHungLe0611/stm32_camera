@@ -8,7 +8,7 @@ import sys
 import subprocess
 
 print("----------------------------------------------------------------")
-print("| Compiling mv-cube-LoRa				 	  		              |")
+print("| Compiling mv-cube-camera-------------------------------------|")
 print("----------------------------------------------------------------")
 
 buildDirDebug = '#/build/debug'
