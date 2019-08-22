@@ -71,7 +71,7 @@ class DCMI_Driver {
 
   /* utilities function */
   uint32_t GetSize(uint32_t resolution);
-  uint8_t CAMERA_readRegValue(uint8_t REG_ADDRESS);
+  uint8_t CAMERA_readRegValue(bool REG_BANK_SEL, uint8_t REG_ADDRESS);
   void CAMERA_writeRegValue(bool REG_BANK_SEL, uint8_t REG_ADDRESS,
                             uint8_t VALUE);
 

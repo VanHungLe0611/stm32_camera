@@ -24,6 +24,7 @@ extern uint8_t image_data[];
 static uint32_t lineNum;
 
 /* CAMERA GLOBAL SETTING */
+#define IMAGE_BUFFER (uint8_t*)0x20008000
 #define CAMERA_DELAY_INTERVAL 500  // ms
 #define IMAGE_RESOLUTION CAMERA_R160x120
 #define IMAGE_SIZE CAMERA_R160x120_COLOR_MEMSIZE

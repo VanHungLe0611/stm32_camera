@@ -259,7 +259,14 @@ void DCMI_Driver::CAMERA_DMA_IRQHandler(void) {
  * @brief  Read Register value
  * @param  REG_ADDRESS: register address
  */
-uint8_t DCMI_Driver::CAMERA_readRegValue(uint8_t REG_ADDRESS) {
+uint8_t DCMI_Driver::CAMERA_readRegValue(bool REG_BANK_SEL, uint8_t REG_ADDRESS) {
+  if (REG_BANK_SEL == SENSOR_CTRL_REG){
+    CAMERA_IO_Write(OV2640_I2C_ADDRESS, OV2640_DSP_RA_DLMT,
+                    OV2640_RDSP_RA_DLMT_SEL_SENSOR);
+  } else if (REG_BANK_SEL == DSP_CTRL_REG){
+    CAMERA_IO_Write(OV2640_I2C_ADDRESS, OV2640_DSP_RA_DLMT,
+                    OV2640_RDSP_RA_DLMT_SEL_DSP);
+  }
   return CAMERA_IO_Read(OV2640_I2C_ADDRESS, REG_ADDRESS);
 }
 
@@ -272,12 +279,10 @@ uint8_t DCMI_Driver::CAMERA_readRegValue(uint8_t REG_ADDRESS) {
  */
 void DCMI_Driver::CAMERA_writeRegValue(bool REG_BANK_SEL, uint8_t REG_ADDRESS,
                                        uint8_t VALUE) {
-  if (REG_BANK_SEL == SENSOR_CTRL_REG &&
-      CAMERA_readRegValue(OV2640_DSP_RA_DLMT) == 0x00) {
+  if (REG_BANK_SEL == SENSOR_CTRL_REG){
     CAMERA_IO_Write(OV2640_I2C_ADDRESS, OV2640_DSP_RA_DLMT,
                     OV2640_RDSP_RA_DLMT_SEL_SENSOR);
-  } else if (REG_BANK_SEL == DSP_CTRL_REG &&
-             CAMERA_readRegValue(OV2640_DSP_RA_DLMT) == 0x01) {
+  } else if (REG_BANK_SEL == DSP_CTRL_REG){
     CAMERA_IO_Write(OV2640_I2C_ADDRESS, OV2640_DSP_RA_DLMT,
                     OV2640_RDSP_RA_DLMT_SEL_DSP);
   }
@@ -332,7 +337,7 @@ void DCMI_Driver::CAMERA_VsyncEventCallback(void) {
 }
 void DCMI_Driver::CAMERA_FrameEventCallback(void) {
   __HAL_DCMI_CLEAR_FLAG(&hdcmi, DCMI_IT_FRAME);
-  HAL_UART_Transmit_DMA(&huart4, image_data, IMAGE_SIZE);
+  HAL_UART_Transmit_DMA(&huart4, IMAGE_BUFFER, IMAGE_SIZE);
   SEGGER_RTT_printf(CAMERA_DEBUG_RTT_DISABLE, "Frame captured event\n");
 }
 void DCMI_Driver::CAMERA_ErrorCallback(void) {
